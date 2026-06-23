@@ -1,150 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Growing Minds Youth Initiative</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growing Minds Youth Initiative</title>
 
-  <!-- Tailwind & Icons -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 
-  <!-- Supabase SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
 
-  <!-- Tailwind Config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { heading: ['Fredoka One', 'cursive'], body: ['Nunito', 'sans-serif'] },
-          colors: {
-            leaf: { 50:'#f0fdf4', 100:'#dcfce7', 200:'#bbf7d0', 300:'#86efac', 400:'#4ade80', 500:'#22c55e', 600:'#16a34a', 700:'#15803d', 800:'#166534', 900:'#14532d' },
-            warm: { 50:'#fffbeb', 100:'#fef3c7', 200:'#fde68a', 300:'#fcd34d', 400:'#fbbf24', 500:'#f59e0b', 600:'#d97706' },
-            sky: { 50:'#f0f9ff', 100:'#e0f2fe', 200:'#bae6fd', 300:'#7dd3fc', 400:'#38bdf8', 500:'#0ea5e9' },
-            heart: { 400:'#fb7185', 500:'#f43f5e', 600:'#e11d48' }
-          }
-        }
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { heading: ['Fredoka One', 'cursive'], body: ['Nunito', 'sans-serif'] },
+      colors: {
+        leaf: { 50:'#f0fdf4', 100:'#dcfce7', 200:'#bbf7d0', 300:'#86efac', 400:'#4ade80', 500:'#22c55e', 600:'#16a34a', 700:'#15803d', 800:'#166534', 900:'#14532d' },
+        warm: { 50:'#fffbeb', 100:'#fef3c7', 200:'#fde68a', 300:'#fcd34d', 400:'#fbbf24', 500:'#f59e0b', 600:'#d97706' },
+        sky: { 50:'#f0f9ff', 100:'#e0f2fe', 200:'#bae6fd', 300:'#7dd3fc', 400:'#38bdf8', 500:'#0ea5e9' },
+        heart: { 400:'#fb7185', 500:'#f43f5e', 600:'#e11d48' }
       }
     }
-  </script>
+  }
+}
+</script>
 
-  <style>
-    * { scroll-behavior: smooth; }
-    body { font-family: 'Nunito', sans-serif; background: #fcfcfc; }
+<style>
+  * { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; }
+  .logo-watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background-image: url('https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0'); background-size: contain; background-repeat: no-repeat; background-position: center; opacity: 0.04; z-index: 0; pointer-events: none; }
 
-    /* Logo Watermark */
-    .logo-watermark {
-      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 700px; height: 700px;
-      background-image: url('https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0');
-      background-size: contain; background-repeat: no-repeat; background-position: center;
-      opacity: 0.04; z-index: 0; pointer-events: none;
-    }
+  @keyframes floatLeaf { 0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; } 25% { transform: translateY(-30px) rotate(15deg) scale(1.05); opacity: 0.9; } 50% { transform: translateY(-10px) rotate(-10deg) scale(0.95); opacity: 0.6; } 75% { transform: translateY(-40px) rotate(20deg) scale(1.02); opacity: 0.8; } 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; } }
+  .float-leaf { animation: floatLeaf 6s ease-in-out infinite; }
+  .float-leaf-2 { animation: floatLeaf 8s ease-in-out infinite 1s; }
+  .float-leaf-3 { animation: floatLeaf 7s ease-in-out infinite 2s; }
+  .float-leaf-4 { animation: floatLeaf 9s ease-in-out infinite 0.5s; }
 
-    /* Floating Leaves */
-    @keyframes floatLeaf { 0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; } 25% { transform: translateY(-30px) rotate(15deg) scale(1.05); opacity: 0.9; } 50% { transform: translateY(-10px) rotate(-10deg) scale(0.95); opacity: 0.6; } 75% { transform: translateY(-40px) rotate(20deg) scale(1.02); opacity: 0.8; } 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; } }
-    .float-leaf { animation: floatLeaf 6s ease-in-out infinite; }
-    .float-leaf-2 { animation: floatLeaf 8s ease-in-out infinite 1s; }
-    .float-leaf-3 { animation: floatLeaf 7s ease-in-out infinite 2s; }
-    .float-leaf-4 { animation: floatLeaf 9s ease-in-out infinite 0.5s; }
+  @keyframes bounceIn { 0%{transform:scale(.3);opacity:0}50%{transform:scale(1.05)}70%{transform:scale(.9)}100%{transform:scale(1);opacity:1} }
+  .bounce-in { animation: bounceIn 0.8s ease-out forwards; }
+  @keyframes slideUp { from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1} }
+  .slide-up { animation: slideUp 0.7s ease-out forwards; }
+  @keyframes pulseHeart { 0%,100%{transform:scale(1)}50%{transform:scale(1.15)} }
+  .pulse-heart { animation: pulseHeart 1.5s ease-in-out infinite; }
+  @keyframes wiggle { 0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)} }
+  .wiggle:hover { animation: wiggle 0.4s ease-in-out infinite; }
+  @keyframes sparkle { 0%,100%{opacity:0;transform:scale(0) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(180deg)} }
+  .sparkle { animation: sparkle 2s ease-in-out infinite; }
+  @keyframes wave { 0%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}60%{transform:rotate(0)}100%{transform:rotate(0)} }
+  .wave-hand { animation: wave 2.5s ease-in-out infinite; transform-origin: 70% 70%; display: inline-block; }
 
-    @keyframes bounceIn { 0%{transform:scale(.3);opacity:0}50%{transform:scale(1.05)}70%{transform:scale(.9)}100%{transform:scale(1);opacity:1} }
-    .bounce-in { animation: bounceIn 0.8s ease-out forwards; }
+  @keyframes growPulse { 0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.1);opacity:1} }
+  .grow-pulse { animation: growPulse 3s ease-in-out infinite; }
+  @keyframes plantGrow { 0%{transform:scaleY(0);transform-origin:bottom}100%{transform:scaleY(1);transform-origin:bottom} }
+  .plant-grow { animation: plantGrow 1s ease-out forwards; }
+  .interactive-leaf { cursor: pointer; transition: all 0.3s; }
+  .interactive-leaf:hover { transform: scale(1.2) rotate(15deg); filter: brightness(1.2); }
 
-    @keyframes slideUp { from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1} }
-    .slide-up { animation: slideUp 0.7s ease-out forwards; }
+  .reveal { opacity:0; transform:translateY(40px); transition:all 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.active { opacity:1; transform:translateY(0); }
 
-    @keyframes pulseHeart { 0%,100%{transform:scale(1)}50%{transform:scale(1.15)} }
-    .pulse-heart { animation: pulseHeart 1.5s ease-in-out infinite; }
+  .nav-link { position: relative; }
+  .nav-link::after { content:''; position:absolute; bottom:-4px; left:50%; width:0; height:3px; background:#16a34a; border-radius:2px; transition:all .3s; transform:translateX(-50%); }
+  .nav-link:hover::after, .nav-link.active::after { width:80%; }
 
-    @keyframes sparkle { 0%,100%{opacity:0;transform:scale(0) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(180deg)} }
-    .sparkle { animation: sparkle 2s ease-in-out infinite; }
+  .card-lift { transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .card-lift:hover { transform:translateY(-8px); box-shadow:0 20px 40px rgba(22,163,74,0.15); }
 
-    @keyframes wave { 0%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}60%{transform:rotate(0)}100%{transform:rotate(0)} }
-    .wave-hand { animation: wave 2.5s ease-in-out infinite; transform-origin: 70% 70%; display: inline-block; }
+  ::-webkit-scrollbar { width:8px; }
+  ::-webkit-scrollbar-track { background:#f0fdf4; }
+  ::-webkit-scrollbar-thumb { background:#86efac; border-radius:4px; }
+  ::-webkit-scrollbar-thumb:hover { background:#4ade80; }
 
-    @keyframes plantGrow { 0%{transform:scaleY(0);transform-origin:bottom}100%{transform:scaleY(1);transform-origin:bottom} }
-    .plant-grow { animation: plantGrow 1s ease-out forwards; }
+  @keyframes toastIn { from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1} }
+  @keyframes toastOut { from{transform:translateX(0);opacity:1}to{transform:translateX(100%);opacity:0} }
+  .toast-in { animation:toastIn .4s ease-out forwards; }
+  .toast-out { animation:toastOut .4s ease-in forwards; }
 
-    .reveal { opacity:0; transform:translateY(40px); transition:all 0.8s cubic-bezier(0.16,1,0.3,1); }
-    .reveal.active { opacity:1; transform:translateY(0); }
+  @keyframes confettiFall { 0%{transform:translateY(-100vh) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
+  .confetti-piece { position:fixed; top:-10px; z-index:9999; pointer-events:none; }
 
-    .nav-link { position: relative; color: #1f2937; transition: color 0.3s; }
-    .nav-link::after { content:''; position:absolute; bottom:-4px; left:50%; width:0; height:2px; background:#16a34a; transition:all .3s; transform:translateX(-50%); }
-    .nav-link:hover { color: #16a34a; }
-    .nav-link:hover::after { width:80%; }
+  .mobile-menu { transform:translateX(100%); transition:transform .4s cubic-bezier(0.16,1,0.3,1); }
+  .mobile-menu.open { transform:translateX(0); }
 
-    .card-lift { transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
-    .card-lift:hover { transform:translateY(-8px); box-shadow:0 20px 40px rgba(22,163,74,0.15); }
+  .modal-overlay { opacity:0; pointer-events:none; transition:opacity .3s; }
+  .modal-overlay.open { opacity:1; pointer-events:auto; }
+  .modal-overlay.open .modal-content { transform:scale(1) translateY(0); opacity:1; }
+  .modal-content { transform:scale(.95) translateY(20px); opacity:0; transition:all .4s cubic-bezier(0.16,1,0.3,1); }
 
-    ::-webkit-scrollbar { width:8px; }
-    ::-webkit-scrollbar-track { background:#f0fdf4; }
-    ::-webkit-scrollbar-thumb { background:#86efac; border-radius:4px; }
-    ::-webkit-scrollbar-thumb:hover { background:#4ade80; }
+  .upload-zone { border:2px dashed #bbf7d0; transition:all .3s; cursor:pointer; }
+  .upload-zone:hover, .upload-zone.dragover { border-color:#16a34a; background:#f0fdf4; }
 
-    @keyframes toastIn { from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1} }
-    @keyframes toastOut { from{transform:translateX(0);opacity:1}to{transform:translateX(100%);opacity:0} }
-    .toast-in { animation:toastIn .4s ease-out forwards; }
-    .toast-out { animation:toastOut .4s ease-in forwards; }
+  .gallery-modal { opacity:0; pointer-events:none; transition:opacity .3s; }
+  .gallery-modal.open { opacity:1; pointer-events:auto; }
+  .gallery-modal.open .gallery-modal-content { transform:translateY(0); opacity:1; }
+  .gallery-modal-content { transform:translateY(40px); opacity:0; transition:all .4s cubic-bezier(0.16,1,0.3,1); }
 
-    @keyframes confettiFall { 0%{transform:translateY(-100vh) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
-    .confetti-piece { position:fixed; top:-10px; z-index:9999; pointer-events:none; }
+  .img-overlay { opacity:0; transition:opacity .3s; }
+  .img-group:hover .img-overlay { opacity:1; }
 
-    .mobile-menu { transform:translateX(100%); transition:transform .4s cubic-bezier(0.16,1,0.3,1); }
-    .mobile-menu.open { transform:translateX(0); }
+  .admin-login-overlay { opacity:0; pointer-events:none; transition:all .3s; }
+  .admin-login-overlay.open { opacity:1; pointer-events:auto; }
+  .admin-login-overlay.open .admin-login-box { transform:scale(1); opacity:1; }
+  .admin-login-box { transform:scale(.9); opacity:0; transition:all .4s cubic-bezier(0.16,1,0.3,1); }
 
-    .modal-overlay { opacity:0; pointer-events:none; transition:opacity .3s; }
-    .modal-overlay.open { opacity:1; pointer-events:auto; }
-    .modal-overlay.open .modal-content { transform:scale(1) translateY(0); opacity:1; }
-    .modal-content { transform:scale(.95) translateY(20px); opacity:0; transition:all .4s cubic-bezier(0.16,1,0.3,1); }
+  .lightbox { opacity:0; pointer-events:none; transition:opacity .3s; }
+  .lightbox.open { opacity:1; pointer-events:auto; }
 
-    .upload-zone { border:2px dashed #bbf7d0; transition:all .3s; cursor:pointer; }
-    .upload-zone:hover, .upload-zone.dragover { border-color:#16a34a; background:#f0fdf4; }
+  /* Bank styling */
+  .bank-card { background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%); position: relative; overflow: hidden; }
+  .bank-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); animation: bankShine 3s ease-in-out infinite; }
+  @keyframes bankShine { 0%,100%{transform:translate(-30%,-30%)}50%{transform:translate(30%,30%)} }
 
-    .gallery-modal { opacity:0; pointer-events:none; transition:opacity .3s; }
-    .gallery-modal.open { opacity:1; pointer-events:auto; }
-    .gallery-modal.open .gallery-modal-content { transform:translateY(0); opacity:1; }
-    .gallery-modal-content { transform:translateY(40px); opacity:0; transition:all .4s cubic-bezier(0.16,1,0.3,1); }
+  .line-clamp-2 { display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
+  .spinner { display:inline-block; width:20px; height:20px; border:2.5px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin .6s linear infinite; }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  .skeleton { background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
+  @keyframes shimmer { 0%{background-position:200% 0}100%{background-position:-200% 0} }
 
-    .img-overlay { opacity:0; transition:opacity .3s; }
-    .img-group:hover .img-overlay { opacity:1; }
+  /* 🔒 BULLETPROOF ADMIN HIDING */
+  .admin-controls { display: none !important; }
+  .campaign-admin-actions { display: none !important; }
+  .admin-photo-actions { display: none !important; }
+  .admin-logout-btn { display: none !important; }
 
-    .admin-login-overlay { opacity:0; pointer-events:none; transition:all .3s; }
-    .admin-login-overlay.open { opacity:1; pointer-events:auto; }
-    .admin-login-overlay.open .admin-login-box { transform:scale(1); opacity:1; }
-    .admin-login-box { transform:scale(.9); opacity:0; transition:all .4s cubic-bezier(0.16,1,0.3,1); }
-
-    .lightbox { opacity:0; pointer-events:none; transition:opacity .3s; }
-    .lightbox.open { opacity:1; pointer-events:auto; }
-
-    .bank-card {
-      background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
-      position: relative; overflow: hidden;
-    }
-    .bank-card::before {
-      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-      animation: bankShine 3s ease-in-out infinite;
-    }
-    @keyframes bankShine { 0%,100%{transform:translate(-30%,-30%)}50%{transform:translate(30%,30%)} }
-
-    .line-clamp-2 { display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
-    .spinner { display:inline-block; width:20px; height:20px; border:2.5px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin .6s linear infinite; }
-    @keyframes spin { to{transform:rotate(360deg)} }
-    .skeleton { background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
-    @keyframes shimmer { 0%{background-position:200% 0}100%{background-position:-200% 0} }
-
-    /* 🔐 CSS FIREWALL: Admin Controls are completely hidden from PUBLIC until admin-mode is active */
-    .admin-only { display: none !important; }
-    .admin-only-flex { display: none !important; }
-    
-    body.admin-mode .admin-only { display: flex !important; }
-    body.admin-mode .admin-only-flex { display: flex !important; }
-  </style>
+  body.admin-mode .admin-controls { display: flex !important; }
+  body.admin-mode .campaign-admin-actions { display: flex !important; }
+  body.admin-mode .admin-photo-actions { display: block !important; }
+  body.admin-mode .admin-logout-btn { display: flex !important; }
+  body.admin-mode .admin-login-btn { display: none !important; }
+</style>
 </head>
 <body class="bg-white text-gray-800 overflow-x-hidden">
 
@@ -152,18 +142,18 @@
 <div class="logo-watermark"></div>
 
 <!-- FLOATING LEAVES -->
-<div class="fixed pointer-events-none z-0">
-  <svg class="float-leaf absolute top-20 left-10 w-12 h-12 text-leaf-300 opacity-40" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path><line x1="24" y1="10" x2="24" y2="44" stroke="white" stroke-width="1.5" opacity="0.5"></line></svg>
-  <svg class="float-leaf-2 absolute top-40 right-20 w-10 h-10 text-leaf-400 opacity-30" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path></svg>
-  <svg class="float-leaf-3 absolute bottom-40 left-1/4 w-8 h-8 text-warm-400 opacity-30" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path></svg>
-  <svg class="float-leaf-4 absolute top-2/3 right-1/3 w-14 h-14 text-leaf-200 opacity-25" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path></svg>
+<div class="fixed pointer-events-none z-0" id="floatingLeaves">
+  <svg class="float-leaf absolute top-20 left-10 w-12 h-12 text-leaf-300 opacity-40 interactive-leaf" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path><line x1="24" y1="10" x2="24" y2="44" stroke="white" stroke-width="1.5" opacity="0.5"></line></svg>
+  <svg class="float-leaf-2 absolute top-40 right-20 w-10 h-10 text-leaf-400 opacity-30 interactive-leaf" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path></svg>
+  <svg class="float-leaf-3 absolute bottom-40 left-1/4 w-8 h-8 text-warm-400 opacity-30 interactive-leaf" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path></svg>
+  <svg class="float-leaf-4 absolute top-2/3 right-1/3 w-14 h-14 text-leaf-200 opacity-25 interactive-leaf" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C24 4 8 16 8 28c0 8 7 16 16 16s16-8 16-16C40 16 24 4 24 4z"></path></svg>
 </div>
 
 <!-- TOAST CONTAINER -->
 <div id="toastContainer" class="fixed top-24 right-6 z-[9999] flex flex-col gap-3"></div>
 
 <!-- ============================================= -->
-<!-- ADMIN LOGIN MODAL (POPUP)                     -->
+<!-- ADMIN LOGIN MODAL -->
 <!-- ============================================= -->
 <div id="adminLoginModal" class="admin-login-overlay fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
   <div class="admin-login-box bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden">
@@ -177,11 +167,17 @@
     <div class="p-6 space-y-4">
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-1.5">Email</label>
-        <div class="relative"><i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i><input type="email" id="adminEmail" placeholder="admin@email.com" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
+        <div class="relative">
+          <i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+          <input type="email" id="adminEmail" placeholder="admin@email.com" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all" onkeydown="if(event.key==='Enter')document.getElementById('adminPassword').focus()">
+        </div>
       </div>
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-1.5">Password</label>
-        <div class="relative"><i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i><input type="password" id="adminPassword" placeholder="Enter password" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
+        <div class="relative">
+          <i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+          <input type="password" id="adminPassword" placeholder="Enter password" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all" onkeydown="if(event.key==='Enter')doAdminLogin()">
+        </div>
       </div>
       <p id="loginError" class="text-heart-500 text-sm font-semibold hidden"></p>
       <div class="flex gap-3">
@@ -195,7 +191,44 @@
 </div>
 
 <!-- ============================================= -->
-<!-- NAVIGATION                                     -->
+<!-- ADMIN SETTINGS MODAL -->
+<!-- ============================================= -->
+<div id="settingsModal" class="modal-overlay fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 md:pt-10 overflow-y-auto">
+  <div class="modal-content bg-white rounded-3xl w-full max-w-2xl shadow-2xl mb-10">
+    <div class="flex items-center justify-between p-6 border-b border-gray-100">
+      <h3 class="font-heading text-2xl text-leaf-900">Edit Site Settings</h3>
+      <button onclick="closeSettingsModal()" class="p-2 hover:bg-gray-100 rounded-xl transition-colors"><i data-lucide="x" class="w-5 h-5 text-gray-500"></i></button>
+    </div>
+    <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+      <div>
+        <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">🏦 Bank Transfer Details</h4>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Bank Name</label><input type="text" id="setBankName" placeholder="e.g. Global Trust Bank" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Account Name</label><input type="text" id="setAccountName" placeholder="Growing Minds Youth Initiative" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Account Number</label><input type="text" id="setAccountNumber" placeholder="[0000000000]" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Routing / Swift Code</label><input type="text" id="setRoutingCode" placeholder="[XXXXXXX]" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">📞 Contact Information</h4>
+        <div class="space-y-4">
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Email Address</label><input type="email" id="setContactEmail" placeholder="info@growingmindsyi.org" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Phone Number</label><input type="text" id="setContactPhone" placeholder="+1 (234) 567-8900" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Address / Location</label><input type="text" id="setContactAddress" placeholder="Community Center, Main Street, Cityville" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-end gap-3 p-6 border-t border-gray-100 bg-gray-50/50 rounded-b-3xl">
+      <button onclick="closeSettingsModal()" class="px-6 py-3 rounded-xl font-bold text-gray-600 hover:bg-gray-100 transition-colors">Cancel</button>
+      <button onclick="saveSettings()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-8 py-3 rounded-xl font-bold transition-all hover:scale-105 hover:shadow-lg flex items-center gap-2">
+        <i data-lucide="check" class="w-5 h-5"></i> Save Settings
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- NAVIGATION -->
 <!-- ============================================= -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/80 backdrop-blur-lg border-b border-leaf-100 shadow-md">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -215,10 +248,10 @@
       <a href="#suggestions" class="nav-link text-sm font-semibold text-gray-600 hover:text-leaf-700 transition-colors">Suggestions</a>
       <a href="#contact" class="nav-link text-sm font-semibold text-gray-600 hover:text-leaf-700 transition-colors">Contact</a>
       
-      <!-- LOGIN & LOGOUT BUTTONS -->
-      <button id="adminLoginBtn" onclick="openAdminLogin()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-1.5">🔐 Admin</button>
-      <button id="logoutBtn" onclick="adminLogout()" class="hidden bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold transition-all border border-red-200 flex items-center gap-1.5">🚪 Logout</button>
-
+      <!-- 🔐 Login / Logout -->
+      <button id="loginNavBtn" onclick="openAdminLogin()" class="admin-login-btn bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-1.5">🔐 Admin</button>
+      <button id="logoutNavBtn" onclick="adminLogout()" class="admin-logout-btn bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold transition-all border border-red-200 flex items-center gap-1.5">🚪 Logout</button>
+      
       <a href="#donate" class="bg-leaf-600 hover:bg-leaf-700 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-leaf-200">💚 Support Us</a>
     </div>
     <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-leaf-50 transition-colors"><i data-lucide="menu" class="w-6 h-6 text-leaf-700"></i></button>
@@ -226,7 +259,7 @@
 </nav>
 
 <!-- ============================================= -->
-<!-- MOBILE MENU                                     -->
+<!-- MOBILE MENU -->
 <!-- ============================================= -->
 <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-white/95 backdrop-blur-xl flex flex-col">
   <div class="flex items-center justify-between px-6 py-4 border-b border-leaf-100">
@@ -239,65 +272,116 @@
     <a href="#donate" class="mobile-nav-link flex items-center gap-4 px-4 py-4 rounded-2xl text-lg font-semibold text-gray-700 hover:bg-leaf-50 hover:text-leaf-700 transition-all"><i data-lucide="heart" class="w-5 h-5"></i> Donate</a>
     <a href="#suggestions" class="mobile-nav-link flex items-center gap-4 px-4 py-4 rounded-2xl text-lg font-semibold text-gray-700 hover:bg-leaf-50 hover:text-leaf-700 transition-all"><i data-lucide="lightbulb" class="w-5 h-5"></i> Suggestions</a>
     <a href="#contact" class="mobile-nav-link flex items-center gap-4 px-4 py-4 rounded-2xl text-lg font-semibold text-gray-700 hover:bg-leaf-50 hover:text-leaf-700 transition-all"><i data-lucide="mail" class="w-5 h-5"></i> Contact</a>
-    <div class="border-t border-gray-200 mt-4 pt-4"><button onclick="openAdminLogin();closeMobileMenu()" class="flex items-center gap-4 px-4 py-4 rounded-2xl text-lg font-semibold text-gray-700 hover:bg-leaf-50 hover:text-leaf-700 transition-all w-full text-left">🔐 Admin Login</button></div>
+    <div class="border-t border-gray-200 mt-4 pt-4">
+      <button onclick="openAdminLogin();closeMobileMenu()" class="admin-login-btn flex items-center gap-4 px-4 py-4 rounded-2xl text-lg font-semibold text-gray-700 hover:bg-leaf-50 hover:text-leaf-700 transition-all">🔐 Admin Login</button>
+      <button onclick="adminLogout();closeMobileMenu()" class="admin-logout-btn flex items-center gap-4 px-4 py-4 rounded-2xl text-lg font-semibold text-red-600 hover:bg-red-50 transition-all">🚪 Logout</button>
+    </div>
   </div>
+  <div class="p-6"><a href="#donate" class="mobile-nav-link block text-center bg-leaf-600 text-white px-6 py-4 rounded-2xl font-bold text-lg hover:bg-leaf-700 transition-colors">💚 Support Us</a></div>
 </div>
 
 <!-- ============================================= -->
-<!-- HERO                                            -->
+<!-- HERO SECTION -->
 <!-- ============================================= -->
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
   <div class="absolute inset-0 bg-gradient-to-br from-leaf-50 via-white to-warm-50"></div>
+  <div class="absolute top-20 left-10 w-72 h-72 bg-leaf-200/30 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 right-10 w-96 h-96 bg-warm-200/20 rounded-full blur-3xl"></div>
   <div class="absolute bottom-0 left-1/2 -translate-x-1/2 opacity-10 pointer-events-none">
     <svg width="400" height="300" viewBox="0 0 400 300" class="plant-grow">
-      <path d="M200 300 L200 150" stroke="#166534" stroke-width="12"/>
-      <path d="M200 200 L150 120" stroke="#166534" stroke-width="8"/>
-      <path d="M200 200 L250 120" stroke="#166534" stroke-width="8"/>
+      <path d="M200 300 L200 150" stroke="#166534" stroke-width="12" stroke-linecap="round"/>
+      <path d="M200 200 L150 120" stroke="#166534" stroke-width="8" stroke-linecap="round"/>
+      <path d="M200 200 L250 120" stroke="#166534" stroke-width="8" stroke-linecap="round"/>
+      <path d="M200 150 L160 80" stroke="#166534" stroke-width="6" stroke-linecap="round"/>
+      <path d="M200 150 L240 80" stroke="#166534" stroke-width="6" stroke-linecap="round"/>
       <circle cx="150" cy="110" r="30" fill="#22c55e" opacity="0.8"/>
       <circle cx="250" cy="110" r="30" fill="#22c55e" opacity="0.8"/>
+      <circle cx="160" cy="70" r="25" fill="#4ade80" opacity="0.8"/>
+      <circle cx="240" cy="70" r="25" fill="#4ade80" opacity="0.8"/>
       <circle cx="200" cy="50" r="35" fill="#86efac" opacity="0.8"/>
     </svg>
   </div>
   <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
     <div class="bounce-in mb-8">
       <div class="relative inline-block">
-        <div class="w-48 h-48 md:w-64 md:h-64 mx-auto rounded-full overflow-hidden border-4 border-leaf-300 shadow-2xl hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="spinLogo(this)">
-          <img src="https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0" alt="GMYI Logo" class="w-full h-full object-cover">
+        <div class="w-48 h-48 md:w-64 md:h-64 mx-auto rounded-full overflow-hidden border-4 border-leaf-300 shadow-2xl shadow-leaf-200/50 hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="spinLogo(this)">
+          <img src="https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0" alt="GMYI Logo" class="w-full h-full object-cover" style="transition:transform .8s cubic-bezier(.16,1,.3,1)">
         </div>
         <svg class="sparkle absolute -top-2 -right-2 w-6 h-6 text-warm-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.59 8.41L23 12L14.59 15.59L12 24L9.41 15.59L1 12L9.41 8.41Z"></path></svg>
+        <svg class="sparkle absolute -bottom-1 -left-3 w-5 h-5 text-leaf-400" style="animation-delay:.7s" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.59 8.41L23 12L14.59 15.59L12 24L9.41 15.59L1 12L9.41 8.41Z"></path></svg>
       </div>
     </div>
-    <h1 class="slide-up font-heading text-4xl md:text-6xl lg:text-7xl text-leaf-900 mb-6">Growing Minds<br><span class="text-leaf-600">Youth Initiative</span></h1>
-    <p class="slide-up text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-semibold leading-relaxed">Nurturing hope, empowering lives. We believe every child deserves access to basic essentials and the opportunity to grow.</p>
-    <div class="slide-up flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#donate" class="group bg-leaf-600 hover:bg-leaf-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-xl flex items-center gap-2"><span class="pulse-heart inline-block">💚</span> Donate Now <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i></a>
-      <a href="#about" class="group bg-white hover:bg-leaf-50 text-leaf-800 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 border-2 border-leaf-200 hover:border-leaf-400 flex items-center gap-2 shadow-sm">Learn More</a>
+    <div class="slide-up mb-4" style="animation-delay:.2s"><span class="wave-hand text-4xl">👋</span></div>
+    <h1 class="slide-up font-heading text-4xl md:text-6xl lg:text-7xl text-leaf-900 mb-6 leading-tight" style="animation-delay:.3s">Growing Minds<br><span class="text-leaf-600">Youth Initiative</span></h1>
+    <p class="slide-up text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-semibold leading-relaxed" style="animation-delay:.5s">Nurturing hope, empowering lives. We believe every child deserves access to basic essentials and the opportunity to grow into their fullest potential.</p>
+    <div class="slide-up flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.7s">
+      <a href="#donate" class="group bg-leaf-600 hover:bg-leaf-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-leaf-200 flex items-center gap-2"><span class="pulse-heart inline-block">💚</span> Donate Now <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i></a>
+      <a href="#about" class="group bg-white hover:bg-leaf-50 text-leaf-800 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 border-2 border-leaf-200 hover:border-leaf-400 flex items-center gap-2 shadow-sm">Learn More <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-0.5 transition-transform"></i></a>
     </div>
   </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce"><p class="text-xs font-semibold text-leaf-500 tracking-widest uppercase">Scroll</p><i data-lucide="chevron-down" class="w-5 h-5 text-leaf-400"></i></div>
 </section>
 
 <!-- ============================================= -->
-<!-- ABOUT                                           -->
+<!-- ABOUT SECTION -->
 <!-- ============================================= -->
 <section id="about" class="relative py-24 md:py-32 bg-white">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <span class="inline-block bg-leaf-100 text-leaf-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Who We Are</span>
       <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">About Our Initiative</h2>
+      <div class="w-20 h-1.5 bg-gradient-to-r from-leaf-400 to-leaf-600 mx-auto rounded-full"></div>
     </div>
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-      <div class="reveal relative bg-gradient-to-br from-leaf-50 to-leaf-100 rounded-3xl p-8 md:p-12 overflow-hidden">
-        <div class="absolute top-4 right-4 w-20 h-20 bg-leaf-200/40 rounded-full blur-xl"></div>
-        <div class="absolute bottom-4 left-4 w-16 h-16 bg-warm-200/40 rounded-full blur-xl"></div>
-        <div class="w-full max-w-sm mx-auto drop-shadow-lg text-center text-9xl">🌱</div>
+      <div class="reveal relative">
+        <div class="relative bg-gradient-to-br from-leaf-50 to-leaf-100 rounded-3xl p-8 md:p-12 overflow-hidden">
+          <div class="absolute top-4 right-4 w-20 h-20 bg-leaf-200/40 rounded-full blur-xl"></div>
+          <div class="absolute bottom-4 left-4 w-16 h-16 bg-warm-200/40 rounded-full blur-xl"></div>
+          <svg viewBox="0 0 400 400" class="w-full max-w-sm mx-auto drop-shadow-lg" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="200" cy="360" rx="140" ry="20" fill="#bbf7d0"></ellipse>
+            <rect x="160" y="210" width="80" height="100" rx="30" fill="#4ade80"></rect>
+            <rect x="120" y="220" width="45" height="20" rx="10" fill="#fcd34d" transform="rotate(-15,142,230)"></rect>
+            <rect x="235" y="220" width="45" height="20" rx="10" fill="#fcd34d" transform="rotate(15,258,230)"></rect>
+            <circle cx="118" cy="218" r="12" fill="#fcd34d"></circle>
+            <circle cx="282" cy="218" r="12" fill="#fcd34d"></circle>
+            <rect x="170" y="295" width="22" height="55" rx="10" fill="#166534"></rect>
+            <rect x="208" y="295" width="22" height="55" rx="10" fill="#166534"></rect>
+            <ellipse cx="181" cy="352" rx="18" ry="10" fill="#15803d"></ellipse>
+            <ellipse cx="219" cy="352" rx="18" ry="10" fill="#15803d"></ellipse>
+            <circle cx="200" cy="170" r="55" fill="#fcd34d"></circle>
+            <path d="M150 155 Q155 110 200 105 Q245 110 250 155" fill="#4a2c0a"></path>
+            <path d="M148 160 Q145 140 155 125" stroke="#4a2c0a" stroke-width="8" fill="none" stroke-linecap="round"></path>
+            <path d="M252 160 Q255 140 245 125" stroke="#4a2c0a" stroke-width="8" fill="none" stroke-linecap="round"></path>
+            <ellipse cx="182" cy="168" rx="8" ry="9" fill="white"></ellipse>
+            <ellipse cx="218" cy="168" rx="8" ry="9" fill="white"></ellipse>
+            <circle cx="184" cy="170" r="5" fill="#1a1a1a"></circle>
+            <circle cx="220" cy="170" r="5" fill="#1a1a1a"></circle>
+            <circle cx="186" cy="168" r="2" fill="white"></circle>
+            <circle cx="222" cy="168" r="2" fill="white"></circle>
+            <path d="M185 190 Q200 205 215 190" stroke="#c2410c" stroke-width="3" fill="none" stroke-linecap="round"></path>
+            <circle cx="168" cy="185" r="8" fill="#fca5a5" opacity="0.5"></circle>
+            <circle cx="232" cy="185" r="8" fill="#fca5a5" opacity="0.5"></circle>
+            <g transform="translate(100,180)" class="grow-pulse"><path d="M20 40 Q0 20 10 0 Q20 20 20 40Z" fill="#22c55e"></path><line x1="20" y1="40" x2="12" y2="8" stroke="#15803d" stroke-width="1.5"></line><path d="M20 35 Q35 15 30 -5 Q22 15 20 35Z" fill="#4ade80"></path><line x1="20" y1="35" x2="28" y2="2" stroke="#16a34a" stroke-width="1.5"></line></g>
+            <g class="pulse-heart" transform="translate(225,95)"><path d="M12 4C12 4 2 0 2 8C2 14 12 20 12 20C12 20 22 14 22 8C22 0 12 4 12 4Z" fill="#f43f5e"></path></g>
+            <g class="sparkle" transform="translate(80,100)"><path d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6Z" fill="#fbbf24"></path></g>
+            <g class="sparkle" style="animation-delay:1s" transform="translate(300,120)"><path d="M6 0L8 4L12 6L8 8L6 12L4 8L0 6L4 4Z" fill="#38bdf8"></path></g>
+          </svg>
+        </div>
       </div>
       <div class="reveal" style="transition-delay:.2s">
-        <h3 class="font-heading text-2xl md:text-3xl text-leaf-900 mb-6">Planting Seeds of Change, One Child at a Time</h3>
-        <p class="text-gray-600 leading-relaxed mb-6"><strong class="text-leaf-700">Growing Minds Youth Initiative</strong> is a grassroots NGO founded by passionate young people. We work directly in underserved communities to provide food, clothing, school supplies, and hygiene products.</p>
-        <p class="text-gray-600 leading-relaxed mb-8">Our vision is mighty — to grow into a movement that ensures every child has the foundation they need to learn, play, and dream big.</p>
+        <h3 class="font-heading text-2xl md:text-3xl text-leaf-900 mb-6">Planting Seeds of Change, One Child at a Time 🌱</h3>
+        <p class="text-gray-600 leading-relaxed mb-6"><strong class="text-leaf-700">Growing Minds Youth Initiative</strong> is a grassroots NGO born from the simple belief that no child should go without basic essentials. Founded by passionate young people, we work directly in underserved communities to provide food, clothing, school supplies, and hygiene products to children and families in need.</p>
+        <p class="text-gray-600 leading-relaxed mb-8">Though we are still a small initiative, our vision is mighty — to grow into a movement that ensures every child has the foundation they need to learn, play, and dream big.</p>
         <div class="grid sm:grid-cols-2 gap-4">
-          <div class="bg-leaf-50 rounded-2xl p-5 border border-leaf-100 card-lift"><h4 class="font-bold text-leaf-800 mb-1">Our Mission</h4><p class="text-sm text-gray-600">Delivering basic essentials to poor and vulnerable children, restoring hope.</p></div>
-          <div class="bg-warm-50 rounded-2xl p-5 border border-warm-100 card-lift"><h4 class="font-bold text-warm-800 mb-1">Our Vision</h4><p class="text-sm text-gray-600">A world where every child's basic needs are met, enabling them to thrive.</p></div>
+          <div class="bg-leaf-50 rounded-2xl p-5 border border-leaf-100 card-lift"><div class="w-10 h-10 bg-leaf-200 rounded-xl flex items-center justify-center mb-3"><i data-lucide="target" class="w-5 h-5 text-leaf-700"></i></div><h4 class="font-bold text-leaf-800 mb-1">Our Mission</h4><p class="text-sm text-gray-600">To deliver basic essentials to poor and vulnerable children, restoring dignity and hope.</p></div>
+          <div class="bg-warm-50 rounded-2xl p-5 border border-warm-100 card-lift"><div class="w-10 h-10 bg-warm-200 rounded-xl flex items-center justify-center mb-3"><i data-lucide="eye" class="w-5 h-5 text-warm-700"></i></div><h4 class="font-bold text-warm-800 mb-1">Our Vision</h4><p class="text-sm text-gray-600">A world where every child's basic needs are met, enabling them to thrive and grow.</p></div>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <span class="wiggle inline-flex items-center gap-1.5 bg-leaf-100 text-leaf-700 px-4 py-2 rounded-full text-sm font-bold cursor-default">🤝 Compassion</span>
+          <span class="wiggle inline-flex items-center gap-1.5 bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-bold cursor-default">✨ Transparency</span>
+          <span class="wiggle inline-flex items-center gap-1.5 bg-warm-100 text-warm-700 px-4 py-2 rounded-full text-sm font-bold cursor-default">🌱 Growth</span>
+          <span class="wiggle inline-flex items-center gap-1.5 bg-heart-500/10 text-heart-600 px-4 py-2 rounded-full text-sm font-bold cursor-default">❤️ Love</span>
+          <span class="wiggle inline-flex items-center gap-1.5 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-bold cursor-default">💡 Youth-Led</span>
         </div>
       </div>
     </div>
@@ -305,30 +389,37 @@
 </section>
 
 <!-- ============================================= -->
-<!-- CAMPAIGNS                                       -->
+<!-- CAMPAIGNS SECTION -->
 <!-- ============================================= -->
 <section id="campaigns" class="relative py-24 md:py-32 bg-gradient-to-b from-white to-leaf-50/50">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <span class="inline-block bg-warm-100 text-warm-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Making a Difference</span>
       <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Outreach Campaigns</h2>
+      <div class="w-20 h-1.5 bg-gradient-to-r from-warm-400 to-warm-600 mx-auto rounded-full mb-4"></div>
+      <p class="text-gray-600 max-w-xl mx-auto">Each campaign is a step toward brighter futures. Click any campaign to view its full gallery.</p>
     </div>
 
-    <!-- 🔐 Admin Controls: Add / Filter Buttons (Hidden on Public) -->
-    <div id="adminControls" class="admin-only mb-8 flex flex-wrap items-center justify-between gap-4">
+    <!-- 🔒 ADMIN CONTROLS (Includes Settings Button) -->
+    <div id="adminControls" class="admin-controls mb-8 reveal flex flex-wrap items-center justify-between gap-4">
       <div class="flex flex-wrap gap-2">
         <button class="campaign-tab active bg-leaf-600 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all" data-filter="all">All</button>
         <button class="campaign-tab bg-white text-gray-600 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 hover:border-leaf-300" data-filter="active">Active</button>
         <button class="campaign-tab bg-white text-gray-600 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 hover:border-leaf-300" data-filter="upcoming">Upcoming</button>
         <button class="campaign-tab bg-white text-gray-600 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 hover:border-leaf-300" data-filter="completed">Completed</button>
+        <button onclick="openSettingsModal()" class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 flex items-center gap-2">⚙️ Settings</button>
       </div>
-      <button onclick="openAddCampaignModal()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105 flex items-center gap-2"><i data-lucide="plus" class="w-5 h-5"></i> Add Campaign</button>
+      <button onclick="openAddCampaignModal()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105 hover:shadow-lg hover:shadow-leaf-200 flex items-center gap-2">
+        <i data-lucide="plus" class="w-5 h-5"></i> Add Campaign
+      </button>
     </div>
 
-    <!-- Loading / Grid -->
     <div id="campaignSkeleton" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="skeleton h-52 rounded-3xl"></div><div class="skeleton h-52 rounded-3xl"></div><div class="skeleton h-52 rounded-3xl"></div>
+      <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100"><div class="skeleton h-52"></div><div class="p-5 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div><div class="skeleton h-3 w-1/2"></div></div></div>
+      <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100"><div class="skeleton h-52"></div><div class="p-5 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div><div class="skeleton h-3 w-1/2"></div></div></div>
+      <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100"><div class="skeleton h-52"></div><div class="p-5 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div><div class="skeleton h-3 w-1/2"></div></div></div>
     </div>
+
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 hidden" id="campaignGrid"></div>
     <div id="emptyState" class="hidden text-center py-20">
       <div class="text-6xl mb-4">🌱</div>
@@ -340,7 +431,7 @@
 </section>
 
 <!-- ============================================= -->
-<!-- CAMPAIGN MODAL                                  -->
+<!-- CAMPAIGN MODAL -->
 <!-- ============================================= -->
 <div id="campaignModal" class="modal-overlay fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 md:pt-10 overflow-y-auto">
   <div class="modal-content bg-white rounded-3xl w-full max-w-3xl shadow-2xl mb-10">
@@ -350,38 +441,59 @@
     </div>
     <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
       <input type="hidden" id="editCampaignId" value="">
+
+      <!-- Title Picture (Separate Upload) -->
       <div>
-        <label class="block text-sm font-bold text-gray-700 mb-2">Main Campaign Image</label>
+        <label class="block text-sm font-bold text-gray-700 mb-2">🖼️ Title / Cover Picture</label>
         <div id="mainImageZone" class="upload-zone rounded-2xl h-56 flex flex-col items-center justify-center relative overflow-hidden bg-gray-50" onclick="document.getElementById('mainImageInput').click()">
-          <div id="mainImagePlaceholder" class="text-center"><i data-lucide="image-plus" class="w-10 h-10 text-leaf-400 mx-auto mb-2"></i><p class="text-sm font-semibold text-gray-500">Click to upload main image</p></div>
+          <div id="mainImagePlaceholder" class="text-center">
+            <i data-lucide="image-plus" class="w-10 h-10 text-leaf-400 mx-auto mb-2"></i>
+            <p class="text-sm font-semibold text-gray-500">Click to upload Main Cover Image</p>
+            <p class="text-xs text-gray-400 mt-1">JPG, PNG up to 5MB</p>
+          </div>
           <img id="mainImagePreview" class="absolute inset-0 w-full h-full object-cover hidden" alt="">
           <button id="removeMainImage" onclick="event.stopPropagation();removeMainImage()" class="absolute top-3 right-3 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center text-sm hover:bg-black/80 transition-colors hidden">✕</button>
         </div>
         <input type="file" id="mainImageInput" accept="image/*" class="hidden" onchange="handleMainImage(event)">
       </div>
+
       <div class="grid sm:grid-cols-2 gap-5">
-        <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Campaign Name *</label><input type="text" id="campName" placeholder="e.g. Back to School Drive" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
-        <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Status *</label><select id="campStatus" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all bg-white"><option value="active">🟢 Active</option><option value="upcoming">🕐 Upcoming</option><option value="completed">✅ Completed</option></select></div>
+        <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Campaign Name <span class="text-heart-500">*</span></label><input type="text" id="campName" placeholder="e.g. Back to School Drive" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
+        <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Status <span class="text-heart-500">*</span></label><select id="campStatus" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all bg-white"><option value="active">🟢 Active</option><option value="upcoming">🕐 Upcoming</option><option value="completed">✅ Completed</option></select></div>
       </div>
-      <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Description *</label><textarea id="campDesc" rows="3" placeholder="Describe what this campaign is about..." class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all resize-none"></textarea></div>
+
+      <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Description <span class="text-heart-500">*</span></label><textarea id="campDesc" rows="3" placeholder="Describe what this campaign is about..." class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all resize-none"></textarea></div>
+
       <div class="grid sm:grid-cols-3 gap-5">
         <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Progress (%)</label><input type="number" id="campProgress" min="0" max="100" value="0" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
         <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Location</label><input type="text" id="campLocation" placeholder="e.g. 3 Communities" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
         <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Date</label><input type="text" id="campDate" placeholder="e.g. June 2025" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
       </div>
+
+      <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Tagline</label><input type="text" id="campTagline" placeholder="e.g. 150 Children Served ♥" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
+
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">Card Color Theme</label>
         <div class="flex flex-wrap gap-3" id="colorPicker">
           <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="leaf" style="background:linear-gradient(135deg,rgb(74,222,128),rgb(22,163,74))"></button>
           <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="warm" style="background:linear-gradient(135deg,rgb(251,191,36),rgb(217,119,6))"></button>
           <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="sky" style="background:linear-gradient(135deg,rgb(56,189,248),rgb(14,165,233))"></button>
+          <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="heart" style="background:linear-gradient(135deg,rgb(251,113,133),rgb(225,29,72))"></button>
+          <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="purple" style="background:linear-gradient(135deg,rgb(192,132,252),rgb(124,58,237))"></button>
+          <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="teal" style="background:linear-gradient(135deg,rgb(45,212,191),rgb(13,148,136))"></button>
+          <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="orange" style="background:linear-gradient(135deg,rgb(251,146,60),rgb(234,88,12))"></button>
+          <button type="button" class="color-opt w-10 h-10 rounded-xl border-3 border-transparent hover:scale-110 transition-all" data-color="rose" style="background:linear-gradient(135deg,rgb(253,164,175),rgb(244,63,94))"></button>
         </div>
       </div>
+
+      <!-- Gallery (Separate Upload) -->
       <div>
-        <label class="block text-sm font-bold text-gray-700 mb-2">Campaign Gallery Images</label>
+        <label class="block text-sm font-bold text-gray-700 mb-2">📸 Campaign Gallery Images</label>
+        <p class="text-xs text-gray-400 mb-3">Add multiple photos from the campaign (these will appear in the gallery modal).</p>
         <div id="galleryZone" class="upload-zone rounded-2xl h-32 flex flex-col items-center justify-center bg-gray-50 mb-3" onclick="document.getElementById('galleryInput').click()">
           <i data-lucide="images" class="w-8 h-8 text-leaf-400 mx-auto mb-1"></i>
-          <p class="text-sm font-semibold text-gray-500">Click to add multiple photos</p>
+          <p class="text-sm font-semibold text-gray-500">Click to add gallery photos</p>
+          <p class="text-xs text-gray-400">Select multiple images</p>
         </div>
         <input type="file" id="galleryInput" accept="image/*" multiple class="hidden" onchange="handleGalleryImages(event)">
         <div id="galleryPreviewGrid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3"></div>
@@ -389,20 +501,20 @@
     </div>
     <div class="flex items-center justify-end gap-3 p-6 border-t border-gray-100 bg-gray-50/50 rounded-b-3xl">
       <button onclick="closeCampaignModal()" class="px-6 py-3 rounded-xl font-bold text-gray-600 hover:bg-gray-100 transition-colors">Cancel</button>
-      <button id="saveCampaignBtn" onclick="saveCampaign()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-8 py-3 rounded-xl font-bold transition-all hover:scale-105 flex items-center gap-2"><i data-lucide="check" class="w-5 h-5"></i><span id="saveButtonText">Create Campaign</span></button>
+      <button id="saveCampaignBtn" onclick="saveCampaign()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-8 py-3 rounded-xl font-bold transition-all hover:scale-105 hover:shadow-lg flex items-center gap-2"><i data-lucide="check" class="w-5 h-5"></i><span id="saveButtonText">Create Campaign</span></button>
     </div>
   </div>
 </div>
 
 <!-- ============================================= -->
-<!-- GALLERY MODAL & LIGHTBOX                      -->
+<!-- GALLERY MODAL -->
 <!-- ============================================= -->
 <div id="galleryModal" class="gallery-modal fixed inset-0 z-[70] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
   <div class="gallery-modal-content bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
     <div class="flex items-center justify-between p-5 border-b border-gray-100 flex-shrink-0">
       <div><h3 id="galleryTitle" class="font-heading text-xl text-leaf-900">Gallery</h3><p id="galleryCount" class="text-sm text-gray-500">0 photos</p></div>
       <div class="flex items-center gap-2">
-        <button onclick="openAddGalleryToCampaign()" id="addMorePhotosBtn" class="admin-only bg-leaf-100 hover:bg-leaf-200 text-leaf-700 px-4 py-2 rounded-xl text-sm font-bold transition-colors flex items-center gap-1.5"><i data-lucide="plus" class="w-4 h-4"></i> Add Photos</button>
+        <button onclick="openAddGalleryToCampaign()" id="addMorePhotosBtn" class="admin-photo-actions bg-leaf-100 hover:bg-leaf-200 text-leaf-700 px-4 py-2 rounded-xl text-sm font-bold transition-colors flex items-center gap-1.5"><i data-lucide="plus" class="w-4 h-4"></i> Add Photos</button>
         <button onclick="closeGalleryModal()" class="p-2 hover:bg-gray-100 rounded-xl transition-colors"><i data-lucide="x" class="w-5 h-5 text-gray-500"></i></button>
       </div>
     </div>
@@ -411,6 +523,9 @@
 </div>
 <input type="file" id="addMoreGalleryInput" accept="image/*" multiple class="hidden" onchange="handleAddMoreGallery(event)">
 
+<!-- ============================================= -->
+<!-- LIGHTBOX -->
+<!-- ============================================= -->
 <div id="lightbox" class="lightbox fixed inset-0 z-[80] bg-black/95 flex items-center justify-center">
   <button onclick="closeLightbox()" class="absolute top-5 right-5 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
   <button onclick="lightboxPrev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
@@ -420,365 +535,786 @@
 </div>
 
 <!-- ============================================= -->
-<!-- DONATE                                          -->
+<!-- DONATE SECTION -->
 <!-- ============================================= -->
 <section id="donate" class="relative py-24 md:py-32 bg-white overflow-hidden">
+  <div class="absolute top-0 right-0 w-96 h-96 bg-leaf-50 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-80 h-80 bg-warm-50 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
   <div class="relative z-10 max-w-5xl mx-auto px-6">
-    <div class="text-center mb-16 reveal"><h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Support Our Cause</h2></div>
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block bg-heart-500/10 text-heart-600 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Make a Difference</span>
+      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Support Our Cause</h2>
+      <div class="w-20 h-1.5 bg-gradient-to-r from-heart-400 to-heart-500 mx-auto rounded-full mb-4"></div>
+      <p class="text-gray-600 max-w-xl mx-auto">Every contribution, no matter how small, directly impacts a child's life. 100% of donations go to our outreach programs.</p>
+    </div>
     <div class="grid lg:grid-cols-2 gap-12 items-start">
-      <div class="reveal bg-white rounded-3xl border-2 border-leaf-100 p-8 shadow-lg">
-        <h3 class="font-heading text-2xl text-leaf-900 mb-6">💝 Send Your Donation</h3>
-        <div class="space-y-4 mb-6">
-          <input type="text" id="donorName" placeholder="Full Name *" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none">
-          <input type="email" id="donorEmail" placeholder="Email Address *" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none">
-          <textarea id="donorMessage" rows="3" placeholder="Message (Optional)" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none resize-none"></textarea>
+      <div class="reveal">
+        <div class="bg-white rounded-3xl border-2 border-leaf-100 p-8 shadow-lg shadow-leaf-100/30">
+          <h3 class="font-heading text-2xl text-leaf-900 mb-6 flex items-center gap-2"><span class="pulse-heart inline-block">💝</span> Send Your Donation</h3>
+          <div class="space-y-4 mb-6">
+            <div><label class="block text-sm font-bold text-gray-600 mb-1.5">Full Name <span class="text-heart-500">*</span></label><input type="text" id="donorName" placeholder="Your name" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
+            <div><label class="block text-sm font-bold text-gray-600 mb-1.5">Email Address <span class="text-heart-500">*</span></label><input type="email" id="donorEmail" placeholder="your@email.com" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
+            <div><label class="block text-sm font-bold text-gray-600 mb-1.5">Message (Optional)</label><textarea id="donorMessage" rows="3" placeholder="Any message with your donation..." class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all resize-none"></textarea></div>
+          </div>
+          <button id="donateBtn" onclick="handleDonate()" class="w-full bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white py-4 rounded-2xl font-bold text-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-leaf-200 flex items-center justify-center gap-2"><i data-lucide="heart" class="w-5 h-5"></i> I Want to Donate</button>
+          <p class="text-center text-xs text-gray-400 mt-3">🔒 Secure & transparent. Use bank details below to complete.</p>
         </div>
-        <button id="donateBtn" onclick="handleDonate()" class="w-full bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white py-4 rounded-2xl font-bold text-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2"><i data-lucide="heart" class="w-5 h-5"></i> I Want to Donate</button>
       </div>
-      <div class="reveal space-y-6">
-        <div class="bg-gradient-to-br from-leaf-50 to-leaf-100 rounded-3xl p-6 border border-leaf-200"><h4 class="font-heading text-lg text-leaf-800 mb-4">🌱 What Your Giving Does</h4><p class="text-sm text-gray-500">🍞 Feeds a child for a day | 👕 Clothing bundle | 🎒 Complete school kit | 🏠 Sponsors a family</p></div>
-        <div class="bank-card rounded-3xl p-6 text-white shadow-xl"><div class="relative z-10"><div class="space-y-3 bg-white/10 backdrop-blur-sm rounded-2xl p-4"><div><p class="text-xs text-leaf-200 mb-0.5">Bank Name</p><p class="font-bold text-sm">[Your Bank Name]</p></div><div><p class="text-xs text-leaf-200 mb-0.5">Account Name</p><p class="font-bold text-sm">Growing Minds Youth Initiative</p></div><div><p class="text-xs text-leaf-200 mb-0.5">Account Number</p><p class="font-bold text-sm font-mono tracking-wider">[0000000000]</p></div><p class="text-xs text-leaf-200 mt-3 text-center">📧 Send proof of transfer to: info@growingmindsyi.org</p></div></div></div>
+      <div class="reveal space-y-6" style="transition-delay:.2s">
+        <div class="bg-gradient-to-br from-leaf-50 to-leaf-100 rounded-3xl p-6 border border-leaf-200 card-lift">
+          <h4 class="font-heading text-lg text-leaf-800 mb-4">🌱 What Your Giving Does</h4>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3"><span class="flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center text-lg shadow-sm">🍞</span><div><p class="font-bold text-sm text-leaf-800">Feeds a child for a day</p><p class="text-xs text-gray-500">Warm meal + clean water</p></div></div>
+            <div class="flex items-start gap-3"><span class="flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center text-lg shadow-sm">👕</span><div><p class="font-bold text-sm text-leaf-800">Clothing bundle</p><p class="text-xs text-gray-500">Sets of clothes + underwear</p></div></div>
+            <div class="flex items-start gap-3"><span class="flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center text-lg shadow-sm">🎒</span><div><p class="font-bold text-sm text-leaf-800">Complete school kit</p><p class="text-xs text-gray-500">Bag, books, stationery, uniform</p></div></div>
+            <div class="flex items-start gap-3"><span class="flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center text-lg shadow-sm">🏠</span><div><p class="font-bold text-sm text-leaf-800">Sponsors a family</p><p class="text-xs text-gray-500">Monthly food + hygiene + school supplies</p></div></div>
+          </div>
+        </div>
+        <!-- BANK DETAILS (Dynamic) -->
+        <div class="bank-card rounded-3xl p-6 text-white card-lift shadow-xl">
+          <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm"><i data-lucide="landmark" class="w-5 h-5"></i></div>
+              <div><h4 class="font-heading text-lg">Bank Transfer</h4><p class="text-xs text-leaf-200">Direct donation option</p></div>
+            </div>
+            <div class="space-y-3 bg-white/10 backdrop-blur-sm rounded-2xl p-4">
+              <div><p class="text-xs text-leaf-200 mb-0.5">Bank Name</p><p class="font-bold text-sm" id="displayBankName">[Your Bank Name]</p></div>
+              <div><p class="text-xs text-leaf-200 mb-0.5">Account Name</p><p class="font-bold text-sm" id="displayAccountName">Growing Minds Youth Initiative</p></div>
+              <div><p class="text-xs text-leaf-200 mb-0.5">Account Number</p><p class="font-bold text-sm font-mono tracking-wider" id="displayAccountNumber">[0000000000]</p></div>
+              <div><p class="text-xs text-leaf-200 mb-0.5">Routing/Swift Code</p><p class="font-bold text-sm font-mono" id="displayRoutingCode">[XXXXXXX]</p></div>
+              <div><p class="text-xs text-leaf-200 mb-0.5">Reference</p><p class="font-bold text-sm text-warm-300">"GMYI Donation - [Your Name]"</p></div>
+            </div>
+            <p class="text-xs text-leaf-200 mt-3 text-center">📧 Send proof of transfer to: <span id="displayContactEmail">info@growingmindsyi.org</span></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================= -->
-<!-- SUGGESTIONS & CONTACT                         -->
+<!-- SUGGESTIONS SECTION -->
 <!-- ============================================= -->
-<section id="suggestions" class="py-24 md:py-32 bg-gray-50">
-  <div class="max-w-3xl mx-auto px-6 text-center">
-    <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">💡 Share Your Suggestions</h2>
-    <div class="bg-white rounded-3xl border-2 border-sky-100 p-8 text-left">
-      <div class="flex flex-wrap gap-2 mb-4">
-        <button class="suggestion-type-btn active bg-sky-500 text-white px-4 py-1.5 rounded-full text-xs font-bold" data-type="idea">💡 Idea</button>
-        <button class="suggestion-type-btn bg-gray-100 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold hover:bg-sky-50" data-type="feedback">💬 Feedback</button>
-        <button class="suggestion-type-btn bg-gray-100 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold hover:bg-sky-50" data-type="partnership">🤝 Partnership</button>
+<section id="suggestions" class="relative py-24 md:py-32 bg-gradient-to-b from-leaf-50/50 to-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block bg-sky-100 text-sky-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">We Value Your Voice</span>
+      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Share Your Suggestions</h2>
+      <div class="w-20 h-1.5 bg-gradient-to-r from-sky-400 to-sky-600 mx-auto rounded-full"></div>
+    </div>
+    <div class="reveal">
+      <div class="bg-white rounded-3xl border-2 border-sky-100 p-8 md:p-10 shadow-lg shadow-sky-100/20">
+        <div class="mb-6">
+          <label class="block text-sm font-bold text-gray-700 mb-3">What type of suggestion?</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="suggestion-type-btn active bg-sky-500 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all" data-type="idea">💡 Idea</button>
+            <button class="suggestion-type-btn bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-semibold transition-all hover:bg-sky-50" data-type="feedback">💬 Feedback</button>
+            <button class="suggestion-type-btn bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-semibold transition-all hover:bg-sky-50" data-type="campaign">🎯 Campaign Idea</button>
+            <button class="suggestion-type-btn bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-semibold transition-all hover:bg-sky-50" data-type="partnership">🤝 Partnership</button>
+            <button class="suggestion-type-btn bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-semibold transition-all hover:bg-sky-50" data-type="other">✨ Other</button>
+          </div>
+        </div>
+        <div class="space-y-5">
+          <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Your Name <span class="text-heart-500">*</span></label><input type="text" id="sugName" placeholder="How should we call you?" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 outline-none transition-all"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1.5">Your Suggestion <span class="text-heart-500">*</span></label><textarea id="sugMessage" rows="4" placeholder="Tell us what's on your mind..." class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 outline-none transition-all resize-none"></textarea></div>
+          <button id="suggestionBtn" onclick="handleSuggestion()" class="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white py-4 rounded-2xl font-bold text-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-sky-200 flex items-center justify-center gap-2"><i data-lucide="send" class="w-5 h-5"></i> Submit Suggestion</button>
+        </div>
       </div>
-      <input type="text" id="sugName" placeholder="Your Name" class="w-full p-3 rounded-xl border border-gray-300 outline-none mb-3">
-      <textarea id="sugMsg" rows="3" placeholder="Your suggestion..." class="w-full p-3 rounded-xl border border-gray-300 outline-none resize-none mb-3"></textarea>
-      <button onclick="handleSuggestion()" class="w-full bg-sky-500 text-white py-3 rounded-xl font-bold hover:bg-sky-600 transition-all">Submit Suggestion</button>
     </div>
   </div>
 </section>
 
-<section id="contact" class="py-24 md:py-32 bg-white">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Contact Us</h2>
+<!-- ============================================= -->
+<!-- CONTACT SECTION (Dynamic) -->
+<!-- ============================================= -->
+<section id="contact" class="relative py-24 md:py-32 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block bg-leaf-100 text-leaf-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Get In Touch</span>
+      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Contact Us</h2>
+      <div class="w-20 h-1.5 bg-gradient-to-r from-leaf-400 to-leaf-600 mx-auto rounded-full"></div>
+    </div>
     <div class="grid md:grid-cols-3 gap-8 reveal">
-      <div class="bg-leaf-50 rounded-3xl p-8 card-lift border border-leaf-100"><h4 class="font-bold text-leaf-800">Email Us</h4><p class="text-sm text-gray-600">info@growingmindsyi.org</p></div>
-      <div class="bg-sky-50 rounded-3xl p-8 card-lift border border-sky-100"><h4 class="font-bold text-sky-800">Call Us</h4><p class="text-sm text-gray-600">+1 (234) 567-8900</p></div>
-      <div class="bg-warm-50 rounded-3xl p-8 card-lift border border-warm-100"><h4 class="font-bold text-warm-800">Visit Us</h4><p class="text-sm text-gray-600">[Your City, Country]</p></div>
+      <div class="bg-leaf-50 rounded-3xl p-8 text-center card-lift border border-leaf-100">
+        <div class="w-14 h-14 bg-leaf-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="mail" class="w-7 h-7 text-leaf-700"></i></div>
+        <h4 class="font-bold text-leaf-800 mb-2">Email Us</h4>
+        <p class="text-sm text-gray-600" id="displayContactEmailMain">info@growingmindsyi.org</p>
+      </div>
+      <div class="bg-sky-50 rounded-3xl p-8 text-center card-lift border border-sky-100">
+        <div class="w-14 h-14 bg-sky-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="phone" class="w-7 h-7 text-sky-700"></i></div>
+        <h4 class="font-bold text-sky-800 mb-2">Call Us</h4>
+        <p class="text-sm text-gray-600" id="displayContactPhoneMain">+1 (234) 567-8900</p>
+      </div>
+      <div class="bg-warm-50 rounded-3xl p-8 text-center card-lift border border-warm-100">
+        <div class="w-14 h-14 bg-warm-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="map-pin" class="w-7 h-7 text-warm-700"></i></div>
+        <h4 class="font-bold text-warm-800 mb-2">Visit Us</h4>
+        <p class="text-sm text-gray-600" id="displayContactAddressMain">[Your City, Country]</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================= -->
-<!-- FOOTER                                          -->
+<!-- FOOTER -->
 <!-- ============================================= -->
-<footer class="bg-leaf-900 text-white py-12 border-t-8 border-leaf-600">
-  <div class="text-center"><p class="text-leaf-300 text-sm">© 2025 Growing Minds Youth Initiative. Made with 💚.</p></div>
+<footer class="bg-leaf-900 text-white py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-leaf-400"><img src="https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0" alt="GMYI" class="w-full h-full object-cover"></div>
+          <div><p class="font-heading text-sm">Growing Minds</p><p class="text-[10px] text-leaf-300 tracking-wider uppercase">Youth Initiative</p></div>
+        </div>
+        <p class="text-leaf-300 text-sm leading-relaxed">Nurturing hope, empowering lives. Every child deserves a chance to grow.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-leaf-200 mb-4">Quick Links</h4>
+        <div class="space-y-2">
+          <a href="#about" class="block text-leaf-300 text-sm hover:text-white transition-colors">About Us</a>
+          <a href="#campaigns" class="block text-leaf-300 text-sm hover:text-white transition-colors">Campaigns</a>
+          <a href="#donate" class="block text-leaf-300 text-sm hover:text-white transition-colors">Donate</a>
+          <a href="#suggestions" class="block text-leaf-300 text-sm hover:text-white transition-colors">Suggestions</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-leaf-200 mb-4">Connect</h4>
+        <div class="flex gap-3">
+          <a href="#" class="w-10 h-10 bg-leaf-800 hover:bg-leaf-700 rounded-xl flex items-center justify-center transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-leaf-800 hover:bg-leaf-700 rounded-xl flex items-center justify-center transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-leaf-800 hover:bg-leaf-700 rounded-xl flex items-center justify-center transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-leaf-800 pt-8 text-center">
+      <p class="text-leaf-400 text-sm">© 2025 Growing Minds Youth Initiative. All rights reserved. Made with 💚</p>
+    </div>
+  </div>
 </footer>
 
 <!-- ============================================= -->
-<!-- JAVASCRIPT (ADMIN + DATABASE LOGIC)           -->
+<!-- ALL JAVASCRIPT -->
 <!-- ============================================= -->
 <script>
 // =============================================
-// SUPABASE CREDENTIALS
+// YOUR CREDENTIALS
 // =============================================
 const SUPABASE_URL = 'https://tombccfghgjekljigfww.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvbWJjY2ZnaGdqZWtsamlnZnd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5NDUyODYsImV4cCI6MjA5NzUyMTI4Nn0.Obb6f57pOZJxzAO6jKWPaOUm5_T4tZ73UdaTLTRTvHk';
+
+// =============================================
+// STATE & CLIENT INIT
+// =============================================
+let isAdmin = false;
+let currentCampaigns = [];
+let selectedColor = 'leaf';
+let mainImageFile = null;
+let mainImageExistingUrl = null;
+let galleryFiles = [];
+let currentGalleryCampaignId = null;
+let currentLightboxIndex = 0;
+let currentLightboxImages = [];
+let selectedSuggestionType = 'idea';
+
+// Settings State
+let appSettings = {
+  bank_name: '[Your Bank Name]',
+  account_name: 'Growing Minds Youth Initiative',
+  account_number: '[0000000000]',
+  routing_code: '[XXXXXXX]',
+  contact_email: 'info@growingmindsyi.org',
+  contact_phone: '+1 (234) 567-8900',
+  contact_address: '[Your City, Country]'
+};
+
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // =============================================
-// STATE
+// TOAST
 // =============================================
-let isAdmin = false;
-let campaigns = [];
-let mainImageFile = null;
-let mainImageUrl = null;
-let galleryFiles = [];
-let currentGalleryCampaign = null;
-let lightboxImages = [];
-
-// =============================================
-// TOAST SYSTEM
-// =============================================
-function showToast(message, type = 'success') {
+function showToast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
-  const colors = { success: 'bg-leaf-600', error: 'bg-heart-500', info: 'bg-sky-500' };
-  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-  const t = document.createElement('div');
-  t.className = `toast-in ${colors[type]} text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 min-w-[300px]`;
-  t.innerHTML = `<span class="text-xl flex-shrink-0">${icons[type]}</span><p class="flex-1 text-sm font-semibold">${message}</p><button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white">✕</button>`;
-  container.appendChild(t);
-  setTimeout(() => { t.classList.add('toast-out'); setTimeout(() => t.remove(), 400); }, 4500);
+  const colors = { success: 'bg-leaf-600', error: 'bg-heart-500', info: 'bg-sky-500', warning: 'bg-warm-500' };
+  const icons = { success: '✅', error: '❌', info: 'ℹ️', warning: '⚠️' };
+  const toast = document.createElement('div');
+  toast.className = `toast-in ${colors[type]} text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 min-w-[300px] max-w-[420px]`;
+  toast.innerHTML = `<span class="text-xl flex-shrink-0">${icons[type]}</span><p class="flex-1 text-sm font-semibold leading-snug">${message}</p><button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white text-lg flex-shrink-0 leading-none">✕</button>`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.remove('toast-in');
+    toast.classList.add('toast-out');
+    setTimeout(() => toast.remove(), 400);
+  }, 4500);
+}
+
+function triggerConfetti() {
+  const colors = ['#22c55e', '#fbbf24', '#38bdf8', '#fb7185', '#a78bfa', '#f97316'];
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `left:${Math.random()*100}vw;width:${Math.random()*10+5}px;height:${Math.random()*10+5}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:confettiFall ${Math.random()*2+2}s linear forwards;animation-delay:${Math.random()*0.5}s;`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4500);
+  }
 }
 
 // =============================================
-// ADMIN LOGIN/LOGOUT
+// UTILITIES
 // =============================================
-function openAdminLogin() { document.getElementById('adminLoginModal').classList.add('open'); }
-function closeAdminLogin() { document.getElementById('adminLoginModal').classList.remove('open'); }
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+function escHtml(str) { if (!str) return ''; const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function spinLogo(el) { const img = el.querySelector('img'); img.style.transform = 'rotate(360deg)'; setTimeout(() => { img.style.transform = ''; }, 900); }
+
+// =============================================
+// ADMIN AUTHENTICATION
+// =============================================
+function openAdminLogin() {
+  document.getElementById('adminLoginModal').classList.add('open');
+  setTimeout(() => document.getElementById('adminEmail').focus(), 100);
+}
+function closeAdminLogin() {
+  document.getElementById('adminLoginModal').classList.remove('open');
+  document.getElementById('adminEmail').value = '';
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('loginError').classList.add('hidden');
+}
 
 async function doAdminLogin() {
   const email = document.getElementById('adminEmail').value.trim();
   const password = document.getElementById('adminPassword').value;
-  const errEl = document.getElementById('loginError');
+  const errorEl = document.getElementById('loginError');
   const btn = document.getElementById('loginBtn');
 
-  errEl.classList.add('hidden');
-  if (!email || !password) { errEl.textContent = '❌ Fill in all fields'; errEl.classList.remove('hidden'); return; }
+  errorEl.classList.add('hidden');
+  if (!email || !password) {
+    errorEl.textContent = '❌ Please fill in all fields';
+    errorEl.classList.remove('hidden');
+    return;
+  }
 
-  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Logging in...';
   try {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
+
+    isAdmin = true;
+    sessionStorage.setItem('gmyi_admin', 'true');
+    document.body.classList.add('admin-mode');
     closeAdminLogin();
-    showToast('Welcome back, Admin! 🎉');
-    toggleAdminMode(true);
+    showToast('Welcome back, Admin! 🎉', 'success');
+    loadCampaigns();
   } catch (err) {
-    errEl.textContent = '❌ ' + (err.message || 'Invalid credentials');
-    errEl.classList.remove('hidden');
+    errorEl.textContent = '❌ ' + (err.message || 'Invalid email or password');
+    errorEl.classList.remove('hidden');
   } finally {
-    btn.disabled = false; btn.innerHTML = '<i data-lucide="log-in" class="w-4 h-4"></i> Login';
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="log-in" class="w-4 h-4"></i> Login';
     lucide.createIcons();
   }
 }
 
 async function adminLogout() {
   await supabase.auth.signOut();
-  toggleAdminMode(false);
-  showToast('Logged out', 'info');
+  isAdmin = false;
+  sessionStorage.removeItem('gmyi_admin');
+  document.body.classList.remove('admin-mode');
+  showToast('Logged out successfully', 'info');
+  loadCampaigns('all');
 }
 
-function toggleAdminMode(status) {
-  isAdmin = status;
-  if (status) {
-    document.body.classList.add('admin-mode');
-    document.getElementById('adminLoginBtn').classList.add('hidden');
-    document.getElementById('logoutBtn').classList.remove('hidden');
-  } else {
-    document.body.classList.remove('admin-mode');
-    document.getElementById('adminLoginBtn').classList.remove('hidden');
-    document.getElementById('logoutBtn').classList.add('hidden');
+async function checkSession() {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      isAdmin = true;
+      sessionStorage.setItem('gmyi_admin', 'true');
+      document.body.classList.add('admin-mode');
+    }
+  } catch (e) { console.warn("Session check skipped"); }
+}
+
+// =============================================
+// SETTINGS LOGIC (BANK & CONTACT)
+// =============================================
+async function loadSettings() {
+  try {
+    const { data, error } = await supabase.from('app_settings').select('*').limit(1).single();
+    if (error) {
+      if(error.code === 'PGRST116') {
+        console.warn("Settings table empty, using defaults.");
+      } else {
+        throw error;
+      }
+    }
+    if (data) {
+      appSettings = {
+        bank_name: data.bank_name || appSettings.bank_name,
+        account_name: data.account_name || appSettings.account_name,
+        account_number: data.account_number || appSettings.account_number,
+        routing_code: data.routing_code || appSettings.routing_code,
+        contact_email: data.contact_email || appSettings.contact_email,
+        contact_phone: data.contact_phone || appSettings.contact_phone,
+        contact_address: data.contact_address || appSettings.contact_address
+      };
+    }
+  } catch (err) {
+    console.error("Error loading settings:", err);
+  } finally {
+    renderSettingsUI();
   }
-  loadCampaigns();
 }
 
-// Session Auto-check
-supabase.auth.onAuthStateChange((event, session) => {
-  if (session && !isAdmin) toggleAdminMode(true);
-  if (!session && isAdmin) toggleAdminMode(false);
-});
+function renderSettingsUI() {
+  document.getElementById('displayBankName').textContent = appSettings.bank_name;
+  document.getElementById('displayAccountName').textContent = appSettings.account_name;
+  document.getElementById('displayAccountNumber').textContent = appSettings.account_number;
+  document.getElementById('displayRoutingCode').textContent = appSettings.routing_code;
+  document.getElementById('displayContactEmail').textContent = appSettings.contact_email;
+  document.getElementById('displayContactEmailMain').textContent = appSettings.contact_email;
+  document.getElementById('displayContactPhoneMain').textContent = appSettings.contact_phone;
+  document.getElementById('displayContactAddressMain').textContent = appSettings.contact_address;
+}
+
+function openSettingsModal() {
+  document.getElementById('setBankName').value = appSettings.bank_name;
+  document.getElementById('setAccountName').value = appSettings.account_name;
+  document.getElementById('setAccountNumber').value = appSettings.account_number;
+  document.getElementById('setRoutingCode').value = appSettings.routing_code;
+  document.getElementById('setContactEmail').value = appSettings.contact_email;
+  document.getElementById('setContactPhone').value = appSettings.contact_phone;
+  document.getElementById('setContactAddress').value = appSettings.contact_address;
+  document.getElementById('settingsModal').classList.add('open');
+}
+
+function closeSettingsModal() {
+  document.getElementById('settingsModal').classList.remove('open');
+}
+
+async function saveSettings() {
+  const data = {
+    bank_name: document.getElementById('setBankName').value.trim(),
+    account_name: document.getElementById('setAccountName').value.trim(),
+    account_number: document.getElementById('setAccountNumber').value.trim(),
+    routing_code: document.getElementById('setRoutingCode').value.trim(),
+    contact_email: document.getElementById('setContactEmail').value.trim(),
+    contact_phone: document.getElementById('setContactPhone').value.trim(),
+    contact_address: document.getElementById('setContactAddress').value.trim()
+  };
+
+  try {
+    // Upsert into the settings table (will update if ID matches, insert if not)
+    // Since we already have an ID in appSettings, we try to update
+    const { error } = await supabase.from('app_settings').upsert({ id: appSettings.id, ...data });
+    if (error) throw error;
+
+    appSettings = { ...appSettings, ...data };
+    renderSettingsUI();
+    closeSettingsModal();
+    showToast('Settings updated successfully! 🎉', 'success');
+  } catch (err) {
+    showToast('Failed to save settings: ' + err.message, 'error');
+  }
+}
 
 // =============================================
 // IMAGE UPLOAD
 // =============================================
 async function uploadImage(file, folder) {
-  const name = `${Date.now()}_${Math.random().toString(36).substr(2, 10)}.${file.name.split('.').pop()}`;
-  const { error } = await supabase.storage.from('campaign-images').upload(`${folder}/${name}`, file);
+  const ext = file.name.split('.').pop();
+  const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 10)}.${ext}`;
+  const filePath = `${folder}/${fileName}`;
+
+  const { data, error } = await supabase.storage
+    .from('campaign-images')
+    .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
   if (error) throw error;
-  const { data } = supabase.storage.from('campaign-images').getPublicUrl(`${folder}/${name}`);
-  return data.publicUrl;
+
+  const { data: urlData } = supabase.storage.from('campaign-images').getPublicUrl(filePath);
+  return urlData.publicUrl;
 }
 
 // =============================================
-// CAMPAIGN CRUD
+// CAMPAIGNS - LOAD & RENDER
 // =============================================
-async function loadCampaigns() {
-  const grid = document.getElementById('campaignGrid');
-  const skeleton = document.getElementById('campaignSkeleton');
-  const empty = document.getElementById('emptyState');
+async function loadCampaigns(filter = 'all') {
+  const sk = document.getElementById('campaignSkeleton');
+  const gr = document.getElementById('campaignGrid');
+  const em = document.getElementById('emptyState');
+  sk.classList.remove('hidden'); gr.classList.add('hidden'); em.classList.add('hidden');
 
-  skeleton.classList.remove('hidden'); grid.classList.add('hidden'); empty.classList.add('hidden');
+  try {
+    let query = supabase.from('campaigns').select('*').order('created_at', { ascending: false });
+    if (filter !== 'all') query = query.eq('status', filter);
 
-  const { data, error } = await supabase.from('campaigns').select('*').order('created_at', { ascending: false });
-  skeleton.classList.add('hidden');
-  if (error || !data || data.length === 0) { empty.classList.remove('hidden'); return; }
+    const { data, error } = await query;
+    if (error) throw error;
 
-  campaigns = data;
-  grid.classList.remove('hidden');
-  renderCampaigns();
+    currentCampaigns = data || [];
+    sk.classList.add('hidden');
+
+    if (currentCampaigns.length === 0) {
+      em.classList.remove('hidden'); gr.classList.add('hidden');
+    } else {
+      em.classList.add('hidden'); gr.classList.remove('hidden'); renderCampaigns();
+    }
+  } catch (err) {
+    console.error('Load campaigns error:', err);
+    sk.classList.add('hidden'); gr.classList.add('hidden'); em.classList.remove('hidden');
+    showToast('Failed to load campaigns', 'error');
+  }
+}
+
+function getColorClasses(color) {
+  const map = {
+    leaf:    { bg: 'from-leaf-100 to-leaf-200',    text: 'text-leaf-600',    bar: 'from-leaf-400 to-leaf-600',    tag: 'bg-leaf-50 text-leaf-700' },
+    warm:    { bg: 'from-warm-100 to-warm-200',    text: 'text-warm-600',    bar: 'from-warm-400 to-warm-600',    tag: 'bg-warm-50 text-warm-700' },
+    sky:     { bg: 'from-sky-100 to-sky-200',      text: 'text-sky-600',     bar: 'from-sky-400 to-sky-600',      tag: 'bg-sky-50 text-sky-700' },
+    heart:   { bg: 'from-heart-500/10 to-heart-500/20', text: 'text-heart-500', bar: 'from-heart-400 to-heart-600', tag: 'bg-heart-500/10 text-heart-600' },
+    purple:  { bg: 'from-purple-100 to-purple-200', text: 'text-purple-600', bar: 'from-purple-400 to-purple-600', tag: 'bg-purple-50 text-purple-700' },
+    teal:    { bg: 'from-teal-100 to-teal-200',    text: 'text-teal-600',    bar: 'from-teal-400 to-teal-600',    tag: 'bg-teal-50 text-teal-700' },
+    orange:  { bg: 'from-orange-100 to-orange-200', text: 'text-orange-600', bar: 'from-orange-400 to-orange-600', tag: 'bg-orange-50 text-orange-700' },
+    rose:    { bg: 'from-rose-100 to-rose-200',    text: 'text-rose-500',    bar: 'from-rose-400 to-rose-500',    tag: 'bg-rose-50 text-rose-600' },
+  };
+  return map[color] || map.leaf;
 }
 
 function renderCampaigns() {
-  document.getElementById('campaignGrid').innerHTML = campaigns.map(c => `
-    <div class="card-lift bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
-      <div class="relative h-52 overflow-hidden cursor-pointer group" onclick="openGallery('${c.id}')">
-        ${c.image_url ? `<img src="${c.image_url}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">` : `<div class="w-full h-full bg-leaf-100 flex items-center justify-center text-6xl">🌱</div>`}
-        <span class="absolute top-3 right-3 bg-white/80 backdrop-blur px-2 py-0.5 rounded-full text-[10px] font-bold">${c.status}</span>
-        <!-- 🔐 EDIT/DELETE BUTTONS STRICTLY HIDDEN BY CSS class 'admin-only' -->
-        <div class="admin-only absolute top-3 left-3 flex gap-2">
-          <button onclick="event.stopPropagation();openEditModal('${c.id}')" class="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-sm shadow-md hover:bg-white">✏️</button>
-          <button onclick="event.stopPropagation();deleteCampaign('${c.id}')" class="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-sm shadow-md hover:bg-heart-50">🗑️</button>
+  const grid = document.getElementById('campaignGrid');
+  grid.innerHTML = currentCampaigns.map((camp) => {
+    const c = getColorClasses(camp.color);
+    const sb = camp.status === 'active' ? 'bg-leaf-500 text-white' : camp.status === 'upcoming' ? 'bg-warm-500 text-white' : 'bg-gray-600 text-white';
+    const st = camp.status === 'active' ? '🟢 Active' : camp.status === 'upcoming' ? '🕐 Upcoming' : '✅ Completed';
+
+    return `
+      <div class="card-lift bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+        <div class="relative h-52 overflow-hidden cursor-pointer group" onclick="openGalleryModal('${camp.id}')">
+          ${camp.image_url
+            ? `<img src="${camp.image_url}" alt="${escHtml(camp.name)}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">`
+            : `<div class="w-full h-full bg-gradient-to-br ${c.bg} flex items-center justify-center"><span class="text-6xl">🌱</span></div>`
+          }
+          <div class="absolute top-3 right-3"><span class="px-3 py-1 rounded-full text-xs font-bold ${sb} shadow-md">${st}</span></div>
+          
+          <!-- 🔒 Admin Actions -->
+          <div class="campaign-admin-actions absolute top-3 left-3 flex gap-2">
+            <button onclick="event.stopPropagation();editCampaign('${camp.id}')" class="w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-sm shadow-md transition-colors" title="Edit">✏️</button>
+            <button onclick="event.stopPropagation();deleteCampaign('${camp.id}')" class="w-8 h-8 bg-white/90 hover:bg-heart-50 rounded-full flex items-center justify-center text-sm shadow-md transition-colors" title="Delete">🗑️</button>
+          </div>
+
+          <div class="absolute bottom-3 left-3 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+            📸 View Gallery
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-heading text-lg text-gray-800 mb-2">${escHtml(camp.name)}</h3>
+          <p class="text-sm text-gray-500 mb-4 line-clamp-2">${escHtml(camp.description)}</p>
+          ${camp.progress != null && camp.progress != undefined ? `
+            <div class="mb-3">
+              <div class="flex justify-between text-xs font-bold mb-1"><span class="text-gray-600">Progress</span><span class="${c.text}">${camp.progress}%</span></div>
+              <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r ${c.bar} rounded-full" style="width:${camp.progress}%"></div></div>
+            </div>
+          ` : ''}
+          <div class="flex flex-wrap gap-2 text-xs">
+            ${camp.location ? `<span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-semibold">📍 ${escHtml(camp.location)}</span>` : ''}
+            ${camp.date ? `<span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-semibold">📅 ${escHtml(camp.date)}</span>` : ''}
+            ${camp.tagline ? `<span class="${c.tag} px-2.5 py-1 rounded-full font-semibold">${escHtml(camp.tagline)}</span>` : ''}
+          </div>
         </div>
       </div>
-      <div class="p-5">
-        <h3 class="font-heading text-lg text-gray-800 mb-2">${c.name}</h3>
-        <p class="text-sm text-gray-500 mb-4 line-clamp-2">${c.description || ''}</p>
-        <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-2"><div class="h-full bg-leaf-500 rounded-full" style="width:${c.progress || 0}%"></div></div>
-        <p class="text-xs text-gray-400">📍 ${c.location || 'TBA'}</p>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
-// Modal Handlers
+// =============================================
+// MODALS & FORM HANDLING
+// =============================================
 function openAddCampaignModal() {
   document.getElementById('editCampaignId').value = '';
-  document.getElementById('modalTitle').textContent = 'Add Campaign';
+  document.getElementById('modalTitle').textContent = 'Add New Campaign';
   document.getElementById('saveButtonText').textContent = 'Create Campaign';
-  resetForm(); document.getElementById('campaignModal').classList.add('open');
+  resetCampaignForm();
+  document.getElementById('campaignModal').classList.add('open');
 }
 
-function openEditModal(id) {
-  const c = campaigns.find(x => x.id === id);
-  document.getElementById('editCampaignId').value = c.id;
+function editCampaign(id) {
+  const camp = currentCampaigns.find(c => c.id === id);
+  if (!camp) return;
+  document.getElementById('editCampaignId').value = camp.id;
   document.getElementById('modalTitle').textContent = 'Edit Campaign';
   document.getElementById('saveButtonText').textContent = 'Update Campaign';
-  document.getElementById('campName').value = c.name || '';
-  document.getElementById('campStatus').value = c.status || 'active';
-  document.getElementById('campDesc').value = c.description || '';
-  document.getElementById('campProgress').value = c.progress || 0;
-  document.getElementById('campLocation').value = c.location || '';
-  document.getElementById('campDate').value = c.date || '';
-  mainImageUrl = c.image_url || null;
-  resetForm(); // resetting mainImageFile, galleryFiles
-  if (mainImageUrl) { document.getElementById('mainImagePreview').src = mainImageUrl; document.getElementById('mainImagePreview').classList.remove('hidden'); document.getElementById('mainImagePlaceholder').classList.add('hidden'); document.getElementById('removeMainImage').classList.remove('hidden'); }
+  document.getElementById('campName').value = camp.name || '';
+  document.getElementById('campStatus').value = camp.status || 'active';
+  document.getElementById('campDesc').value = camp.description || '';
+  document.getElementById('campProgress').value = camp.progress ?? 0;
+  document.getElementById('campLocation').value = camp.location || '';
+  document.getElementById('campDate').value = camp.date || '';
+  document.getElementById('campTagline').value = camp.tagline || '';
+  selectedColor = camp.color || 'leaf';
+  mainImageExistingUrl = camp.image_url || null;
+  mainImageFile = null; galleryFiles = [];
+  updateColorSelection();
+  if (camp.image_url) {
+    document.getElementById('mainImagePreview').src = camp.image_url;
+    document.getElementById('mainImagePreview').classList.remove('hidden');
+    document.getElementById('mainImagePlaceholder').classList.add('hidden');
+    document.getElementById('removeMainImage').classList.remove('hidden');
+  } else {
+    document.getElementById('mainImagePreview').classList.add('hidden');
+    document.getElementById('mainImagePlaceholder').classList.remove('hidden');
+    document.getElementById('removeMainImage').classList.add('hidden');
+  }
+  document.getElementById('galleryPreviewGrid').innerHTML = '';
   document.getElementById('campaignModal').classList.add('open');
 }
 
 function closeCampaignModal() { document.getElementById('campaignModal').classList.remove('open'); }
-function resetForm() { mainImageFile = null; galleryFiles = []; document.getElementById('galleryPreviewGrid').innerHTML = ''; }
+
+function resetCampaignForm() {
+  document.getElementById('campName').value = ''; document.getElementById('campStatus').value = 'active'; document.getElementById('campDesc').value = ''; document.getElementById('campProgress').value = 0; document.getElementById('campLocation').value = ''; document.getElementById('campDate').value = ''; document.getElementById('campTagline').value = '';
+  selectedColor = 'leaf'; mainImageFile = null; mainImageExistingUrl = null; galleryFiles = [];
+  updateColorSelection();
+  document.getElementById('mainImagePreview').classList.add('hidden'); document.getElementById('mainImagePlaceholder').classList.remove('hidden'); document.getElementById('removeMainImage').classList.add('hidden'); document.getElementById('galleryPreviewGrid').innerHTML = ''; document.getElementById('mainImageInput').value = '';
+}
 
 function handleMainImage(e) {
   const f = e.target.files[0]; if (!f) return;
-  mainImageFile = f; mainImageUrl = null;
-  const r = new FileReader(); r.onload = (ev) => {
+  if (f.size > 5 * 1024 * 1024) { showToast('Image must be under 5MB', 'error'); return; }
+  mainImageFile = f; mainImageExistingUrl = null;
+  const r = new FileReader();
+  r.onload = (ev) => {
     document.getElementById('mainImagePreview').src = ev.target.result;
     document.getElementById('mainImagePreview').classList.remove('hidden');
     document.getElementById('mainImagePlaceholder').classList.add('hidden');
     document.getElementById('removeMainImage').classList.remove('hidden');
-  }; r.readAsDataURL(f);
+  };
+  r.readAsDataURL(f);
 }
-function removeMainImage() { mainImageFile = null; mainImageUrl = null; document.getElementById('mainImageInput').value = ''; document.getElementById('mainImagePreview').classList.add('hidden'); document.getElementById('mainImagePlaceholder').classList.remove('hidden'); document.getElementById('removeMainImage').classList.add('hidden'); }
-
-function handleGalleryImages(e) { Array.from(e.target.files).forEach(f => { if(f.size <= 5*1024*1024) galleryFiles.push(f); }); renderGalleryPreviews(); e.target.value = ''; }
-function renderGalleryPreviews() {
-  document.getElementById('galleryPreviewGrid').innerHTML = galleryFiles.map((f, i) => `<div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200"><img src="${URL.createObjectURL(f)}" class="w-full h-full object-cover"><button onclick="event.stopPropagation();galleryFiles.splice(${i},1);renderGalleryPreviews()" class="absolute top-1 right-1 w-6 h-6 bg-black/60 text-white rounded-full text-xs flex items-center justify-center hover:bg-black/80 transition-colors">✕</button></div>`).join('');
-}
+function removeMainImage() { mainImageFile = null; mainImageExistingUrl = null; document.getElementById('mainImageInput').value = ''; document.getElementById('mainImagePreview').classList.add('hidden'); document.getElementById('mainImagePlaceholder').classList.remove('hidden'); document.getElementById('removeMainImage').classList.add('hidden'); }
+function handleGalleryImages(e) { Array.from(e.target.files).forEach(f => { if (f.size <= 5 * 1024 * 1024) galleryFiles.push(f); }); renderGalleryPreviews(); e.target.value = ''; }
+function renderGalleryPreviews() { document.getElementById('galleryPreviewGrid').innerHTML = galleryFiles.map((f, i) => `<div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200"><img src="${URL.createObjectURL(f)}" class="w-full h-full object-cover"><button onclick="event.stopPropagation();removeGalleryPreview(${i})" class="absolute top-1 right-1 w-6 h-6 bg-black/60 text-white rounded-full text-xs flex items-center justify-center hover:bg-black/80 transition-colors">✕</button></div>`).join(''); }
+function removeGalleryPreview(i) { galleryFiles.splice(i, 1); renderGalleryPreviews(); }
+function updateColorSelection() { document.querySelectorAll('.color-opt').forEach(b => { const a = b.dataset.color === selectedColor; b.style.border = a ? '4px solid white' : '3px solid transparent'; b.style.boxShadow = a ? '0 0 0 2px #16a34a' : 'none'; b.style.transform = a ? 'scale(1.15)' : ''; }); }
 
 async function saveCampaign() {
   const id = document.getElementById('editCampaignId').value;
   const name = document.getElementById('campName').value.trim();
   const status = document.getElementById('campStatus').value;
   const description = document.getElementById('campDesc').value.trim();
-  const progress = parseInt(document.getElementById('campProgress').value) || 0;
+  const progress = Math.min(100, Math.max(0, parseInt(document.getElementById('campProgress').value) || 0));
   const location = document.getElementById('campLocation').value.trim();
   const date = document.getElementById('campDate').value.trim();
-  if(!name || !description) return showToast('Please fill in Name and Description', 'error');
+  const tagline = document.getElementById('campTagline').value.trim();
+
+  if (!name) { showToast('Please enter a campaign name', 'error'); return; }
+  if (!description) { showToast('Please enter a description', 'error'); return; }
+
+  const btn = document.getElementById('saveCampaignBtn'); const bt = document.getElementById('saveButtonText'); const ot = bt.textContent;
+  btn.disabled = true; bt.textContent = 'Saving...';
 
   try {
-    let imageUrl = mainImageUrl;
+    let imageUrl = mainImageExistingUrl;
     if (mainImageFile) imageUrl = await uploadImage(mainImageFile, 'main');
 
-    let result;
-    if (id) {
-      result = await supabase.from('campaigns').update({ name, status, description, progress, location, date, image_url: imageUrl }).eq('id', id).select().single();
-    } else {
-      result = await supabase.from('campaigns').insert({ name, status, description, progress, location, date, image_url: imageUrl }).select().single();
-    }
-    if (result.error) throw result.error;
+    const d = { name, status, description, progress, location, date, tagline, color: selectedColor, image_url: imageUrl };
+    let r;
+    if (id) r = await supabase.from('campaigns').update(d).eq('id', id).select().single();
+    else r = await supabase.from('campaigns').insert(d).select().single();
+    if (r.error) throw r.error;
 
     if (galleryFiles.length > 0) {
       for (const f of galleryFiles) {
-        const url = await uploadImage(f, `gallery/${result.data.id}`);
-        await supabase.from('campaign_gallery').insert({ campaign_id: result.data.id, image_url: url });
+        const u = await uploadImage(f, `gallery/${r.data.id}`);
+        await supabase.from('campaign_gallery').insert({ campaign_id: r.data.id, image_url: u });
       }
     }
     closeCampaignModal();
-    showToast(id ? 'Campaign updated!' : 'Campaign created!', 'success');
-    loadCampaigns();
-  } catch (err) { showToast('Error: ' + (err.message || 'Unknown'), 'error'); }
+    showToast(id ? 'Campaign updated! 🎉' : 'Campaign created! 🌱', 'success');
+    loadCampaigns(getCurrentFilter());
+  } catch (err) { showToast('Failed to save: ' + (err.message || 'Unknown error'), 'error'); }
+  finally { btn.disabled = false; bt.textContent = ot; }
 }
+
+function getCurrentFilter() { const a = document.querySelector('.campaign-tab.active'); return a ? a.dataset.filter : 'all'; }
 
 async function deleteCampaign(id) {
-  if(!confirm('Permanently delete this campaign?')) return;
-  await supabase.from('campaign_gallery').delete().eq('campaign_id', id);
-  await supabase.from('campaigns').delete().eq('id', id);
-  loadCampaigns(); showToast('Campaign deleted', 'info');
+  if (!confirm('Delete this campaign and all its gallery photos?')) return;
+  try {
+    await supabase.from('campaign_gallery').delete().eq('campaign_id', id);
+    const { error } = await supabase.from('campaigns').delete().eq('id', id);
+    if (error) throw error;
+    showToast('Campaign deleted', 'info');
+    loadCampaigns(getCurrentFilter());
+  } catch (err) { showToast('Failed to delete: ' + err.message, 'error'); }
 }
 
 // =============================================
-// GALLERY VIEW
+// GALLERY & LIGHTBOX
 // =============================================
-async function openGallery(id) {
-  const camp = campaigns.find(c => c.id === id);
-  currentGalleryCampaign = camp;
-  document.getElementById('galleryTitle').textContent = camp.name + ' Gallery';
-  const grid = document.getElementById('galleryViewGrid');
-  grid.innerHTML = '<div class="flex justify-center py-16"><span class="spinner"></span></div>';
+async function openGalleryModal(cid) {
+  currentGalleryCampaignId = cid;
+  const camp = currentCampaigns.find(c => c.id === cid);
+  document.getElementById('galleryTitle').textContent = camp?.name || 'Gallery';
+  const vg = document.getElementById('galleryViewGrid');
+  vg.innerHTML = '<div class="flex justify-center py-16"><span class="spinner" style="border-color:rgba(22,163,74,0.2);border-top-color:#16a34a;width:32px;height:32px"></span></div>';
   document.getElementById('galleryModal').classList.add('open');
-
-  const { data, error } = await supabase.from('campaign_gallery').select('*').eq('campaign_id', id);
-  lightboxImages = (data || []).map(i => i.image_url);
-  if (camp.image_url) lightboxImages.unshift(camp.image_url);
-  document.getElementById('galleryCount').textContent = `${lightboxImages.length} photos`;
-
-  grid.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-    ${lightboxImages.map((img, i) => `
-      <div class="relative aspect-square rounded-2xl overflow-hidden cursor-pointer" onclick="openLightbox(${i})">
-        <img src="${img}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
-        <div class="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center"><span class="text-white text-2xl">🔍</span></div>
-      </div>
-    `).join('')}
-  </div>`;
+  try {
+    const { data, error } = await supabase.from('campaign_gallery').select('*').eq('campaign_id', cid).order('created_at', { ascending: true });
+    if (error) throw error;
+    currentLightboxImages = (data || []).map(i => i.image_url);
+    document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`;
+    renderGalleryView();
+  } catch (err) { vg.innerHTML = '<p class="text-center text-gray-400 py-16">Failed to load gallery</p>'; }
 }
+
+function renderGalleryView() {
+  const g = document.getElementById('galleryViewGrid');
+  if (!currentLightboxImages.length) { g.innerHTML = '<div class="text-center py-16"><div class="text-5xl mb-3">📷</div><p class="text-gray-400 font-semibold">No photos yet</p></div>'; return; }
+  g.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">${currentLightboxImages.map((img,i)=>`
+    <div class="relative aspect-square rounded-2xl overflow-hidden cursor-pointer img-group" onclick="openLightbox(${i})">
+      <img src="${img}" alt="Photo ${i+1}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300" loading="lazy">
+      <div class="img-overlay absolute inset-0 bg-black/30 flex items-center justify-center"><span class="text-white text-2xl">🔍</span></div>
+      <button onclick="event.stopPropagation();deleteGalleryImage(${i})" class="admin-photo-actions absolute top-2 right-2 w-7 h-7 bg-black/60 text-white rounded-full text-xs flex items-center justify-center hover:bg-heart-500 transition-colors">✕</button>
+    </div>
+  `).join('')}</div>`;
+}
+
 function closeGalleryModal() { document.getElementById('galleryModal').classList.remove('open'); }
+
+async function deleteGalleryImage(index) {
+  if (!confirm('Delete this photo?')) return;
+  try {
+    const { data: items } = await supabase.from('campaign_gallery').select('id').eq('campaign_id', currentGalleryCampaignId).order('created_at', { ascending: true });
+    if (items && items[index]) {
+      await supabase.from('campaign_gallery').delete().eq('id', items[index].id);
+      currentLightboxImages.splice(index, 1);
+      renderGalleryView();
+      document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`;
+      showToast('Photo deleted', 'info');
+    }
+  } catch (err) { showToast('Failed to delete photo', 'error'); }
+}
+
 function openAddGalleryToCampaign() { document.getElementById('addMoreGalleryInput').click(); }
 async function handleAddMoreGallery(e) {
-  const files = Array.from(e.target.files); e.target.value = '';
-  for (const f of files) {
-    const url = await uploadImage(f, `gallery/${currentGalleryCampaign.id}`);
-    await supabase.from('campaign_gallery').insert({ campaign_id: currentGalleryCampaign.id, image_url: url });
-  }
-  openGallery(currentGalleryCampaign.id); showToast('Photos added!', 'success');
+  const files = Array.from(e.target.files); e.target.value = ''; if (!files.length) return;
+  showToast(`Uploading ${files.length} photo${files.length > 1 ? 's' : ''}...`, 'info');
+  try {
+    for (const f of files) {
+      if (f.size > 5 * 1024 * 1024) continue;
+      const u = await uploadImage(f, `gallery/${currentGalleryCampaignId}`);
+      await supabase.from('campaign_gallery').insert({ campaign_id: currentGalleryCampaignId, image_url: u });
+      currentLightboxImages.push(u);
+    }
+    renderGalleryView();
+    document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`;
+    showToast(`Photos added! 📸`, 'success');
+  } catch (err) { showToast('Failed to add photos', 'error'); }
 }
 
-function openLightbox(i) { document.getElementById('lightboxImg').src = lightboxImages[i]; document.getElementById('lightboxCounter').textContent = `${i+1}/${lightboxImages.length}`; document.getElementById('lightboxImg').dataset.index = i; document.getElementById('lightbox').classList.add('open'); }
+function openLightbox(i) { currentLightboxIndex = i; updateLightbox(); document.getElementById('lightbox').classList.add('open'); }
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
-function lightboxPrev() { const i = (parseInt(document.getElementById('lightboxImg').dataset.index) - 1 + lightboxImages.length) % lightboxImages.length; openLightbox(i); }
-function lightboxNext() { const i = (parseInt(document.getElementById('lightboxImg').dataset.index) + 1) % lightboxImages.length; openLightbox(i); }
+function lightboxPrev() { currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length; updateLightbox(); }
+function lightboxNext() { currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length; updateLightbox(); }
+function updateLightbox() { document.getElementById('lightboxImg').src = currentLightboxImages[currentLightboxIndex]; document.getElementById('lightboxCounter').textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`; }
 
 // =============================================
-// DONATIONS & SUGGESTIONS
+// DONATIONS
 // =============================================
 async function handleDonate() {
-  const n = document.getElementById('donorName').value.trim(), e = document.getElementById('donorEmail').value.trim(), m = document.getElementById('donorMessage').value.trim();
-  if(!n || !e) return showToast('Please fill in Name and Email', 'error');
-  const btn = document.getElementById('donateBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
-  await supabase.from('donations').insert({ name: n, email: e, message: m });
-  document.getElementById('donorName').value = ''; document.getElementById('donorEmail').value = ''; document.getElementById('donorMessage').value = '';
-  btn.disabled = false; btn.innerHTML = '<i data-lucide="heart" class="w-5 h-5"></i> I Want to Donate'; lucide.createIcons(); showToast('Thank you! 💚', 'success');
+  const name = document.getElementById('donorName').value.trim();
+  const email = document.getElementById('donorEmail').value.trim();
+  const message = document.getElementById('donorMessage').value.trim();
+  if (!name) { showToast('Please enter your name', 'error'); return; }
+  if (!email || !isValidEmail(email)) { showToast('Please enter a valid email', 'error'); return; }
+  const btn = document.getElementById('donateBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Processing...';
+  try {
+    const { error } = await supabase.from('donations').insert({ name, email, message });
+    if (error) throw error;
+    document.getElementById('donorName').value = ''; document.getElementById('donorEmail').value = ''; document.getElementById('donorMessage').value = '';
+    showToast('Thank you for your generosity! 💚 Use bank details below to complete.', 'success');
+    triggerConfetti();
+    document.querySelector('.bank-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (err) { showToast('Failed to process. Please try again.', 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = '<i data-lucide="heart" class="w-5 h-5"></i> I Want to Donate'; lucide.createIcons(); }
 }
 
+// =============================================
+// SUGGESTIONS
+// =============================================
 async function handleSuggestion() {
-  const n = document.getElementById('sugName').value.trim(), m = document.getElementById('sugMsg').value.trim();
-  if(!n || !m) return showToast('Please fill in all fields', 'error');
-  const type = document.querySelector('.suggestion-type-btn.active')?.dataset.type || 'idea';
-  const btn = document.getElementById('suggestionBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
-  await supabase.from('suggestions').insert({ name: n, type: type, message: m });
-  document.getElementById('sugName').value = ''; document.getElementById('sugMsg').value = '';
-  btn.disabled = false; btn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i> Submit Suggestion'; lucide.createIcons(); showToast('Thank you for your suggestion! 💡', 'success');
+  const name = document.getElementById('sugName').value.trim();
+  const message = document.getElementById('sugMessage').value.trim();
+  if (!name) { showToast('Please enter your name', 'error'); return; }
+  if (!message) { showToast('Please enter your suggestion', 'error'); return; }
+  const btn = document.getElementById('suggestionBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Submitting...';
+  try {
+    const { error } = await supabase.from('suggestions').insert({ name, type: selectedSuggestionType, message });
+    if (error) throw error;
+    document.getElementById('sugName').value = ''; document.getElementById('sugMessage').value = '';
+    showToast('Thank you for your suggestion! 💡', 'success');
+    triggerConfetti();
+  } catch (err) { showToast('Failed to submit. Please try again.', 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i> Submit Suggestion'; lucide.createIcons(); }
 }
+
+// =============================================
+// EVENT LISTENERS
+// =============================================
+document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('closeMobileMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+document.querySelectorAll('.campaign-tab').forEach(t => t.addEventListener('click', function() {
+  document.querySelectorAll('.campaign-tab').forEach(x => { x.classList.remove('active', 'bg-leaf-600', 'text-white'); x.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200'); });
+  this.classList.add('active', 'bg-leaf-600', 'text-white'); this.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+  loadCampaigns(this.dataset.filter);
+}));
+
+document.querySelectorAll('.suggestion-type-btn').forEach(b => b.addEventListener('click', function() {
+  document.querySelectorAll('.suggestion-type-btn').forEach(x => { x.classList.remove('active', 'bg-sky-500', 'text-white'); x.classList.add('bg-gray-100', 'text-gray-600'); });
+  this.classList.add('active', 'bg-sky-500', 'text-white'); this.classList.remove('bg-gray-100', 'text-gray-600');
+  selectedSuggestionType = this.dataset.type;
+}));
+
+document.querySelectorAll('.color-opt').forEach(b => b.addEventListener('click', function() { selectedColor = this.dataset.color; updateColorSelection(); }));
+
+['mainImageZone', 'galleryZone'].forEach(zid => {
+  const z = document.getElementById(zid); if (!z) return;
+  z.addEventListener('dragover', (e) => { e.preventDefault(); z.classList.add('dragover'); });
+  z.addEventListener('dragleave', () => z.classList.remove('dragover'));
+  z.addEventListener('drop', (e) => {
+    e.preventDefault(); z.classList.remove('dragover');
+    const fs = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+    if (zid === 'mainImageZone' && fs[0]) {
+      const dt = new DataTransfer(); dt.items.add(fs[0]);
+      document.getElementById('mainImageInput').files = dt.files;
+      handleMainImage({ target: { files: [fs[0]] } });
+    } else if (zid === 'galleryZone') {
+      fs.forEach(f => { if (f.size <= 5*1024*1024) galleryFiles.push(f); });
+      renderGalleryPreviews();
+    }
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeCampaignModal(); closeGalleryModal(); closeLightbox(); closeAdminLogin(); closeSettingsModal(); }
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    if (e.key === 'ArrowLeft') lightboxPrev();
+    if (e.key === 'ArrowRight') lightboxNext();
+  }
+});
+
+function handleReveal() { document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); }); }
+window.addEventListener('scroll', handleReveal, { passive: true });
 
 // =============================================
 // INITIALIZATION
 // =============================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   lucide.createIcons();
+  updateColorSelection();
+  handleReveal();
+  await checkSession();
+  await loadSettings();
   loadCampaigns();
 });
 </script>
