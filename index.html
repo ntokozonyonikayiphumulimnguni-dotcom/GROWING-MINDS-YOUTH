@@ -128,6 +128,7 @@ tailwind.config = {
   .campaign-admin-actions { display: none !important; }
   .admin-photo-actions { display: none !important; }
   .admin-logout-btn { display: none !important; }
+  .admin-login-btn { display: block !important; }
 
   body.admin-mode .admin-controls { display: flex !important; }
   body.admin-mode .campaign-admin-actions { display: flex !important; }
@@ -191,7 +192,7 @@ tailwind.config = {
 </div>
 
 <!-- ============================================= -->
-<!-- ADMIN SETTINGS MODAL -->
+<!-- ADMIN SETTINGS MODAL (Bank & Contact Editable) -->
 <!-- ============================================= -->
 <div id="settingsModal" class="modal-overlay fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 md:pt-10 overflow-y-auto">
   <div class="modal-content bg-white rounded-3xl w-full max-w-2xl shadow-2xl mb-10">
@@ -301,6 +302,7 @@ tailwind.config = {
       <circle cx="200" cy="50" r="35" fill="#86efac" opacity="0.8"/>
     </svg>
   </div>
+
   <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
     <div class="bounce-in mb-8">
       <div class="relative inline-block">
@@ -400,7 +402,7 @@ tailwind.config = {
       <p class="text-gray-600 max-w-xl mx-auto">Each campaign is a step toward brighter futures. Click any campaign to view its full gallery.</p>
     </div>
 
-    <!-- 🔒 ADMIN CONTROLS (Includes Settings Button) -->
+    <!-- 🔒 ADMIN CONTROLS (Hidden unless logged in) -->
     <div id="adminControls" class="admin-controls mb-8 reveal flex flex-wrap items-center justify-between gap-4">
       <div class="flex flex-wrap gap-2">
         <button class="campaign-tab active bg-leaf-600 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all" data-filter="all">All</button>
@@ -442,7 +444,7 @@ tailwind.config = {
     <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
       <input type="hidden" id="editCampaignId" value="">
 
-      <!-- Title Picture (Separate Upload) -->
+      <!-- Title Picture -->
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">🖼️ Title / Cover Picture</label>
         <div id="mainImageZone" class="upload-zone rounded-2xl h-56 flex flex-col items-center justify-center relative overflow-hidden bg-gray-50" onclick="document.getElementById('mainImageInput').click()">
@@ -535,7 +537,7 @@ tailwind.config = {
 </div>
 
 <!-- ============================================= -->
-<!-- DONATE SECTION -->
+<!-- DONATE SECTION (Motivational + Instructions Only) -->
 <!-- ============================================= -->
 <section id="donate" class="relative py-24 md:py-32 bg-white overflow-hidden">
   <div class="absolute top-0 right-0 w-96 h-96 bg-leaf-50 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
@@ -548,18 +550,40 @@ tailwind.config = {
       <p class="text-gray-600 max-w-xl mx-auto">Every contribution, no matter how small, directly impacts a child's life. 100% of donations go to our outreach programs.</p>
     </div>
     <div class="grid lg:grid-cols-2 gap-12 items-start">
+      
+      <!-- Left Column: Motivational & Instructional Panel -->
       <div class="reveal">
-        <div class="bg-white rounded-3xl border-2 border-leaf-100 p-8 shadow-lg shadow-leaf-100/30">
-          <h3 class="font-heading text-2xl text-leaf-900 mb-6 flex items-center gap-2"><span class="pulse-heart inline-block">💝</span> Send Your Donation</h3>
-          <div class="space-y-4 mb-6">
-            <div><label class="block text-sm font-bold text-gray-600 mb-1.5">Full Name <span class="text-heart-500">*</span></label><input type="text" id="donorName" placeholder="Your name" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
-            <div><label class="block text-sm font-bold text-gray-600 mb-1.5">Email Address <span class="text-heart-500">*</span></label><input type="email" id="donorEmail" placeholder="your@email.com" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all"></div>
-            <div><label class="block text-sm font-bold text-gray-600 mb-1.5">Message (Optional)</label><textarea id="donorMessage" rows="3" placeholder="Any message with your donation..." class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 focus:ring-4 focus:ring-leaf-100 outline-none transition-all resize-none"></textarea></div>
+        <div class="bg-white rounded-3xl border-2 border-leaf-100 p-8 shadow-lg shadow-leaf-100/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-leaf-500/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div class="relative z-10">
+            <h3 class="font-heading text-2xl text-leaf-800 mb-4">Your Generosity Changes Lives 💚</h3>
+            <div class="bg-leaf-50/60 p-4 rounded-xl border border-leaf-100 mb-6">
+              <p class="text-sm text-gray-700 leading-relaxed">
+                We deeply appreciate your heart to give. To make a donation, we kindly ask you to use our <strong>secure bank transfer method</strong> below. This ensures 100% of your contribution goes directly to providing food, clothing, and education supplies to vulnerable children.
+              </p>
+            </div>
+            <div class="space-y-4 text-sm text-gray-600">
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">1</div>
+                <p>Transfer your donation to the bank account listed in the card on the right.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">2</div>
+                <p>Use the reference: <span class="font-mono font-bold bg-gray-100 px-2 py-0.5 rounded text-leaf-600">"GMYI Donation - [Your Name]"</span>.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">3</div>
+                <p>Send your proof of payment to <span class="font-bold text-leaf-600" id="displayContactEmailDonate">info@growingmindsyi.org</span> so we can personally thank you! 📧</p>
+              </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+              <p class="text-xs text-gray-400">🙏 100% of your donation directly impacts our programs.</p>
+            </div>
           </div>
-          <button id="donateBtn" onclick="handleDonate()" class="w-full bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white py-4 rounded-2xl font-bold text-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-leaf-200 flex items-center justify-center gap-2"><i data-lucide="heart" class="w-5 h-5"></i> I Want to Donate</button>
-          <p class="text-center text-xs text-gray-400 mt-3">🔒 Secure & transparent. Use bank details below to complete.</p>
         </div>
       </div>
+
+      <!-- Right Column: Impact & Editable Bank Details -->
       <div class="reveal space-y-6" style="transition-delay:.2s">
         <div class="bg-gradient-to-br from-leaf-50 to-leaf-100 rounded-3xl p-6 border border-leaf-200 card-lift">
           <h4 class="font-heading text-lg text-leaf-800 mb-4">🌱 What Your Giving Does</h4>
@@ -570,7 +594,7 @@ tailwind.config = {
             <div class="flex items-start gap-3"><span class="flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center text-lg shadow-sm">🏠</span><div><p class="font-bold text-sm text-leaf-800">Sponsors a family</p><p class="text-xs text-gray-500">Monthly food + hygiene + school supplies</p></div></div>
           </div>
         </div>
-        <!-- BANK DETAILS (Dynamic) -->
+        <!-- BANK DETAILS (Dynamic & Editable via Admin Settings) -->
         <div class="bank-card rounded-3xl p-6 text-white card-lift shadow-xl">
           <div class="relative z-10">
             <div class="flex items-center gap-2 mb-4">
@@ -625,7 +649,7 @@ tailwind.config = {
 </section>
 
 <!-- ============================================= -->
-<!-- CONTACT SECTION (Dynamic) -->
+<!-- CONTACT SECTION (Dynamic & Editable) -->
 <!-- ============================================= -->
 <section id="contact" class="relative py-24 md:py-32 bg-white">
   <div class="max-w-5xl mx-auto px-6">
@@ -686,7 +710,8 @@ tailwind.config = {
       </div>
     </div>
     <div class="border-t border-leaf-800 pt-8 text-center">
-      <p class="text-leaf-400 text-sm">© 2025 Growing Minds Youth Initiative. All rights reserved. Made with 💚</p>
+      <!-- ✅ UPDATED: 2025 to 2026 -->
+      <p class="text-leaf-400 text-sm">© 2026 Growing Minds Youth Initiative. All rights reserved. Made with 💚</p>
     </div>
   </div>
 </footer>
@@ -726,7 +751,14 @@ let appSettings = {
   contact_address: '[Your City, Country]'
 };
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// 🔒 FIX: Use sessionStorage (per-tab, never syncs across browsers/devices)
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: {
+    storage: window.sessionStorage,
+    persistSession: true,
+    autoRefreshToken: true
+  }
+});
 
 // =============================================
 // TOAST
@@ -821,6 +853,7 @@ async function adminLogout() {
   loadCampaigns('all');
 }
 
+// 🔒 SECURITY CHECK: Force browser to validate session on every load
 async function checkSession() {
   try {
     const { data: { session } } = await supabase.auth.getSession();
@@ -828,8 +861,15 @@ async function checkSession() {
       isAdmin = true;
       sessionStorage.setItem('gmyi_admin', 'true');
       document.body.classList.add('admin-mode');
+    } else {
+      // If sessionStorage is empty, remove all traces of admin mode immediately
+      document.body.classList.remove('admin-mode');
+      sessionStorage.removeItem('gmyi_admin');
     }
-  } catch (e) { console.warn("Session check skipped"); }
+  } catch (e) { 
+    console.warn("Session check failed");
+    document.body.classList.remove('admin-mode');
+  }
 }
 
 // =============================================
@@ -869,6 +909,7 @@ function renderSettingsUI() {
   document.getElementById('displayAccountNumber').textContent = appSettings.account_number;
   document.getElementById('displayRoutingCode').textContent = appSettings.routing_code;
   document.getElementById('displayContactEmail').textContent = appSettings.contact_email;
+  document.getElementById('displayContactEmailDonate').textContent = appSettings.contact_email;
   document.getElementById('displayContactEmailMain').textContent = appSettings.contact_email;
   document.getElementById('displayContactPhoneMain').textContent = appSettings.contact_phone;
   document.getElementById('displayContactAddressMain').textContent = appSettings.contact_address;
@@ -901,8 +942,6 @@ async function saveSettings() {
   };
 
   try {
-    // Upsert into the settings table (will update if ID matches, insert if not)
-    // Since we already have an ID in appSettings, we try to update
     const { error } = await supabase.from('app_settings').upsert({ id: appSettings.id, ...data });
     if (error) throw error;
 
@@ -1215,27 +1254,6 @@ function closeLightbox() { document.getElementById('lightbox').classList.remove(
 function lightboxPrev() { currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length; updateLightbox(); }
 function lightboxNext() { currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length; updateLightbox(); }
 function updateLightbox() { document.getElementById('lightboxImg').src = currentLightboxImages[currentLightboxIndex]; document.getElementById('lightboxCounter').textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`; }
-
-// =============================================
-// DONATIONS
-// =============================================
-async function handleDonate() {
-  const name = document.getElementById('donorName').value.trim();
-  const email = document.getElementById('donorEmail').value.trim();
-  const message = document.getElementById('donorMessage').value.trim();
-  if (!name) { showToast('Please enter your name', 'error'); return; }
-  if (!email || !isValidEmail(email)) { showToast('Please enter a valid email', 'error'); return; }
-  const btn = document.getElementById('donateBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Processing...';
-  try {
-    const { error } = await supabase.from('donations').insert({ name, email, message });
-    if (error) throw error;
-    document.getElementById('donorName').value = ''; document.getElementById('donorEmail').value = ''; document.getElementById('donorMessage').value = '';
-    showToast('Thank you for your generosity! 💚 Use bank details below to complete.', 'success');
-    triggerConfetti();
-    document.querySelector('.bank-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } catch (err) { showToast('Failed to process. Please try again.', 'error'); }
-  finally { btn.disabled = false; btn.innerHTML = '<i data-lucide="heart" class="w-5 h-5"></i> I Want to Donate'; lucide.createIcons(); }
-}
 
 // =============================================
 // SUGGESTIONS
