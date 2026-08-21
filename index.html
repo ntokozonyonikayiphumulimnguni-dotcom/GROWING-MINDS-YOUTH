@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Growing Minds Youth Initiative</title>
 
-<!-- Favicon Links (Added Here) -->
-<link rel="icon" type="image/jpeg" href="https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0">
-<link rel="shortcut icon" href="https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0">
+<!-- Favicon (Your URL) -->
+<link rel="icon" type="image/jpeg" href="https://tombccfghgjekljigfww.supabase.co/storage/v1/object/public/campaign-images/gallery/content.jpg">
+<link rel="shortcut icon" href="https://tombccfghgjekljigfww.supabase.co/storage/v1/object/public/campaign-images/gallery/content.jpg">
 
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -196,15 +196,44 @@ tailwind.config = {
 </div>
 
 <!-- ============================================= -->
-<!-- ADMIN SETTINGS MODAL (Bank & Contact Editable) -->
+<!-- ADMIN SETTINGS MODAL -->
 <!-- ============================================= -->
 <div id="settingsModal" class="modal-overlay fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 md:pt-10 overflow-y-auto">
-  <div class="modal-content bg-white rounded-3xl w-full max-w-2xl shadow-2xl mb-10">
+  <div class="modal-content bg-white rounded-3xl w-full max-w-3xl shadow-2xl mb-10">
     <div class="flex items-center justify-between p-6 border-b border-gray-100">
       <h3 class="font-heading text-2xl text-leaf-900">Edit Site Settings</h3>
       <button onclick="closeSettingsModal()" class="p-2 hover:bg-gray-100 rounded-xl transition-colors"><i data-lucide="x" class="w-5 h-5 text-gray-500"></i></button>
     </div>
     <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+      
+      <!-- Website Content Section -->
+      <div>
+        <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">📝 Website Content</h4>
+        <div class="space-y-4">
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Hero Title (Part 1)</label><input type="text" id="setHeroTitle1" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Hero Title (Part 2)</label><input type="text" id="setHeroTitle2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Hero Subtitle</label><textarea id="setHeroSubtitle" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
+          
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">About Section Heading</label><input type="text" id="setAboutHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">About Paragraph</label><textarea id="setAboutText" rows="3" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Mission Title</label><input type="text" id="setMissionTitle" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Mission Text</label><textarea id="setMissionText" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
+          
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Campaigns Heading</label><input type="text" id="setCampaignHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Donate Heading</label><input type="text" id="setDonateHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Donate Subtitle</label><textarea id="setDonateSubtitle" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Donate Instructional Text</label><textarea id="setDonateInstruction" rows="3" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
+          
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Suggestions Heading</label><input type="text" id="setSuggestionsHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Contact Heading</label><input type="text" id="setContactHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
+          
+          <div><label class="block text-sm font-bold text-gray-700 mb-1">Footer Text</label><textarea id="setFooterText" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
+        </div>
+      </div>
+
+      <!-- Bank Details Section -->
       <div>
         <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">🏦 Bank Transfer Details</h4>
         <div class="grid sm:grid-cols-2 gap-4">
@@ -214,6 +243,8 @@ tailwind.config = {
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Routing / Swift Code</label><input type="text" id="setRoutingCode" placeholder="[XXXXXXX]" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-leaf-500 outline-none"></div>
         </div>
       </div>
+
+      <!-- Contact Info Section -->
       <div>
         <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">📞 Contact Information</h4>
         <div class="space-y-4">
@@ -292,6 +323,7 @@ tailwind.config = {
   <div class="absolute inset-0 bg-gradient-to-br from-leaf-50 via-white to-warm-50"></div>
   <div class="absolute top-20 left-10 w-72 h-72 bg-leaf-200/30 rounded-full blur-3xl"></div>
   <div class="absolute bottom-20 right-10 w-96 h-96 bg-warm-200/20 rounded-full blur-3xl"></div>
+
   <div class="absolute bottom-0 left-1/2 -translate-x-1/2 opacity-10 pointer-events-none">
     <svg width="400" height="300" viewBox="0 0 400 300" class="plant-grow">
       <path d="M200 300 L200 150" stroke="#166534" stroke-width="12" stroke-linecap="round"/>
@@ -318,8 +350,10 @@ tailwind.config = {
       </div>
     </div>
     <div class="slide-up mb-4" style="animation-delay:.2s"><span class="wave-hand text-4xl">👋</span></div>
-    <h1 class="slide-up font-heading text-4xl md:text-6xl lg:text-7xl text-leaf-900 mb-6 leading-tight" style="animation-delay:.3s">Growing Minds<br><span class="text-leaf-600">Youth Initiative</span></h1>
-    <p class="slide-up text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-semibold leading-relaxed" style="animation-delay:.5s">Nurturing hope, empowering lives. We believe every child deserves access to basic essentials and the opportunity to grow into their fullest potential.</p>
+    <h1 class="slide-up font-heading text-4xl md:text-6xl lg:text-7xl text-leaf-900 mb-6 leading-tight" style="animation-delay:.3s">
+      <span id="heroTitle1">Growing Minds</span><br><span id="heroTitle2" class="text-leaf-600">Youth Initiative</span>
+    </h1>
+    <p id="heroSubtitle" class="slide-up text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-semibold leading-relaxed" style="animation-delay:.5s">Nurturing hope, empowering lives. We believe every child deserves access to basic essentials and the opportunity to grow into their fullest potential.</p>
     <div class="slide-up flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.7s">
       <a href="#donate" class="group bg-leaf-600 hover:bg-leaf-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-leaf-200 flex items-center gap-2"><span class="pulse-heart inline-block">💚</span> Donate Now <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i></a>
       <a href="#about" class="group bg-white hover:bg-leaf-50 text-leaf-800 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 border-2 border-leaf-200 hover:border-leaf-400 flex items-center gap-2 shadow-sm">Learn More <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-0.5 transition-transform"></i></a>
@@ -335,7 +369,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <span class="inline-block bg-leaf-100 text-leaf-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Who We Are</span>
-      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">About Our Initiative</h2>
+      <h2 id="aboutHeading" class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">About Our Initiative</h2>
       <div class="w-20 h-1.5 bg-gradient-to-r from-leaf-400 to-leaf-600 mx-auto rounded-full"></div>
     </div>
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -376,10 +410,10 @@ tailwind.config = {
       </div>
       <div class="reveal" style="transition-delay:.2s">
         <h3 class="font-heading text-2xl md:text-3xl text-leaf-900 mb-6">Planting Seeds of Change, One Child at a Time 🌱</h3>
-        <p class="text-gray-600 leading-relaxed mb-6"><strong class="text-leaf-700">Growing Minds Youth Initiative</strong> is a grassroots NGO born from the simple belief that no child should go without basic essentials. Founded by passionate young people, we work directly in underserved communities to provide food, clothing, school supplies, and hygiene products to children and families in need.</p>
+        <p id="aboutText" class="text-gray-600 leading-relaxed mb-6"><strong class="text-leaf-700">Growing Minds Youth Initiative</strong> is a grassroots NGO born from the simple belief that no child should go without basic essentials. Founded by passionate young people, we work directly in underserved communities to provide food, clothing, school supplies, and hygiene products to children and families in need.</p>
         <p class="text-gray-600 leading-relaxed mb-8">Though we are still a small initiative, our vision is mighty — to grow into a movement that ensures every child has the foundation they need to learn, play, and dream big.</p>
         <div class="grid sm:grid-cols-2 gap-4">
-          <div class="bg-leaf-50 rounded-2xl p-5 border border-leaf-100 card-lift"><div class="w-10 h-10 bg-leaf-200 rounded-xl flex items-center justify-center mb-3"><i data-lucide="target" class="w-5 h-5 text-leaf-700"></i></div><h4 class="font-bold text-leaf-800 mb-1">Our Mission</h4><p class="text-sm text-gray-600">To deliver basic essentials to poor and vulnerable children, restoring dignity and hope.</p></div>
+          <div class="bg-leaf-50 rounded-2xl p-5 border border-leaf-100 card-lift"><div class="w-10 h-10 bg-leaf-200 rounded-xl flex items-center justify-center mb-3"><i data-lucide="target" class="w-5 h-5 text-leaf-700"></i></div><h4 id="missionTitle" class="font-bold text-leaf-800 mb-1">Our Mission</h4><p id="missionText" class="text-sm text-gray-600">To deliver basic essentials to poor and vulnerable children, restoring dignity and hope.</p></div>
           <div class="bg-warm-50 rounded-2xl p-5 border border-warm-100 card-lift"><div class="w-10 h-10 bg-warm-200 rounded-xl flex items-center justify-center mb-3"><i data-lucide="eye" class="w-5 h-5 text-warm-700"></i></div><h4 class="font-bold text-warm-800 mb-1">Our Vision</h4><p class="text-sm text-gray-600">A world where every child's basic needs are met, enabling them to thrive and grow.</p></div>
         </div>
         <div class="mt-8 flex flex-wrap gap-3">
@@ -401,7 +435,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <span class="inline-block bg-warm-100 text-warm-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Making a Difference</span>
-      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Outreach Campaigns</h2>
+      <h2 id="campaignHeading" class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Outreach Campaigns</h2>
       <div class="w-20 h-1.5 bg-gradient-to-r from-warm-400 to-warm-600 mx-auto rounded-full mb-4"></div>
       <p class="text-gray-600 max-w-xl mx-auto">Each campaign is a step toward brighter futures. Click any campaign to view its full gallery.</p>
     </div>
@@ -541,7 +575,7 @@ tailwind.config = {
 </div>
 
 <!-- ============================================= -->
-<!-- DONATE SECTION (Motivational + Instructions Only) -->
+<!-- DONATE SECTION -->
 <!-- ============================================= -->
 <section id="donate" class="relative py-24 md:py-32 bg-white overflow-hidden">
   <div class="absolute top-0 right-0 w-96 h-96 bg-leaf-50 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
@@ -549,45 +583,28 @@ tailwind.config = {
   <div class="relative z-10 max-w-5xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <span class="inline-block bg-heart-500/10 text-heart-600 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Make a Difference</span>
-      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Support Our Cause</h2>
+      <h2 id="donateHeading" class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Support Our Cause</h2>
       <div class="w-20 h-1.5 bg-gradient-to-r from-heart-400 to-heart-500 mx-auto rounded-full mb-4"></div>
-      <p class="text-gray-600 max-w-xl mx-auto">Every contribution, no matter how small, directly impacts a child's life. 100% of donations go to our outreach programs.</p>
+      <p id="donateSubtitle" class="text-gray-600 max-w-xl mx-auto">Every contribution, no matter how small, directly impacts a child's life. 100% of donations go to our outreach programs.</p>
     </div>
     <div class="grid lg:grid-cols-2 gap-12 items-start">
-      
-      <!-- Left Column: Motivational & Instructional Panel -->
       <div class="reveal">
         <div class="bg-white rounded-3xl border-2 border-leaf-100 p-8 shadow-lg shadow-leaf-100/30 relative overflow-hidden">
           <div class="absolute top-0 right-0 w-32 h-32 bg-leaf-500/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
           <div class="relative z-10">
             <h3 class="font-heading text-2xl text-leaf-800 mb-4">Your Generosity Changes Lives 💚</h3>
             <div class="bg-leaf-50/60 p-4 rounded-xl border border-leaf-100 mb-6">
-              <p class="text-sm text-gray-700 leading-relaxed">
-                We deeply appreciate your heart to give. To make a donation, we kindly ask you to use our <strong>secure bank transfer method</strong> below. This ensures 100% of your contribution goes directly to providing food, clothing, and education supplies to vulnerable children.
-              </p>
+              <p id="donateInstruction" class="text-sm text-gray-700 leading-relaxed">We deeply appreciate your heart to give. To make a donation, we kindly ask you to use our <strong>secure bank transfer method</strong> below. This ensures 100% of your contribution goes directly to providing food, clothing, and education supplies to vulnerable children.</p>
             </div>
             <div class="space-y-4 text-sm text-gray-600">
-              <div class="flex items-start gap-3">
-                <div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">1</div>
-                <p>Transfer your donation to the bank account listed in the card on the right.</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">2</div>
-                <p>Use the reference: <span class="font-mono font-bold bg-gray-100 px-2 py-0.5 rounded text-leaf-600">"GMYI Donation - [Your Name]"</span>.</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">3</div>
-                <p>Send your proof of payment to <span class="font-bold text-leaf-600" id="displayContactEmailDonate">info@growingmindsyi.org</span> so we can personally thank you! 📧</p>
-              </div>
+              <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">1</div><p>Transfer your donation to the bank account listed in the card on the right.</p></div>
+              <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">2</div><p>Use the reference: <span class="font-mono font-bold bg-gray-100 px-2 py-0.5 rounded text-leaf-600">"GMYI Donation - [Your Name]"</span>.</p></div>
+              <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-leaf-700 text-xs font-bold">3</div><p>Send your proof of payment to <span class="font-bold text-leaf-600" id="displayContactEmailDonate">info@growingmindsyi.org</span> so we can personally thank you! 📧</p></div>
             </div>
-            <div class="mt-6 pt-6 border-t border-gray-200 text-center">
-              <p class="text-xs text-gray-400">🙏 100% of your donation directly impacts our programs.</p>
-            </div>
+            <div class="mt-6 pt-6 border-t border-gray-200 text-center"><p class="text-xs text-gray-400">🙏 100% of your donation directly impacts our programs.</p></div>
           </div>
         </div>
       </div>
-
-      <!-- Right Column: Impact & Editable Bank Details -->
       <div class="reveal space-y-6" style="transition-delay:.2s">
         <div class="bg-gradient-to-br from-leaf-50 to-leaf-100 rounded-3xl p-6 border border-leaf-200 card-lift">
           <h4 class="font-heading text-lg text-leaf-800 mb-4">🌱 What Your Giving Does</h4>
@@ -598,13 +615,9 @@ tailwind.config = {
             <div class="flex items-start gap-3"><span class="flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center text-lg shadow-sm">🏠</span><div><p class="font-bold text-sm text-leaf-800">Sponsors a family</p><p class="text-xs text-gray-500">Monthly food + hygiene + school supplies</p></div></div>
           </div>
         </div>
-        <!-- BANK DETAILS (Dynamic & Editable via Admin Settings) -->
         <div class="bank-card rounded-3xl p-6 text-white card-lift shadow-xl">
           <div class="relative z-10">
-            <div class="flex items-center gap-2 mb-4">
-              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm"><i data-lucide="landmark" class="w-5 h-5"></i></div>
-              <div><h4 class="font-heading text-lg">Bank Transfer</h4><p class="text-xs text-leaf-200">Direct donation option</p></div>
-            </div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm"><i data-lucide="landmark" class="w-5 h-5"></i></div><div><h4 class="font-heading text-lg">Bank Transfer</h4><p class="text-xs text-leaf-200">Direct donation option</p></div></div>
             <div class="space-y-3 bg-white/10 backdrop-blur-sm rounded-2xl p-4">
               <div><p class="text-xs text-leaf-200 mb-0.5">Bank Name</p><p class="font-bold text-sm" id="displayBankName">[Your Bank Name]</p></div>
               <div><p class="text-xs text-leaf-200 mb-0.5">Account Name</p><p class="font-bold text-sm" id="displayAccountName">Growing Minds Youth Initiative</p></div>
@@ -627,7 +640,7 @@ tailwind.config = {
   <div class="max-w-3xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <span class="inline-block bg-sky-100 text-sky-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">We Value Your Voice</span>
-      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Share Your Suggestions</h2>
+      <h2 id="suggestionsHeading" class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Share Your Suggestions</h2>
       <div class="w-20 h-1.5 bg-gradient-to-r from-sky-400 to-sky-600 mx-auto rounded-full"></div>
     </div>
     <div class="reveal">
@@ -653,31 +666,19 @@ tailwind.config = {
 </section>
 
 <!-- ============================================= -->
-<!-- CONTACT SECTION (Dynamic & Editable) -->
+<!-- CONTACT SECTION -->
 <!-- ============================================= -->
 <section id="contact" class="relative py-24 md:py-32 bg-white">
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <span class="inline-block bg-leaf-100 text-leaf-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Get In Touch</span>
-      <h2 class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Contact Us</h2>
+      <h2 id="contactHeading" class="font-heading text-3xl md:text-5xl text-leaf-900 mb-4">Contact Us</h2>
       <div class="w-20 h-1.5 bg-gradient-to-r from-leaf-400 to-leaf-600 mx-auto rounded-full"></div>
     </div>
     <div class="grid md:grid-cols-3 gap-8 reveal">
-      <div class="bg-leaf-50 rounded-3xl p-8 text-center card-lift border border-leaf-100">
-        <div class="w-14 h-14 bg-leaf-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="mail" class="w-7 h-7 text-leaf-700"></i></div>
-        <h4 class="font-bold text-leaf-800 mb-2">Email Us</h4>
-        <p class="text-sm text-gray-600" id="displayContactEmailMain">info@growingmindsyi.org</p>
-      </div>
-      <div class="bg-sky-50 rounded-3xl p-8 text-center card-lift border border-sky-100">
-        <div class="w-14 h-14 bg-sky-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="phone" class="w-7 h-7 text-sky-700"></i></div>
-        <h4 class="font-bold text-sky-800 mb-2">Call Us</h4>
-        <p class="text-sm text-gray-600" id="displayContactPhoneMain">+1 (234) 567-8900</p>
-      </div>
-      <div class="bg-warm-50 rounded-3xl p-8 text-center card-lift border border-warm-100">
-        <div class="w-14 h-14 bg-warm-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="map-pin" class="w-7 h-7 text-warm-700"></i></div>
-        <h4 class="font-bold text-warm-800 mb-2">Visit Us</h4>
-        <p class="text-sm text-gray-600" id="displayContactAddressMain">[Your City, Country]</p>
-      </div>
+      <div class="bg-leaf-50 rounded-3xl p-8 text-center card-lift border border-leaf-100"><div class="w-14 h-14 bg-leaf-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="mail" class="w-7 h-7 text-leaf-700"></i></div><h4 class="font-bold text-leaf-800 mb-2">Email Us</h4><p class="text-sm text-gray-600" id="displayContactEmailMain">info@growingmindsyi.org</p></div>
+      <div class="bg-sky-50 rounded-3xl p-8 text-center card-lift border border-sky-100"><div class="w-14 h-14 bg-sky-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="phone" class="w-7 h-7 text-sky-700"></i></div><h4 class="font-bold text-sky-800 mb-2">Call Us</h4><p class="text-sm text-gray-600" id="displayContactPhoneMain">+1 (234) 567-8900</p></div>
+      <div class="bg-warm-50 rounded-3xl p-8 text-center card-lift border border-warm-100"><div class="w-14 h-14 bg-warm-200 rounded-2xl flex items-center justify-center mx-auto mb-4"><i data-lucide="map-pin" class="w-7 h-7 text-warm-700"></i></div><h4 class="font-bold text-warm-800 mb-2">Visit Us</h4><p class="text-sm text-gray-600" id="displayContactAddressMain">[Your City, Country]</p></div>
     </div>
   </div>
 </section>
@@ -693,7 +694,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-leaf-400"><img src="https://z-cdn-media.chatglm.cn/files/e7e7717e-5536-4fbc-91be-f1f6de81e9d6.jpg?auth_key=1882150145-ee3024d5cbf948d8a770df91a0cb05e3-0-e66e3dafc368c472e59d8216971b6be0" alt="GMYI" class="w-full h-full object-cover"></div>
           <div><p class="font-heading text-sm">Growing Minds</p><p class="text-[10px] text-leaf-300 tracking-wider uppercase">Youth Initiative</p></div>
         </div>
-        <p class="text-leaf-300 text-sm leading-relaxed">Nurturing hope, empowering lives. Every child deserves a chance to grow.</p>
+        <p id="footerText" class="text-leaf-300 text-sm leading-relaxed">Nurturing hope, empowering lives. Every child deserves a chance to grow.</p>
       </div>
       <div>
         <h4 class="font-bold text-leaf-200 mb-4">Quick Links</h4>
@@ -743,6 +744,24 @@ let currentLightboxIndex = 0;
 let currentLightboxImages = [];
 let selectedSuggestionType = 'idea';
 
+// Default Content (Fallback if DB is empty)
+let defaultContent = {
+    heroTitle1: "Growing Minds",
+    heroTitle2: "Youth Initiative",
+    heroSubtitle: "Nurturing hope, empowering lives. We believe every child deserves access to basic essentials and the opportunity to grow into their fullest potential.",
+    aboutHeading: "About Our Initiative",
+    aboutText: "Growing Minds Youth Initiative is a grassroots NGO born from the simple belief that no child should go without basic essentials. Founded by passionate young people, we work directly in underserved communities to provide food, clothing, school supplies, and hygiene products to children and families in need.",
+    missionTitle: "Our Mission",
+    missionText: "To deliver basic essentials to poor and vulnerable children, restoring dignity and hope.",
+    campaignHeading: "Outreach Campaigns",
+    donateHeading: "Support Our Cause",
+    donateSubtitle: "Every contribution, no matter how small, directly impacts a child's life. 100% of donations go to our outreach programs.",
+    donateInstruction: "We deeply appreciate your heart to give. To make a donation, we kindly ask you to use our secure bank transfer method below. This ensures 100% of your contribution goes directly to providing food, clothing, and education supplies to vulnerable children.",
+    suggestionsHeading: "Share Your Suggestions",
+    contactHeading: "Contact Us",
+    footerText: "Nurturing hope, empowering lives. Every child deserves a chance to grow."
+};
+
 // Settings State
 let appSettings = {
   bank_name: '[Your Bank Name]',
@@ -751,10 +770,11 @@ let appSettings = {
   routing_code: '[XXXXXXX]',
   contact_email: 'info@growingmindsyi.org',
   contact_phone: '+1 (234) 567-8900',
-  contact_address: '[Your City, Country]'
+  contact_address: '[Your City, Country]',
+  content: defaultContent // This will store all website text
 };
 
-// 🔒 FIX: Use sessionStorage (per-tab, never syncs across browsers/devices)
+// Use sessionStorage (per-tab, never syncs across browsers/devices)
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: {
     storage: window.sessionStorage,
@@ -856,7 +876,6 @@ async function adminLogout() {
   loadCampaigns('all');
 }
 
-// 🔒 SECURITY CHECK: Force browser to validate session on every load
 async function checkSession() {
   try {
     const { data: { session } } = await supabase.auth.getSession();
@@ -865,7 +884,6 @@ async function checkSession() {
       sessionStorage.setItem('gmyi_admin', 'true');
       document.body.classList.add('admin-mode');
     } else {
-      // If sessionStorage is empty, remove all traces of admin mode immediately
       document.body.classList.remove('admin-mode');
       sessionStorage.removeItem('gmyi_admin');
     }
@@ -876,18 +894,21 @@ async function checkSession() {
 }
 
 // =============================================
-// SETTINGS LOGIC (BANK & CONTACT)
+// SETTINGS LOGIC (BANK, CONTACT, AND WEBSITE CONTENT)
 // =============================================
 async function loadSettings() {
   try {
-    const { data, error } = await supabase.from('app_settings').select('*').limit(1).single();
-    if (error) {
-      if(error.code === 'PGRST116') {
-        console.warn("Settings table empty, using defaults.");
-      } else {
-        throw error;
-      }
+    // Use maybeSingle to prevent errors if table is empty
+    const { data, error } = await supabase
+      .from('app_settings')
+      .select('*')
+      .limit(1)
+      .maybeSingle();
+
+    if (error && error.code !== 'PGRST116') {
+      console.warn("Settings table error:", error.message);
     }
+
     if (data) {
       appSettings = {
         bank_name: data.bank_name || appSettings.bank_name,
@@ -896,17 +917,20 @@ async function loadSettings() {
         routing_code: data.routing_code || appSettings.routing_code,
         contact_email: data.contact_email || appSettings.contact_email,
         contact_phone: data.contact_phone || appSettings.contact_phone,
-        contact_address: data.contact_address || appSettings.contact_address
+        contact_address: data.contact_address || appSettings.contact_address,
+        content: { ...defaultContent, ...(data.content_json || {}) } // Merge saved content with defaults
       };
     }
   } catch (err) {
-    console.error("Error loading settings:", err);
+    console.warn("Could not connect to settings table, using defaults.");
   } finally {
     renderSettingsUI();
+    applyContentToPage();
   }
 }
 
 function renderSettingsUI() {
+  // Bank & Contact
   document.getElementById('displayBankName').textContent = appSettings.bank_name;
   document.getElementById('displayAccountName').textContent = appSettings.account_name;
   document.getElementById('displayAccountNumber').textContent = appSettings.account_number;
@@ -918,7 +942,42 @@ function renderSettingsUI() {
   document.getElementById('displayContactAddressMain').textContent = appSettings.contact_address;
 }
 
+function applyContentToPage() {
+  // Apply all text to elements
+  document.getElementById('heroTitle1').textContent = appSettings.content.heroTitle1;
+  document.getElementById('heroTitle2').textContent = appSettings.content.heroTitle2;
+  document.getElementById('heroSubtitle').textContent = appSettings.content.heroSubtitle;
+  document.getElementById('aboutHeading').textContent = appSettings.content.aboutHeading;
+  document.getElementById('aboutText').innerHTML = appSettings.content.aboutText;
+  document.getElementById('missionTitle').textContent = appSettings.content.missionTitle;
+  document.getElementById('missionText').textContent = appSettings.content.missionText;
+  document.getElementById('campaignHeading').textContent = appSettings.content.campaignHeading;
+  document.getElementById('donateHeading').textContent = appSettings.content.donateHeading;
+  document.getElementById('donateSubtitle').textContent = appSettings.content.donateSubtitle;
+  document.getElementById('donateInstruction').innerHTML = appSettings.content.donateInstruction;
+  document.getElementById('suggestionsHeading').textContent = appSettings.content.suggestionsHeading;
+  document.getElementById('contactHeading').textContent = appSettings.content.contactHeading;
+  document.getElementById('footerText').textContent = appSettings.content.footerText;
+}
+
 function openSettingsModal() {
+  // Populate Website Content Inputs
+  document.getElementById('setHeroTitle1').value = appSettings.content.heroTitle1;
+  document.getElementById('setHeroTitle2').value = appSettings.content.heroTitle2;
+  document.getElementById('setHeroSubtitle').value = appSettings.content.heroSubtitle;
+  document.getElementById('setAboutHeading').value = appSettings.content.aboutHeading;
+  document.getElementById('setAboutText').value = appSettings.content.aboutText;
+  document.getElementById('setMissionTitle').value = appSettings.content.missionTitle;
+  document.getElementById('setMissionText').value = appSettings.content.missionText;
+  document.getElementById('setCampaignHeading').value = appSettings.content.campaignHeading;
+  document.getElementById('setDonateHeading').value = appSettings.content.donateHeading;
+  document.getElementById('setDonateSubtitle').value = appSettings.content.donateSubtitle;
+  document.getElementById('setDonateInstruction').value = appSettings.content.donateInstruction;
+  document.getElementById('setSuggestionsHeading').value = appSettings.content.suggestionsHeading;
+  document.getElementById('setContactHeading').value = appSettings.content.contactHeading;
+  document.getElementById('setFooterText').value = appSettings.content.footerText;
+
+  // Populate Bank & Contact Inputs
   document.getElementById('setBankName').value = appSettings.bank_name;
   document.getElementById('setAccountName').value = appSettings.account_name;
   document.getElementById('setAccountNumber').value = appSettings.account_number;
@@ -926,6 +985,7 @@ function openSettingsModal() {
   document.getElementById('setContactEmail').value = appSettings.contact_email;
   document.getElementById('setContactPhone').value = appSettings.contact_phone;
   document.getElementById('setContactAddress').value = appSettings.contact_address;
+  
   document.getElementById('settingsModal').classList.add('open');
 }
 
@@ -934,6 +994,25 @@ function closeSettingsModal() {
 }
 
 async function saveSettings() {
+  // Gather Website Content
+  const newContent = {
+    heroTitle1: document.getElementById('setHeroTitle1').value,
+    heroTitle2: document.getElementById('setHeroTitle2').value,
+    heroSubtitle: document.getElementById('setHeroSubtitle').value,
+    aboutHeading: document.getElementById('setAboutHeading').value,
+    aboutText: document.getElementById('setAboutText').value,
+    missionTitle: document.getElementById('setMissionTitle').value,
+    missionText: document.getElementById('setMissionText').value,
+    campaignHeading: document.getElementById('setCampaignHeading').value,
+    donateHeading: document.getElementById('setDonateHeading').value,
+    donateSubtitle: document.getElementById('setDonateSubtitle').value,
+    donateInstruction: document.getElementById('setDonateInstruction').value,
+    suggestionsHeading: document.getElementById('setSuggestionsHeading').value,
+    contactHeading: document.getElementById('setContactHeading').value,
+    footerText: document.getElementById('setFooterText').value
+  };
+
+  // Gather Bank & Contact
   const data = {
     bank_name: document.getElementById('setBankName').value.trim(),
     account_name: document.getElementById('setAccountName').value.trim(),
@@ -941,15 +1020,22 @@ async function saveSettings() {
     routing_code: document.getElementById('setRoutingCode').value.trim(),
     contact_email: document.getElementById('setContactEmail').value.trim(),
     contact_phone: document.getElementById('setContactPhone').value.trim(),
-    contact_address: document.getElementById('setContactAddress').value.trim()
+    contact_address: document.getElementById('setContactAddress').value.trim(),
+    content_json: newContent // Save the entire content object
   };
 
+  const finalId = appSettings.id || '00000000-0000-0000-0000-000000000001'; // Ensure ID exists
+
   try {
-    const { error } = await supabase.from('app_settings').upsert({ id: appSettings.id, ...data });
+    const { error } = await supabase.from('app_settings').upsert({ id: finalId, ...data });
     if (error) throw error;
 
-    appSettings = { ...appSettings, ...data };
+    // Update local state
+    appSettings = { ...appSettings, ...data, content: newContent, id: finalId };
+    
+    // Re-render
     renderSettingsUI();
+    applyContentToPage();
     closeSettingsModal();
     showToast('Settings updated successfully! 🎉', 'success');
   } catch (err) {
