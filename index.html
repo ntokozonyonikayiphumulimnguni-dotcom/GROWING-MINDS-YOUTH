@@ -767,6 +767,7 @@ let defaultContent = {
 
 // Settings State
 let appSettings = {
+  id: '00000000-0000-0000-0000-000000000001', // Fixed ID for the settings row
   bank_name: '[Your Bank Name]',
   account_name: 'Growing Minds Youth Initiative',
   account_number: '[0000000000]',
@@ -777,7 +778,7 @@ let appSettings = {
   content: defaultContent // This will store all website text
 };
 
-// 🆕 Undo Snapshot
+// Undo Snapshot
 let previousSettings = null;
 
 // Use sessionStorage (per-tab, never syncs across browsers/devices)
@@ -908,7 +909,7 @@ async function loadSettings() {
     const { data, error } = await supabase
       .from('app_settings')
       .select('*')
-      .limit(1)
+      .eq('id', '00000000-0000-0000-0000-000000000001') // Fetch the specific fixed ID
       .maybeSingle();
 
     if (error && error.code !== 'PGRST116') {
@@ -917,6 +918,7 @@ async function loadSettings() {
 
     if (data) {
       appSettings = {
+        id: data.id || appSettings.id,
         bank_name: data.bank_name || appSettings.bank_name,
         account_name: data.account_name || appSettings.account_name,
         account_number: data.account_number || appSettings.account_number,
@@ -966,7 +968,7 @@ function applyContentToPage() {
   document.getElementById('footerText').textContent = appSettings.content.footerText;
 }
 
-// 🆕 Helper to populate all inputs from appSettings
+// Helper to populate all inputs from appSettings
 function populateSettingsInputs() {
   // Website Content
   document.getElementById('setHeroTitle1').value = appSettings.content.heroTitle1;
@@ -1003,7 +1005,7 @@ function closeSettingsModal() {
   document.getElementById('settingsModal').classList.remove('open');
 }
 
-// 🆕 Undo functionality
+// Undo functionality
 function undoSettings() {
   if (!previousSettings) {
     showToast('No previous settings to undo.', 'info');
@@ -1023,7 +1025,7 @@ function undoSettings() {
 }
 
 async function saveSettings() {
-  // 🆕 Store previous settings before applying new changes
+  // Store previous settings before applying new changes
   previousSettings = JSON.parse(JSON.stringify(appSettings));
 
   // Gather Website Content
@@ -1046,6 +1048,7 @@ async function saveSettings() {
 
   // Gather Bank & Contact
   const data = {
+    id: appSettings.id, // Ensure the fixed ID is passed
     bank_name: document.getElementById('setBankName').value.trim(),
     account_name: document.getElementById('setAccountName').value.trim(),
     account_number: document.getElementById('setAccountNumber').value.trim(),
@@ -1056,14 +1059,12 @@ async function saveSettings() {
     content_json: newContent // Save the entire content object
   };
 
-  const finalId = appSettings.id || '00000000-0000-0000-0000-000000000001'; // Ensure ID exists
-
   try {
-    const { error } = await supabase.from('app_settings').upsert({ id: finalId, ...data });
+    const { error } = await supabase.from('app_settings').upsert(data);
     if (error) throw error;
 
     // Update local state
-    appSettings = { ...appSettings, ...data, content: newContent, id: finalId };
+    appSettings = { ...appSettings, ...data, content: newContent };
     
     // Re-render
     renderSettingsUI();
