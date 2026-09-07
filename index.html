@@ -5,18 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Growing Minds Youth Initiative</title>
 
-<!-- Favicon (Your URL) -->
+<!-- Favicon -->
 <link rel="icon" type="image/jpeg" href="https://tombccfghgjekljigfww.supabase.co/storage/v1/object/public/campaign-images/gallery/content.jpg">
 <link rel="shortcut icon" href="https://tombccfghgjekljigfww.supabase.co/storage/v1/object/public/campaign-images/gallery/content.jpg">
 
-<!-- Tailwind CSS -->
+<!-- Tailwind, Icons, Fonts -->
 <script src="https://cdn.tailwindcss.com"></script>
-<!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
-
-<!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
 
 <script>
@@ -133,12 +129,14 @@ tailwind.config = {
   .admin-photo-actions { display: none !important; }
   .admin-logout-btn { display: none !important; }
   .admin-login-btn { display: block !important; }
+  .suggestions-modal-btn { display: none !important; }
 
   body.admin-mode .admin-controls { display: flex !important; }
   body.admin-mode .campaign-admin-actions { display: flex !important; }
   body.admin-mode .admin-photo-actions { display: block !important; }
   body.admin-mode .admin-logout-btn { display: flex !important; }
   body.admin-mode .admin-login-btn { display: none !important; }
+  body.admin-mode .suggestions-modal-btn { display: flex !important; }
 </style>
 </head>
 <body class="bg-white text-gray-800 overflow-x-hidden">
@@ -206,34 +204,26 @@ tailwind.config = {
     </div>
     <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
       
-      <!-- Website Content Section -->
       <div>
         <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">📝 Website Content</h4>
         <div class="space-y-4">
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Hero Title (Part 1)</label><input type="text" id="setHeroTitle1" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Hero Title (Part 2)</label><input type="text" id="setHeroTitle2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Hero Subtitle</label><textarea id="setHeroSubtitle" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
-          
           <div><label class="block text-sm font-bold text-gray-700 mb-1">About Section Heading</label><input type="text" id="setAboutHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
           <div><label class="block text-sm font-bold text-gray-700 mb-1">About Paragraph</label><textarea id="setAboutText" rows="3" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Mission Title</label><input type="text" id="setMissionTitle" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Mission Text</label><textarea id="setMissionText" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
-          
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Campaigns Heading</label><input type="text" id="setCampaignHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
-          
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Donate Heading</label><input type="text" id="setDonateHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Donate Subtitle</label><textarea id="setDonateSubtitle" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Donate Instructional Text</label><textarea id="setDonateInstruction" rows="3" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
-          
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Suggestions Heading</label><input type="text" id="setSuggestionsHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
-          
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Contact Heading</label><input type="text" id="setContactHeading" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></div>
-          
           <div><label class="block text-sm font-bold text-gray-700 mb-1">Footer Text</label><textarea id="setFooterText" rows="2" class="w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-leaf-500"></textarea></div>
         </div>
       </div>
 
-      <!-- Bank Details Section -->
       <div>
         <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">🏦 Bank Transfer Details</h4>
         <div class="grid sm:grid-cols-2 gap-4">
@@ -244,7 +234,6 @@ tailwind.config = {
         </div>
       </div>
 
-      <!-- Contact Info Section -->
       <div>
         <h4 class="font-bold text-leaf-800 mb-3 border-b pb-2">📞 Contact Information</h4>
         <div class="space-y-4">
@@ -255,13 +244,27 @@ tailwind.config = {
       </div>
     </div>
     <div class="flex items-center justify-end gap-3 p-6 border-t border-gray-100 bg-gray-50/50 rounded-b-3xl">
-      <button onclick="undoSettings()" class="px-6 py-3 rounded-xl font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors flex items-center gap-2">
-        <i data-lucide="undo-2" class="w-4 h-4"></i> Undo
-      </button>
+      <button onclick="undoSettings()" class="px-6 py-3 rounded-xl font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors flex items-center gap-2"><i data-lucide="undo-2" class="w-4 h-4"></i> Undo</button>
       <button onclick="closeSettingsModal()" class="px-6 py-3 rounded-xl font-bold text-gray-600 hover:bg-gray-100 transition-colors">Cancel</button>
-      <button onclick="saveSettings()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-8 py-3 rounded-xl font-bold transition-all hover:scale-105 hover:shadow-lg flex items-center gap-2">
-        <i data-lucide="check" class="w-5 h-5"></i> Save Settings
-      </button>
+      <button onclick="saveSettings()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-8 py-3 rounded-xl font-bold transition-all hover:scale-105 hover:shadow-lg flex items-center gap-2"><i data-lucide="check" class="w-5 h-5"></i> Save Settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- 🆕 ADMIN SUGGESTIONS PANEL MODAL -->
+<!-- ============================================= -->
+<div id="suggestionsModal" class="modal-overlay fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex items-start justify-center p-4 pt-20 md:pt-10 overflow-y-auto">
+  <div class="modal-content bg-white rounded-3xl w-full max-w-3xl shadow-2xl mb-10">
+    <div class="flex items-center justify-between p-6 border-b border-gray-100">
+      <h3 class="font-heading text-2xl text-leaf-900">📥 Suggestions Received</h3>
+      <button onclick="closeSuggestionsModal()" class="p-2 hover:bg-gray-100 rounded-xl transition-colors"><i data-lucide="x" class="w-5 h-5 text-gray-500"></i></button>
+    </div>
+    <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto" id="suggestionsListAdmin">
+      <!-- Suggestions will be loaded here via JS -->
+    </div>
+    <div class="flex items-center justify-end gap-3 p-6 border-t border-gray-100 bg-gray-50/50 rounded-b-3xl">
+      <button onclick="closeSuggestionsModal()" class="px-6 py-3 rounded-xl font-bold text-gray-600 hover:bg-gray-100 transition-colors">Close</button>
     </div>
   </div>
 </div>
@@ -287,7 +290,6 @@ tailwind.config = {
       <a href="#suggestions" class="nav-link text-sm font-semibold text-gray-600 hover:text-leaf-700 transition-colors">Suggestions</a>
       <a href="#contact" class="nav-link text-sm font-semibold text-gray-600 hover:text-leaf-700 transition-colors">Contact</a>
       
-      <!-- 🔐 Login / Logout -->
       <button id="loginNavBtn" onclick="openAdminLogin()" class="admin-login-btn bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-1.5">🔐 Admin</button>
       <button id="logoutNavBtn" onclick="adminLogout()" class="admin-logout-btn bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold transition-all border border-red-200 flex items-center gap-1.5">🚪 Logout</button>
       
@@ -451,6 +453,7 @@ tailwind.config = {
         <button class="campaign-tab bg-white text-gray-600 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 hover:border-leaf-300" data-filter="upcoming">Upcoming</button>
         <button class="campaign-tab bg-white text-gray-600 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 hover:border-leaf-300" data-filter="completed">Completed</button>
         <button onclick="openSettingsModal()" class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 flex items-center gap-2">⚙️ Settings</button>
+        <button onclick="openSuggestionsModal()" class="suggestions-modal-btn bg-gray-100 hover:bg-gray-200 text-gray-800 px-5 py-2.5 rounded-full text-sm font-bold transition-all border border-gray-200 flex items-center gap-2">📥 Suggestions</button>
       </div>
       <button onclick="openAddCampaignModal()" class="bg-gradient-to-r from-leaf-500 to-leaf-600 hover:from-leaf-600 hover:to-leaf-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105 hover:shadow-lg hover:shadow-leaf-200 flex items-center gap-2">
         <i data-lucide="plus" class="w-5 h-5"></i> Add Campaign
@@ -484,8 +487,6 @@ tailwind.config = {
     </div>
     <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
       <input type="hidden" id="editCampaignId" value="">
-
-      <!-- Title Picture -->
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">🖼️ Title / Cover Picture</label>
         <div id="mainImageZone" class="upload-zone rounded-2xl h-56 flex flex-col items-center justify-center relative overflow-hidden bg-gray-50" onclick="document.getElementById('mainImageInput').click()">
@@ -529,7 +530,6 @@ tailwind.config = {
         </div>
       </div>
 
-      <!-- Gallery (Separate Upload) -->
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">📸 Campaign Gallery Images</label>
         <p class="text-xs text-gray-400 mb-3">Add multiple photos from the campaign (these will appear in the gallery modal).</p>
@@ -566,9 +566,7 @@ tailwind.config = {
 </div>
 <input type="file" id="addMoreGalleryInput" accept="image/*" multiple class="hidden" onchange="handleAddMoreGallery(event)">
 
-<!-- ============================================= -->
 <!-- LIGHTBOX -->
-<!-- ============================================= -->
 <div id="lightbox" class="lightbox fixed inset-0 z-[80] bg-black/95 flex items-center justify-center">
   <button onclick="closeLightbox()" class="absolute top-5 right-5 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
   <button onclick="lightboxPrev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
@@ -637,7 +635,7 @@ tailwind.config = {
 </section>
 
 <!-- ============================================= -->
-<!-- SUGGESTIONS SECTION -->
+<!-- SUGGESTIONS SECTION (Public Form) -->
 <!-- ============================================= -->
 <section id="suggestions" class="relative py-24 md:py-32 bg-gradient-to-b from-leaf-50/50 to-white">
   <div class="max-w-3xl mx-auto px-6">
@@ -727,15 +725,9 @@ tailwind.config = {
 <!-- ALL JAVASCRIPT -->
 <!-- ============================================= -->
 <script>
-// =============================================
-// YOUR CREDENTIALS
-// =============================================
 const SUPABASE_URL = 'https://tombccfghgjekljigfww.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvbWJjY2ZnaGdqZWtsamlnZnd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5NDUyODYsImV4cCI6MjA5NzUyMTI4Nn0.Obb6f57pOZJxzAO6jKWPaOUm5_T4tZ73UdaTLTRTvHk';
 
-// =============================================
-// STATE & CLIENT INIT
-// =============================================
 let isAdmin = false;
 let currentCampaigns = [];
 let selectedColor = 'leaf';
@@ -747,708 +739,129 @@ let currentLightboxIndex = 0;
 let currentLightboxImages = [];
 let selectedSuggestionType = 'idea';
 
-// Default Content (Fallback if DB is empty)
 let defaultContent = {
-    heroTitle1: "Growing Minds",
-    heroTitle2: "Youth Initiative",
-    heroSubtitle: "Nurturing hope, empowering lives. We believe every child deserves access to basic essentials and the opportunity to grow into their fullest potential.",
-    aboutHeading: "About Our Initiative",
-    aboutText: "Growing Minds Youth Initiative is a grassroots NGO born from the simple belief that no child should go without basic essentials. Founded by passionate young people, we work directly in underserved communities to provide food, clothing, school supplies, and hygiene products to children and families in need.",
-    missionTitle: "Our Mission",
-    missionText: "To deliver basic essentials to poor and vulnerable children, restoring dignity and hope.",
-    campaignHeading: "Outreach Campaigns",
-    donateHeading: "Support Our Cause",
-    donateSubtitle: "Every contribution, no matter how small, directly impacts a child's life. 100% of donations go to our outreach programs.",
+    heroTitle1: "Growing Minds", heroTitle2: "Youth Initiative", heroSubtitle: "Nurturing hope, empowering lives. We believe every child deserves access to basic essentials and the opportunity to grow into their fullest potential.",
+    aboutHeading: "About Our Initiative", aboutText: "Growing Minds Youth Initiative is a grassroots NGO born from the simple belief that no child should go without basic essentials. Founded by passionate young people, we work directly in underserved communities to provide food, clothing, school supplies, and hygiene products to children and families in need.",
+    missionTitle: "Our Mission", missionText: "To deliver basic essentials to poor and vulnerable children, restoring dignity and hope.",
+    campaignHeading: "Outreach Campaigns", donateHeading: "Support Our Cause", donateSubtitle: "Every contribution, no matter how small, directly impacts a child's life. 100% of donations go to our outreach programs.",
     donateInstruction: "We deeply appreciate your heart to give. To make a donation, we kindly ask you to use our secure bank transfer method below. This ensures 100% of your contribution goes directly to providing food, clothing, and education supplies to vulnerable children.",
-    suggestionsHeading: "Share Your Suggestions",
-    contactHeading: "Contact Us",
-    footerText: "Nurturing hope, empowering lives. Every child deserves a chance to grow."
+    suggestionsHeading: "Share Your Suggestions", contactHeading: "Contact Us", footerText: "Nurturing hope, empowering lives. Every child deserves a chance to grow."
 };
 
-// Settings State
 let appSettings = {
-  id: '00000000-0000-0000-0000-000000000001', // Fixed ID for the settings row
-  bank_name: '[Your Bank Name]',
-  account_name: 'Growing Minds Youth Initiative',
-  account_number: '[0000000000]',
-  routing_code: '[XXXXXXX]',
-  contact_email: 'info@growingmindsyi.org',
-  contact_phone: '+1 (234) 567-8900',
-  contact_address: '[Your City, Country]',
-  content: defaultContent // This will store all website text
+  id: '00000000-0000-0000-0000-000000000001', bank_name: '[Your Bank Name]', account_name: 'Growing Minds Youth Initiative', account_number: '[0000000000]', routing_code: '[XXXXXXX]', contact_email: 'info@growingmindsyi.org', contact_phone: '+1 (234) 567-8900', contact_address: '[Your City, Country]', content: defaultContent
 };
 
-// Undo Snapshot
 let previousSettings = null;
 
-// Use sessionStorage (per-tab, never syncs across browsers/devices)
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  auth: {
-    storage: window.sessionStorage,
-    persistSession: true,
-    autoRefreshToken: true
-  }
-});
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { storage: window.sessionStorage, persistSession: true, autoRefreshToken: true } });
 
-// =============================================
-// TOAST
-// =============================================
-function showToast(message, type = 'info') {
-  const container = document.getElementById('toastContainer');
-  const colors = { success: 'bg-leaf-600', error: 'bg-heart-500', info: 'bg-sky-500', warning: 'bg-warm-500' };
-  const icons = { success: '✅', error: '❌', info: 'ℹ️', warning: '⚠️' };
-  const toast = document.createElement('div');
-  toast.className = `toast-in ${colors[type]} text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 min-w-[300px] max-w-[420px]`;
-  toast.innerHTML = `<span class="text-xl flex-shrink-0">${icons[type]}</span><p class="flex-1 text-sm font-semibold leading-snug">${message}</p><button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white text-lg flex-shrink-0 leading-none">✕</button>`;
-  container.appendChild(toast);
-  setTimeout(() => {
-    toast.classList.remove('toast-in');
-    toast.classList.add('toast-out');
-    setTimeout(() => toast.remove(), 400);
-  }, 4500);
-}
+function showToast(message, type = 'info') { const container = document.getElementById('toastContainer'); const colors = { success: 'bg-leaf-600', error: 'bg-heart-500', info: 'bg-sky-500', warning: 'bg-warm-500' }; const icons = { success: '✅', error: '❌', info: 'ℹ️', warning: '⚠️' }; const toast = document.createElement('div'); toast.className = `toast-in ${colors[type]} text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 min-w-[300px] max-w-[420px]`; toast.innerHTML = `<span class="text-xl flex-shrink-0">${icons[type]}</span><p class="flex-1 text-sm font-semibold leading-snug">${message}</p><button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white text-lg flex-shrink-0 leading-none">✕</button>`; container.appendChild(toast); setTimeout(() => { toast.classList.remove('toast-in'); toast.classList.add('toast-out'); setTimeout(() => toast.remove(), 400); }, 4500); }
+function triggerConfetti() { const colors = ['#22c55e', '#fbbf24', '#38bdf8', '#fb7185', '#a78bfa', '#f97316']; for (let i = 0; i < 60; i++) { const el = document.createElement('div'); el.className = 'confetti-piece'; el.style.cssText = `left:${Math.random()*100}vw;width:${Math.random()*10+5}px;height:${Math.random()*10+5}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:confettiFall ${Math.random()*2+2}s linear forwards;animation-delay:${Math.random()*0.5}s;`; document.body.appendChild(el); setTimeout(() => el.remove(), 4500); } }
 
-function triggerConfetti() {
-  const colors = ['#22c55e', '#fbbf24', '#38bdf8', '#fb7185', '#a78bfa', '#f97316'];
-  for (let i = 0; i < 60; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti-piece';
-    el.style.cssText = `left:${Math.random()*100}vw;width:${Math.random()*10+5}px;height:${Math.random()*10+5}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:confettiFall ${Math.random()*2+2}s linear forwards;animation-delay:${Math.random()*0.5}s;`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 4500);
-  }
-}
-
-// =============================================
-// UTILITIES
-// =============================================
 function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 function escHtml(str) { if (!str) return ''; const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
 function spinLogo(el) { const img = el.querySelector('img'); img.style.transform = 'rotate(360deg)'; setTimeout(() => { img.style.transform = ''; }, 900); }
 
-// =============================================
-// ADMIN AUTHENTICATION
-// =============================================
-function openAdminLogin() {
-  document.getElementById('adminLoginModal').classList.add('open');
-  setTimeout(() => document.getElementById('adminEmail').focus(), 100);
+function openAdminLogin() { document.getElementById('adminLoginModal').classList.add('open'); setTimeout(() => document.getElementById('adminEmail').focus(), 100); }
+function closeAdminLogin() { document.getElementById('adminLoginModal').classList.remove('open'); document.getElementById('adminEmail').value = ''; document.getElementById('adminPassword').value = ''; document.getElementById('loginError').classList.add('hidden'); }
+
+async function doAdminLogin() { const email = document.getElementById('adminEmail').value.trim(); const password = document.getElementById('adminPassword').value; const errorEl = document.getElementById('loginError'); const btn = document.getElementById('loginBtn'); errorEl.classList.add('hidden'); if (!email || !password) { errorEl.textContent = '❌ Please fill in all fields'; errorEl.classList.remove('hidden'); return; } btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Logging in...'; try { const { data, error } = await supabase.auth.signInWithPassword({ email, password }); if (error) throw error; isAdmin = true; sessionStorage.setItem('gmyi_admin', 'true'); document.body.classList.add('admin-mode'); closeAdminLogin(); showToast('Welcome back, Admin! 🎉', 'success'); loadCampaigns(); } catch (err) { errorEl.textContent = '❌ ' + (err.message || 'Invalid email or password'); errorEl.classList.remove('hidden'); } finally { btn.disabled = false; btn.innerHTML = '<i data-lucide="log-in" class="w-4 h-4"></i> Login'; lucide.createIcons(); } }
+
+async function adminLogout() { await supabase.auth.signOut(); isAdmin = false; sessionStorage.removeItem('gmyi_admin'); document.body.classList.remove('admin-mode'); showToast('Logged out successfully', 'info'); loadCampaigns('all'); }
+async function checkSession() { try { const { data: { session } } = await supabase.auth.getSession(); if (session) { isAdmin = true; sessionStorage.setItem('gmyi_admin', 'true'); document.body.classList.add('admin-mode'); } else { document.body.classList.remove('admin-mode'); sessionStorage.removeItem('gmyi_admin'); } } catch (e) { document.body.classList.remove('admin-mode'); } }
+
+async function loadSettings() { try { const { data, error } = await supabase.from('app_settings').select('*').eq('id', '00000000-0000-0000-0000-000000000001').maybeSingle(); if (error && error.code !== 'PGRST116') console.warn("Settings table error:", error.message); if (data) { appSettings = { id: data.id || appSettings.id, bank_name: data.bank_name || appSettings.bank_name, account_name: data.account_name || appSettings.account_name, account_number: data.account_number || appSettings.account_number, routing_code: data.routing_code || appSettings.routing_code, contact_email: data.contact_email || appSettings.contact_email, contact_phone: data.contact_phone || appSettings.contact_phone, contact_address: data.contact_address || appSettings.contact_address, content: { ...defaultContent, ...(data.content_json || {}) } }; } } catch (err) { console.warn("Could not connect to settings table, using defaults."); } finally { renderSettingsUI(); applyContentToPage(); } }
+function renderSettingsUI() { document.getElementById('displayBankName').textContent = appSettings.bank_name; document.getElementById('displayAccountName').textContent = appSettings.account_name; document.getElementById('displayAccountNumber').textContent = appSettings.account_number; document.getElementById('displayRoutingCode').textContent = appSettings.routing_code; document.getElementById('displayContactEmail').textContent = appSettings.contact_email; document.getElementById('displayContactEmailDonate').textContent = appSettings.contact_email; document.getElementById('displayContactEmailMain').textContent = appSettings.contact_email; document.getElementById('displayContactPhoneMain').textContent = appSettings.contact_phone; document.getElementById('displayContactAddressMain').textContent = appSettings.contact_address; }
+function applyContentToPage() { document.getElementById('heroTitle1').textContent = appSettings.content.heroTitle1; document.getElementById('heroTitle2').textContent = appSettings.content.heroTitle2; document.getElementById('heroSubtitle').textContent = appSettings.content.heroSubtitle; document.getElementById('aboutHeading').textContent = appSettings.content.aboutHeading; document.getElementById('aboutText').innerHTML = appSettings.content.aboutText; document.getElementById('missionTitle').textContent = appSettings.content.missionTitle; document.getElementById('missionText').textContent = appSettings.content.missionText; document.getElementById('campaignHeading').textContent = appSettings.content.campaignHeading; document.getElementById('donateHeading').textContent = appSettings.content.donateHeading; document.getElementById('donateSubtitle').textContent = appSettings.content.donateSubtitle; document.getElementById('donateInstruction').innerHTML = appSettings.content.donateInstruction; document.getElementById('suggestionsHeading').textContent = appSettings.content.suggestionsHeading; document.getElementById('contactHeading').textContent = appSettings.content.contactHeading; document.getElementById('footerText').textContent = appSettings.content.footerText; }
+function populateSettingsInputs() { document.getElementById('setHeroTitle1').value = appSettings.content.heroTitle1; document.getElementById('setHeroTitle2').value = appSettings.content.heroTitle2; document.getElementById('setHeroSubtitle').value = appSettings.content.heroSubtitle; document.getElementById('setAboutHeading').value = appSettings.content.aboutHeading; document.getElementById('setAboutText').value = appSettings.content.aboutText; document.getElementById('setMissionTitle').value = appSettings.content.missionTitle; document.getElementById('setMissionText').value = appSettings.content.missionText; document.getElementById('setCampaignHeading').value = appSettings.content.campaignHeading; document.getElementById('setDonateHeading').value = appSettings.content.donateHeading; document.getElementById('setDonateSubtitle').value = appSettings.content.donateSubtitle; document.getElementById('setDonateInstruction').value = appSettings.content.donateInstruction; document.getElementById('setSuggestionsHeading').value = appSettings.content.suggestionsHeading; document.getElementById('setContactHeading').value = appSettings.content.contactHeading; document.getElementById('setFooterText').value = appSettings.content.footerText; document.getElementById('setBankName').value = appSettings.bank_name; document.getElementById('setAccountName').value = appSettings.account_name; document.getElementById('setAccountNumber').value = appSettings.account_number; document.getElementById('setRoutingCode').value = appSettings.routing_code; document.getElementById('setContactEmail').value = appSettings.contact_email; document.getElementById('setContactPhone').value = appSettings.contact_phone; document.getElementById('setContactAddress').value = appSettings.contact_address; }
+function openSettingsModal() { populateSettingsInputs(); document.getElementById('settingsModal').classList.add('open'); }
+function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('open'); }
+function undoSettings() { if (!previousSettings) { showToast('No previous settings to undo.', 'info'); return; } appSettings = JSON.parse(JSON.stringify(previousSettings)); populateSettingsInputs(); saveSettings(); showToast('Previous settings restored and saved.', 'success'); }
+async function saveSettings() { previousSettings = JSON.parse(JSON.stringify(appSettings)); const newContent = { heroTitle1: document.getElementById('setHeroTitle1').value, heroTitle2: document.getElementById('setHeroTitle2').value, heroSubtitle: document.getElementById('setHeroSubtitle').value, aboutHeading: document.getElementById('setAboutHeading').value, aboutText: document.getElementById('setAboutText').value, missionTitle: document.getElementById('setMissionTitle').value, missionText: document.getElementById('setMissionText').value, campaignHeading: document.getElementById('setCampaignHeading').value, donateHeading: document.getElementById('setDonateHeading').value, donateSubtitle: document.getElementById('setDonateSubtitle').value, donateInstruction: document.getElementById('setDonateInstruction').value, suggestionsHeading: document.getElementById('setSuggestionsHeading').value, contactHeading: document.getElementById('setContactHeading').value, footerText: document.getElementById('setFooterText').value }; const data = { id: appSettings.id, bank_name: document.getElementById('setBankName').value.trim(), account_name: document.getElementById('setAccountName').value.trim(), account_number: document.getElementById('setAccountNumber').value.trim(), routing_code: document.getElementById('setRoutingCode').value.trim(), contact_email: document.getElementById('setContactEmail').value.trim(), contact_phone: document.getElementById('setContactPhone').value.trim(), contact_address: document.getElementById('setContactAddress').value.trim(), content_json: newContent }; try { const { error } = await supabase.from('app_settings').upsert(data); if (error) throw error; appSettings = { ...appSettings, ...data, content: newContent }; renderSettingsUI(); applyContentToPage(); closeSettingsModal(); showToast('Settings updated successfully! 🎉', 'success'); } catch (err) { showToast('Failed to save settings: ' + err.message, 'error'); } }
+
+// 🆕 SUGGESTIONS PANEL LOGIC
+function openSuggestionsModal() {
+    document.getElementById('suggestionsModal').classList.add('open');
+    loadSuggestions();
 }
-function closeAdminLogin() {
-  document.getElementById('adminLoginModal').classList.remove('open');
-  document.getElementById('adminEmail').value = '';
-  document.getElementById('adminPassword').value = '';
-  document.getElementById('loginError').classList.add('hidden');
+function closeSuggestionsModal() {
+    document.getElementById('suggestionsModal').classList.remove('open');
 }
-
-async function doAdminLogin() {
-  const email = document.getElementById('adminEmail').value.trim();
-  const password = document.getElementById('adminPassword').value;
-  const errorEl = document.getElementById('loginError');
-  const btn = document.getElementById('loginBtn');
-
-  errorEl.classList.add('hidden');
-  if (!email || !password) {
-    errorEl.textContent = '❌ Please fill in all fields';
-    errorEl.classList.remove('hidden');
-    return;
-  }
-
-  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Logging in...';
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
-
-    isAdmin = true;
-    sessionStorage.setItem('gmyi_admin', 'true');
-    document.body.classList.add('admin-mode');
-    closeAdminLogin();
-    showToast('Welcome back, Admin! 🎉', 'success');
-    loadCampaigns();
-  } catch (err) {
-    errorEl.textContent = '❌ ' + (err.message || 'Invalid email or password');
-    errorEl.classList.remove('hidden');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<i data-lucide="log-in" class="w-4 h-4"></i> Login';
-    lucide.createIcons();
-  }
-}
-
-async function adminLogout() {
-  await supabase.auth.signOut();
-  isAdmin = false;
-  sessionStorage.removeItem('gmyi_admin');
-  document.body.classList.remove('admin-mode');
-  showToast('Logged out successfully', 'info');
-  loadCampaigns('all');
-}
-
-async function checkSession() {
-  try {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) {
-      isAdmin = true;
-      sessionStorage.setItem('gmyi_admin', 'true');
-      document.body.classList.add('admin-mode');
-    } else {
-      document.body.classList.remove('admin-mode');
-      sessionStorage.removeItem('gmyi_admin');
-    }
-  } catch (e) { 
-    console.warn("Session check failed");
-    document.body.classList.remove('admin-mode');
-  }
-}
-
-// =============================================
-// SETTINGS LOGIC (BANK, CONTACT, AND WEBSITE CONTENT)
-// =============================================
-async function loadSettings() {
-  try {
-    // Use maybeSingle to prevent errors if table is empty
-    const { data, error } = await supabase
-      .from('app_settings')
-      .select('*')
-      .eq('id', '00000000-0000-0000-0000-000000000001') // Fetch the specific fixed ID
-      .maybeSingle();
-
-    if (error && error.code !== 'PGRST116') {
-      console.warn("Settings table error:", error.message);
-    }
-
-    if (data) {
-      appSettings = {
-        id: data.id || appSettings.id,
-        bank_name: data.bank_name || appSettings.bank_name,
-        account_name: data.account_name || appSettings.account_name,
-        account_number: data.account_number || appSettings.account_number,
-        routing_code: data.routing_code || appSettings.routing_code,
-        contact_email: data.contact_email || appSettings.contact_email,
-        contact_phone: data.contact_phone || appSettings.contact_phone,
-        contact_address: data.contact_address || appSettings.contact_address,
-        content: { ...defaultContent, ...(data.content_json || {}) } // Merge saved content with defaults
-      };
-    }
-  } catch (err) {
-    console.warn("Could not connect to settings table, using defaults.");
-  } finally {
-    renderSettingsUI();
-    applyContentToPage();
-  }
-}
-
-function renderSettingsUI() {
-  // Bank & Contact
-  document.getElementById('displayBankName').textContent = appSettings.bank_name;
-  document.getElementById('displayAccountName').textContent = appSettings.account_name;
-  document.getElementById('displayAccountNumber').textContent = appSettings.account_number;
-  document.getElementById('displayRoutingCode').textContent = appSettings.routing_code;
-  document.getElementById('displayContactEmail').textContent = appSettings.contact_email;
-  document.getElementById('displayContactEmailDonate').textContent = appSettings.contact_email;
-  document.getElementById('displayContactEmailMain').textContent = appSettings.contact_email;
-  document.getElementById('displayContactPhoneMain').textContent = appSettings.contact_phone;
-  document.getElementById('displayContactAddressMain').textContent = appSettings.contact_address;
-}
-
-function applyContentToPage() {
-  // Apply all text to elements
-  document.getElementById('heroTitle1').textContent = appSettings.content.heroTitle1;
-  document.getElementById('heroTitle2').textContent = appSettings.content.heroTitle2;
-  document.getElementById('heroSubtitle').textContent = appSettings.content.heroSubtitle;
-  document.getElementById('aboutHeading').textContent = appSettings.content.aboutHeading;
-  document.getElementById('aboutText').innerHTML = appSettings.content.aboutText;
-  document.getElementById('missionTitle').textContent = appSettings.content.missionTitle;
-  document.getElementById('missionText').textContent = appSettings.content.missionText;
-  document.getElementById('campaignHeading').textContent = appSettings.content.campaignHeading;
-  document.getElementById('donateHeading').textContent = appSettings.content.donateHeading;
-  document.getElementById('donateSubtitle').textContent = appSettings.content.donateSubtitle;
-  document.getElementById('donateInstruction').innerHTML = appSettings.content.donateInstruction;
-  document.getElementById('suggestionsHeading').textContent = appSettings.content.suggestionsHeading;
-  document.getElementById('contactHeading').textContent = appSettings.content.contactHeading;
-  document.getElementById('footerText').textContent = appSettings.content.footerText;
-}
-
-// Helper to populate all inputs from appSettings
-function populateSettingsInputs() {
-  // Website Content
-  document.getElementById('setHeroTitle1').value = appSettings.content.heroTitle1;
-  document.getElementById('setHeroTitle2').value = appSettings.content.heroTitle2;
-  document.getElementById('setHeroSubtitle').value = appSettings.content.heroSubtitle;
-  document.getElementById('setAboutHeading').value = appSettings.content.aboutHeading;
-  document.getElementById('setAboutText').value = appSettings.content.aboutText;
-  document.getElementById('setMissionTitle').value = appSettings.content.missionTitle;
-  document.getElementById('setMissionText').value = appSettings.content.missionText;
-  document.getElementById('setCampaignHeading').value = appSettings.content.campaignHeading;
-  document.getElementById('setDonateHeading').value = appSettings.content.donateHeading;
-  document.getElementById('setDonateSubtitle').value = appSettings.content.donateSubtitle;
-  document.getElementById('setDonateInstruction').value = appSettings.content.donateInstruction;
-  document.getElementById('setSuggestionsHeading').value = appSettings.content.suggestionsHeading;
-  document.getElementById('setContactHeading').value = appSettings.content.contactHeading;
-  document.getElementById('setFooterText').value = appSettings.content.footerText;
-
-  // Bank & Contact
-  document.getElementById('setBankName').value = appSettings.bank_name;
-  document.getElementById('setAccountName').value = appSettings.account_name;
-  document.getElementById('setAccountNumber').value = appSettings.account_number;
-  document.getElementById('setRoutingCode').value = appSettings.routing_code;
-  document.getElementById('setContactEmail').value = appSettings.contact_email;
-  document.getElementById('setContactPhone').value = appSettings.contact_phone;
-  document.getElementById('setContactAddress').value = appSettings.contact_address;
-}
-
-function openSettingsModal() {
-  populateSettingsInputs();
-  document.getElementById('settingsModal').classList.add('open');
-}
-
-function closeSettingsModal() {
-  document.getElementById('settingsModal').classList.remove('open');
-}
-
-// Undo functionality
-function undoSettings() {
-  if (!previousSettings) {
-    showToast('No previous settings to undo.', 'info');
-    return;
-  }
-  
-  // Restore appSettings to previous
-  appSettings = JSON.parse(JSON.stringify(previousSettings));
-  
-  // Update the inputs
-  populateSettingsInputs();
-  
-  // Save the undo immediately
-  saveSettings();
-  
-  showToast('Previous settings restored and saved.', 'success');
-}
-
-async function saveSettings() {
-  // Store previous settings before applying new changes
-  previousSettings = JSON.parse(JSON.stringify(appSettings));
-
-  // Gather Website Content
-  const newContent = {
-    heroTitle1: document.getElementById('setHeroTitle1').value,
-    heroTitle2: document.getElementById('setHeroTitle2').value,
-    heroSubtitle: document.getElementById('setHeroSubtitle').value,
-    aboutHeading: document.getElementById('setAboutHeading').value,
-    aboutText: document.getElementById('setAboutText').value,
-    missionTitle: document.getElementById('setMissionTitle').value,
-    missionText: document.getElementById('setMissionText').value,
-    campaignHeading: document.getElementById('setCampaignHeading').value,
-    donateHeading: document.getElementById('setDonateHeading').value,
-    donateSubtitle: document.getElementById('setDonateSubtitle').value,
-    donateInstruction: document.getElementById('setDonateInstruction').value,
-    suggestionsHeading: document.getElementById('setSuggestionsHeading').value,
-    contactHeading: document.getElementById('setContactHeading').value,
-    footerText: document.getElementById('setFooterText').value
-  };
-
-  // Gather Bank & Contact
-  const data = {
-    id: appSettings.id, // Ensure the fixed ID is passed
-    bank_name: document.getElementById('setBankName').value.trim(),
-    account_name: document.getElementById('setAccountName').value.trim(),
-    account_number: document.getElementById('setAccountNumber').value.trim(),
-    routing_code: document.getElementById('setRoutingCode').value.trim(),
-    contact_email: document.getElementById('setContactEmail').value.trim(),
-    contact_phone: document.getElementById('setContactPhone').value.trim(),
-    contact_address: document.getElementById('setContactAddress').value.trim(),
-    content_json: newContent // Save the entire content object
-  };
-
-  try {
-    const { error } = await supabase.from('app_settings').upsert(data);
-    if (error) throw error;
-
-    // Update local state
-    appSettings = { ...appSettings, ...data, content: newContent };
+async function loadSuggestions() {
+    const list = document.getElementById('suggestionsListAdmin');
+    list.innerHTML = '<p class="text-center text-gray-400 py-10">Loading suggestions...</p>';
     
-    // Re-render
-    renderSettingsUI();
-    applyContentToPage();
-    closeSettingsModal();
-    showToast('Settings updated successfully! 🎉', 'success');
-  } catch (err) {
-    showToast('Failed to save settings: ' + err.message, 'error');
-  }
-}
-
-// =============================================
-// IMAGE UPLOAD
-// =============================================
-async function uploadImage(file, folder) {
-  const ext = file.name.split('.').pop();
-  const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 10)}.${ext}`;
-  const filePath = `${folder}/${fileName}`;
-
-  const { data, error } = await supabase.storage
-    .from('campaign-images')
-    .upload(filePath, file, { cacheControl: '3600', upsert: false });
-
-  if (error) throw error;
-
-  const { data: urlData } = supabase.storage.from('campaign-images').getPublicUrl(filePath);
-  return urlData.publicUrl;
-}
-
-// =============================================
-// CAMPAIGNS - LOAD & RENDER
-// =============================================
-async function loadCampaigns(filter = 'all') {
-  const sk = document.getElementById('campaignSkeleton');
-  const gr = document.getElementById('campaignGrid');
-  const em = document.getElementById('emptyState');
-  sk.classList.remove('hidden'); gr.classList.add('hidden'); em.classList.add('hidden');
-
-  try {
-    let query = supabase.from('campaigns').select('*').order('created_at', { ascending: false });
-    if (filter !== 'all') query = query.eq('status', filter);
-
-    const { data, error } = await query;
-    if (error) throw error;
-
-    currentCampaigns = data || [];
-    sk.classList.add('hidden');
-
-    if (currentCampaigns.length === 0) {
-      em.classList.remove('hidden'); gr.classList.add('hidden');
-    } else {
-      em.classList.add('hidden'); gr.classList.remove('hidden'); renderCampaigns();
+    const { data, error } = await supabase.from('suggestions').select('*').order('created_at', { ascending: false });
+    
+    if (error) { list.innerHTML = '<p class="text-center text-red-500 py-10">Failed to load suggestions.</p>'; return; }
+    
+    if (!data || data.length === 0) {
+        list.innerHTML = '<p class="text-center text-gray-400 py-10">No suggestions submitted yet.</p>';
+        return;
     }
-  } catch (err) {
-    console.error('Load campaigns error:', err);
-    sk.classList.add('hidden'); gr.classList.add('hidden'); em.classList.remove('hidden');
-    showToast('Failed to load campaigns', 'error');
-  }
-}
 
-function getColorClasses(color) {
-  const map = {
-    leaf:    { bg: 'from-leaf-100 to-leaf-200',    text: 'text-leaf-600',    bar: 'from-leaf-400 to-leaf-600',    tag: 'bg-leaf-50 text-leaf-700' },
-    warm:    { bg: 'from-warm-100 to-warm-200',    text: 'text-warm-600',    bar: 'from-warm-400 to-warm-600',    tag: 'bg-warm-50 text-warm-700' },
-    sky:     { bg: 'from-sky-100 to-sky-200',      text: 'text-sky-600',     bar: 'from-sky-400 to-sky-600',      tag: 'bg-sky-50 text-sky-700' },
-    heart:   { bg: 'from-heart-500/10 to-heart-500/20', text: 'text-heart-500', bar: 'from-heart-400 to-heart-600', tag: 'bg-heart-500/10 text-heart-600' },
-    purple:  { bg: 'from-purple-100 to-purple-200', text: 'text-purple-600', bar: 'from-purple-400 to-purple-600', tag: 'bg-purple-50 text-purple-700' },
-    teal:    { bg: 'from-teal-100 to-teal-200',    text: 'text-teal-600',    bar: 'from-teal-400 to-teal-600',    tag: 'bg-teal-50 text-teal-700' },
-    orange:  { bg: 'from-orange-100 to-orange-200', text: 'text-orange-600', bar: 'from-orange-400 to-orange-600', tag: 'bg-orange-50 text-orange-700' },
-    rose:    { bg: 'from-rose-100 to-rose-200',    text: 'text-rose-500',    bar: 'from-rose-400 to-rose-500',    tag: 'bg-rose-50 text-rose-600' },
-  };
-  return map[color] || map.leaf;
-}
-
-function renderCampaigns() {
-  const grid = document.getElementById('campaignGrid');
-  grid.innerHTML = currentCampaigns.map((camp) => {
-    const c = getColorClasses(camp.color);
-    const sb = camp.status === 'active' ? 'bg-leaf-500 text-white' : camp.status === 'upcoming' ? 'bg-warm-500 text-white' : 'bg-gray-600 text-white';
-    const st = camp.status === 'active' ? '🟢 Active' : camp.status === 'upcoming' ? '🕐 Upcoming' : '✅ Completed';
-
-    return `
-      <div class="card-lift bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
-        <div class="relative h-52 overflow-hidden cursor-pointer group" onclick="openGalleryModal('${camp.id}')">
-          ${camp.image_url
-            ? `<img src="${camp.image_url}" alt="${escHtml(camp.name)}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">`
-            : `<div class="w-full h-full bg-gradient-to-br ${c.bg} flex items-center justify-center"><span class="text-6xl">🌱</span></div>`
-          }
-          <div class="absolute top-3 right-3"><span class="px-3 py-1 rounded-full text-xs font-bold ${sb} shadow-md">${st}</span></div>
-          
-          <!-- 🔒 Admin Actions -->
-          <div class="campaign-admin-actions absolute top-3 left-3 flex gap-2">
-            <button onclick="event.stopPropagation();editCampaign('${camp.id}')" class="w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-sm shadow-md transition-colors" title="Edit">✏️</button>
-            <button onclick="event.stopPropagation();deleteCampaign('${camp.id}')" class="w-8 h-8 bg-white/90 hover:bg-heart-50 rounded-full flex items-center justify-center text-sm shadow-md transition-colors" title="Delete">🗑️</button>
-          </div>
-
-          <div class="absolute bottom-3 left-3 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-            📸 View Gallery
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-heading text-lg text-gray-800 mb-2">${escHtml(camp.name)}</h3>
-          <p class="text-sm text-gray-500 mb-4 line-clamp-2">${escHtml(camp.description)}</p>
-          ${camp.progress != null && camp.progress != undefined ? `
-            <div class="mb-3">
-              <div class="flex justify-between text-xs font-bold mb-1"><span class="text-gray-600">Progress</span><span class="${c.text}">${camp.progress}%</span></div>
-              <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r ${c.bar} rounded-full" style="width:${camp.progress}%"></div></div>
+    list.innerHTML = data.map(s => `
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-2">
+            <div class="flex justify-between items-center mb-2">
+                <div class="font-bold text-gray-800">${escHtml(s.name)} <span class="bg-leaf-100 text-leaf-700 px-2 py-0.5 rounded-full text-[10px] font-bold capitalize">${escHtml(s.type)}</span></div>
+                <button onclick="deleteSuggestion('${s.id}')" class="text-red-500 hover:text-red-700 font-bold text-xs">Delete</button>
             </div>
-          ` : ''}
-          <div class="flex flex-wrap gap-2 text-xs">
-            ${camp.location ? `<span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-semibold">📍 ${escHtml(camp.location)}</span>` : ''}
-            ${camp.date ? `<span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-semibold">📅 ${escHtml(camp.date)}</span>` : ''}
-            ${camp.tagline ? `<span class="${c.tag} px-2.5 py-1 rounded-full font-semibold">${escHtml(camp.tagline)}</span>` : ''}
-          </div>
+            <p class="text-sm text-gray-600 mb-2">${escHtml(s.message)}</p>
+            <p class="text-xs text-gray-400">${new Date(s.created_at).toLocaleString()}</p>
         </div>
-      </div>
-    `;
-  }).join('');
+    `).join('');
+}
+async function deleteSuggestion(id) {
+    if (!confirm("Delete this suggestion permanently?")) return;
+    const { error } = await supabase.from('suggestions').delete().eq('id', id);
+    if (error) { showToast('Failed to delete suggestion', 'error'); return; }
+    loadSuggestions();
+    showToast('Suggestion deleted', 'info');
 }
 
-// =============================================
-// MODALS & FORM HANDLING
-// =============================================
-function openAddCampaignModal() {
-  document.getElementById('editCampaignId').value = '';
-  document.getElementById('modalTitle').textContent = 'Add New Campaign';
-  document.getElementById('saveButtonText').textContent = 'Create Campaign';
-  resetCampaignForm();
-  document.getElementById('campaignModal').classList.add('open');
-}
-
-function editCampaign(id) {
-  const camp = currentCampaigns.find(c => c.id === id);
-  if (!camp) return;
-  document.getElementById('editCampaignId').value = camp.id;
-  document.getElementById('modalTitle').textContent = 'Edit Campaign';
-  document.getElementById('saveButtonText').textContent = 'Update Campaign';
-  document.getElementById('campName').value = camp.name || '';
-  document.getElementById('campStatus').value = camp.status || 'active';
-  document.getElementById('campDesc').value = camp.description || '';
-  document.getElementById('campProgress').value = camp.progress ?? 0;
-  document.getElementById('campLocation').value = camp.location || '';
-  document.getElementById('campDate').value = camp.date || '';
-  document.getElementById('campTagline').value = camp.tagline || '';
-  selectedColor = camp.color || 'leaf';
-  mainImageExistingUrl = camp.image_url || null;
-  mainImageFile = null; galleryFiles = [];
-  updateColorSelection();
-  if (camp.image_url) {
-    document.getElementById('mainImagePreview').src = camp.image_url;
-    document.getElementById('mainImagePreview').classList.remove('hidden');
-    document.getElementById('mainImagePlaceholder').classList.add('hidden');
-    document.getElementById('removeMainImage').classList.remove('hidden');
-  } else {
-    document.getElementById('mainImagePreview').classList.add('hidden');
-    document.getElementById('mainImagePlaceholder').classList.remove('hidden');
-    document.getElementById('removeMainImage').classList.add('hidden');
-  }
-  document.getElementById('galleryPreviewGrid').innerHTML = '';
-  document.getElementById('campaignModal').classList.add('open');
-}
-
+// REST OF THE JS (Campaigns, Gallery, etc.)
+async function uploadImage(file, folder) { const ext = file.name.split('.').pop(); const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 10)}.${ext}`; const filePath = `${folder}/${fileName}`; const { data, error } = await supabase.storage.from('campaign-images').upload(filePath, file, { cacheControl: '3600', upsert: false }); if (error) throw error; const { data: urlData } = supabase.storage.from('campaign-images').getPublicUrl(filePath); return urlData.publicUrl; }
+async function loadCampaigns(filter = 'all') { const sk = document.getElementById('campaignSkeleton'); const gr = document.getElementById('campaignGrid'); const em = document.getElementById('emptyState'); sk.classList.remove('hidden'); gr.classList.add('hidden'); em.classList.add('hidden'); try { let query = supabase.from('campaigns').select('*').order('created_at', { ascending: false }); if (filter !== 'all') query = query.eq('status', filter); const { data, error } = await query; if (error) throw error; currentCampaigns = data || []; sk.classList.add('hidden'); if (currentCampaigns.length === 0) { em.classList.remove('hidden'); gr.classList.add('hidden'); } else { em.classList.add('hidden'); gr.classList.remove('hidden'); renderCampaigns(); } } catch (err) { sk.classList.add('hidden'); gr.classList.add('hidden'); em.classList.remove('hidden'); showToast('Failed to load campaigns', 'error'); } }
+function getColorClasses(color) { const map = { leaf: { bg: 'from-leaf-100 to-leaf-200', text: 'text-leaf-600', bar: 'from-leaf-400 to-leaf-600', tag: 'bg-leaf-50 text-leaf-700' }, warm: { bg: 'from-warm-100 to-warm-200', text: 'text-warm-600', bar: 'from-warm-400 to-warm-600', tag: 'bg-warm-50 text-warm-700' }, sky: { bg: 'from-sky-100 to-sky-200', text: 'text-sky-600', bar: 'from-sky-400 to-sky-600', tag: 'bg-sky-50 text-sky-700' }, heart: { bg: 'from-heart-500/10 to-heart-500/20', text: 'text-heart-500', bar: 'from-heart-400 to-heart-600', tag: 'bg-heart-500/10 text-heart-600' }, purple: { bg: 'from-purple-100 to-purple-200', text: 'text-purple-600', bar: 'from-purple-400 to-purple-600', tag: 'bg-purple-50 text-purple-700' }, teal: { bg: 'from-teal-100 to-teal-200', text: 'text-teal-600', bar: 'from-teal-400 to-teal-600', tag: 'bg-teal-50 text-teal-700' }, orange: { bg: 'from-orange-100 to-orange-200', text: 'text-orange-600', bar: 'from-orange-400 to-orange-600', tag: 'bg-orange-50 text-orange-700' }, rose: { bg: 'from-rose-100 to-rose-200', text: 'text-rose-500', bar: 'from-rose-400 to-rose-500', tag: 'bg-rose-50 text-rose-600' } }; return map[color] || map.leaf; }
+function renderCampaigns() { const grid = document.getElementById('campaignGrid'); grid.innerHTML = currentCampaigns.map((camp) => { const c = getColorClasses(camp.color); const sb = camp.status === 'active' ? 'bg-leaf-500 text-white' : camp.status === 'upcoming' ? 'bg-warm-500 text-white' : 'bg-gray-600 text-white'; const st = camp.status === 'active' ? '🟢 Active' : camp.status === 'upcoming' ? '🕐 Upcoming' : '✅ Completed'; return `<div class="card-lift bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100"><div class="relative h-52 overflow-hidden cursor-pointer group" onclick="openGalleryModal('${camp.id}')">${camp.image_url ? `<img src="${camp.image_url}" alt="${escHtml(camp.name)}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">` : `<div class="w-full h-full bg-gradient-to-br ${c.bg} flex items-center justify-center"><span class="text-6xl">🌱</span></div>`}<div class="absolute top-3 right-3"><span class="px-3 py-1 rounded-full text-xs font-bold ${sb} shadow-md">${st}</span></div><div class="campaign-admin-actions absolute top-3 left-3 flex gap-2"><button onclick="event.stopPropagation();editCampaign('${camp.id}')" class="w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-sm shadow-md transition-colors" title="Edit">✏️</button><button onclick="event.stopPropagation();deleteCampaign('${camp.id}')" class="w-8 h-8 bg-white/90 hover:bg-heart-50 rounded-full flex items-center justify-center text-sm shadow-md transition-colors" title="Delete">🗑️</button></div><div class="absolute bottom-3 left-3 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">📸 View Gallery</div></div><div class="p-5"><h3 class="font-heading text-lg text-gray-800 mb-2">${escHtml(camp.name)}</h3><p class="text-sm text-gray-500 mb-4 line-clamp-2">${escHtml(camp.description)}</p>${camp.progress != null && camp.progress != undefined ? `<div class="mb-3"><div class="flex justify-between text-xs font-bold mb-1"><span class="text-gray-600">Progress</span><span class="${c.text}">${camp.progress}%</span></div><div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r ${c.bar} rounded-full" style="width:${camp.progress}%"></div></div></div>` : ''}<div class="flex flex-wrap gap-2 text-xs">${camp.location ? `<span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-semibold">📍 ${escHtml(camp.location)}</span>` : ''}${camp.date ? `<span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-semibold">📅 ${escHtml(camp.date)}</span>` : ''}${camp.tagline ? `<span class="${c.tag} px-2.5 py-1 rounded-full font-semibold">${escHtml(camp.tagline)}</span>` : ''}</div></div></div>`; }).join(''); }
+function openAddCampaignModal() { document.getElementById('editCampaignId').value = ''; document.getElementById('modalTitle').textContent = 'Add New Campaign'; document.getElementById('saveButtonText').textContent = 'Create Campaign'; resetCampaignForm(); document.getElementById('campaignModal').classList.add('open'); }
+function editCampaign(id) { const camp = currentCampaigns.find(c => c.id === id); if (!camp) return; document.getElementById('editCampaignId').value = camp.id; document.getElementById('modalTitle').textContent = 'Edit Campaign'; document.getElementById('saveButtonText').textContent = 'Update Campaign'; document.getElementById('campName').value = camp.name || ''; document.getElementById('campStatus').value = camp.status || 'active'; document.getElementById('campDesc').value = camp.description || ''; document.getElementById('campProgress').value = camp.progress ?? 0; document.getElementById('campLocation').value = camp.location || ''; document.getElementById('campDate').value = camp.date || ''; document.getElementById('campTagline').value = camp.tagline || ''; selectedColor = camp.color || 'leaf'; mainImageExistingUrl = camp.image_url || null; mainImageFile = null; galleryFiles = []; updateColorSelection(); if (camp.image_url) { document.getElementById('mainImagePreview').src = camp.image_url; document.getElementById('mainImagePreview').classList.remove('hidden'); document.getElementById('mainImagePlaceholder').classList.add('hidden'); document.getElementById('removeMainImage').classList.remove('hidden'); } else { document.getElementById('mainImagePreview').classList.add('hidden'); document.getElementById('mainImagePlaceholder').classList.remove('hidden'); document.getElementById('removeMainImage').classList.add('hidden'); } document.getElementById('galleryPreviewGrid').innerHTML = ''; document.getElementById('campaignModal').classList.add('open'); }
 function closeCampaignModal() { document.getElementById('campaignModal').classList.remove('open'); }
-
-function resetCampaignForm() {
-  document.getElementById('campName').value = ''; document.getElementById('campStatus').value = 'active'; document.getElementById('campDesc').value = ''; document.getElementById('campProgress').value = 0; document.getElementById('campLocation').value = ''; document.getElementById('campDate').value = ''; document.getElementById('campTagline').value = '';
-  selectedColor = 'leaf'; mainImageFile = null; mainImageExistingUrl = null; galleryFiles = [];
-  updateColorSelection();
-  document.getElementById('mainImagePreview').classList.add('hidden'); document.getElementById('mainImagePlaceholder').classList.remove('hidden'); document.getElementById('removeMainImage').classList.add('hidden'); document.getElementById('galleryPreviewGrid').innerHTML = ''; document.getElementById('mainImageInput').value = '';
-}
-
-function handleMainImage(e) {
-  const f = e.target.files[0]; if (!f) return;
-  if (f.size > 5 * 1024 * 1024) { showToast('Image must be under 5MB', 'error'); return; }
-  mainImageFile = f; mainImageExistingUrl = null;
-  const r = new FileReader();
-  r.onload = (ev) => {
-    document.getElementById('mainImagePreview').src = ev.target.result;
-    document.getElementById('mainImagePreview').classList.remove('hidden');
-    document.getElementById('mainImagePlaceholder').classList.add('hidden');
-    document.getElementById('removeMainImage').classList.remove('hidden');
-  };
-  r.readAsDataURL(f);
-}
+function resetCampaignForm() { document.getElementById('campName').value = ''; document.getElementById('campStatus').value = 'active'; document.getElementById('campDesc').value = ''; document.getElementById('campProgress').value = 0; document.getElementById('campLocation').value = ''; document.getElementById('campDate').value = ''; document.getElementById('campTagline').value = ''; selectedColor = 'leaf'; mainImageFile = null; mainImageExistingUrl = null; galleryFiles = []; updateColorSelection(); document.getElementById('mainImagePreview').classList.add('hidden'); document.getElementById('mainImagePlaceholder').classList.remove('hidden'); document.getElementById('removeMainImage').classList.add('hidden'); document.getElementById('galleryPreviewGrid').innerHTML = ''; document.getElementById('mainImageInput').value = ''; }
+function handleMainImage(e) { const f = e.target.files[0]; if (!f) return; if (f.size > 5 * 1024 * 1024) { showToast('Image must be under 5MB', 'error'); return; } mainImageFile = f; mainImageExistingUrl = null; const r = new FileReader(); r.onload = (ev) => { document.getElementById('mainImagePreview').src = ev.target.result; document.getElementById('mainImagePreview').classList.remove('hidden'); document.getElementById('mainImagePlaceholder').classList.add('hidden'); document.getElementById('removeMainImage').classList.remove('hidden'); }; r.readAsDataURL(f); }
 function removeMainImage() { mainImageFile = null; mainImageExistingUrl = null; document.getElementById('mainImageInput').value = ''; document.getElementById('mainImagePreview').classList.add('hidden'); document.getElementById('mainImagePlaceholder').classList.remove('hidden'); document.getElementById('removeMainImage').classList.add('hidden'); }
 function handleGalleryImages(e) { Array.from(e.target.files).forEach(f => { if (f.size <= 5 * 1024 * 1024) galleryFiles.push(f); }); renderGalleryPreviews(); e.target.value = ''; }
 function renderGalleryPreviews() { document.getElementById('galleryPreviewGrid').innerHTML = galleryFiles.map((f, i) => `<div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200"><img src="${URL.createObjectURL(f)}" class="w-full h-full object-cover"><button onclick="event.stopPropagation();removeGalleryPreview(${i})" class="absolute top-1 right-1 w-6 h-6 bg-black/60 text-white rounded-full text-xs flex items-center justify-center hover:bg-black/80 transition-colors">✕</button></div>`).join(''); }
 function removeGalleryPreview(i) { galleryFiles.splice(i, 1); renderGalleryPreviews(); }
 function updateColorSelection() { document.querySelectorAll('.color-opt').forEach(b => { const a = b.dataset.color === selectedColor; b.style.border = a ? '4px solid white' : '3px solid transparent'; b.style.boxShadow = a ? '0 0 0 2px #16a34a' : 'none'; b.style.transform = a ? 'scale(1.15)' : ''; }); }
-
-async function saveCampaign() {
-  const id = document.getElementById('editCampaignId').value;
-  const name = document.getElementById('campName').value.trim();
-  const status = document.getElementById('campStatus').value;
-  const description = document.getElementById('campDesc').value.trim();
-  const progress = Math.min(100, Math.max(0, parseInt(document.getElementById('campProgress').value) || 0));
-  const location = document.getElementById('campLocation').value.trim();
-  const date = document.getElementById('campDate').value.trim();
-  const tagline = document.getElementById('campTagline').value.trim();
-
-  if (!name) { showToast('Please enter a campaign name', 'error'); return; }
-  if (!description) { showToast('Please enter a description', 'error'); return; }
-
-  const btn = document.getElementById('saveCampaignBtn'); const bt = document.getElementById('saveButtonText'); const ot = bt.textContent;
-  btn.disabled = true; bt.textContent = 'Saving...';
-
-  try {
-    let imageUrl = mainImageExistingUrl;
-    if (mainImageFile) imageUrl = await uploadImage(mainImageFile, 'main');
-
-    const d = { name, status, description, progress, location, date, tagline, color: selectedColor, image_url: imageUrl };
-    let r;
-    if (id) r = await supabase.from('campaigns').update(d).eq('id', id).select().single();
-    else r = await supabase.from('campaigns').insert(d).select().single();
-    if (r.error) throw r.error;
-
-    if (galleryFiles.length > 0) {
-      for (const f of galleryFiles) {
-        const u = await uploadImage(f, `gallery/${r.data.id}`);
-        await supabase.from('campaign_gallery').insert({ campaign_id: r.data.id, image_url: u });
-      }
-    }
-    closeCampaignModal();
-    showToast(id ? 'Campaign updated! 🎉' : 'Campaign created! 🌱', 'success');
-    loadCampaigns(getCurrentFilter());
-  } catch (err) { showToast('Failed to save: ' + (err.message || 'Unknown error'), 'error'); }
-  finally { btn.disabled = false; bt.textContent = ot; }
-}
-
+async function saveCampaign() { const id = document.getElementById('editCampaignId').value; const name = document.getElementById('campName').value.trim(); const status = document.getElementById('campStatus').value; const description = document.getElementById('campDesc').value.trim(); const progress = Math.min(100, Math.max(0, parseInt(document.getElementById('campProgress').value) || 0)); const location = document.getElementById('campLocation').value.trim(); const date = document.getElementById('campDate').value.trim(); const tagline = document.getElementById('campTagline').value.trim(); if (!name) { showToast('Please enter a campaign name', 'error'); return; } if (!description) { showToast('Please enter a description', 'error'); return; } const btn = document.getElementById('saveCampaignBtn'); const bt = document.getElementById('saveButtonText'); const ot = bt.textContent; btn.disabled = true; bt.textContent = 'Saving...'; try { let imageUrl = mainImageExistingUrl; if (mainImageFile) imageUrl = await uploadImage(mainImageFile, 'main'); const d = { name, status, description, progress, location, date, tagline, color: selectedColor, image_url: imageUrl }; let r; if (id) r = await supabase.from('campaigns').update(d).eq('id', id).select().single(); else r = await supabase.from('campaigns').insert(d).select().single(); if (r.error) throw r.error; if (galleryFiles.length > 0) { for (const f of galleryFiles) { const u = await uploadImage(f, `gallery/${r.data.id}`); await supabase.from('campaign_gallery').insert({ campaign_id: r.data.id, image_url: u }); } } closeCampaignModal(); showToast(id ? 'Campaign updated! 🎉' : 'Campaign created! 🌱', 'success'); loadCampaigns(getCurrentFilter()); } catch (err) { showToast('Failed to save: ' + (err.message || 'Unknown error'), 'error'); } finally { btn.disabled = false; bt.textContent = ot; } }
 function getCurrentFilter() { const a = document.querySelector('.campaign-tab.active'); return a ? a.dataset.filter : 'all'; }
-
-async function deleteCampaign(id) {
-  if (!confirm('Delete this campaign and all its gallery photos?')) return;
-  try {
-    await supabase.from('campaign_gallery').delete().eq('campaign_id', id);
-    const { error } = await supabase.from('campaigns').delete().eq('id', id);
-    if (error) throw error;
-    showToast('Campaign deleted', 'info');
-    loadCampaigns(getCurrentFilter());
-  } catch (err) { showToast('Failed to delete: ' + err.message, 'error'); }
-}
-
-// =============================================
-// GALLERY & LIGHTBOX
-// =============================================
-async function openGalleryModal(cid) {
-  currentGalleryCampaignId = cid;
-  const camp = currentCampaigns.find(c => c.id === cid);
-  document.getElementById('galleryTitle').textContent = camp?.name || 'Gallery';
-  const vg = document.getElementById('galleryViewGrid');
-  vg.innerHTML = '<div class="flex justify-center py-16"><span class="spinner" style="border-color:rgba(22,163,74,0.2);border-top-color:#16a34a;width:32px;height:32px"></span></div>';
-  document.getElementById('galleryModal').classList.add('open');
-  try {
-    const { data, error } = await supabase.from('campaign_gallery').select('*').eq('campaign_id', cid).order('created_at', { ascending: true });
-    if (error) throw error;
-    currentLightboxImages = (data || []).map(i => i.image_url);
-    document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`;
-    renderGalleryView();
-  } catch (err) { vg.innerHTML = '<p class="text-center text-gray-400 py-16">Failed to load gallery</p>'; }
-}
-
-function renderGalleryView() {
-  const g = document.getElementById('galleryViewGrid');
-  if (!currentLightboxImages.length) { g.innerHTML = '<div class="text-center py-16"><div class="text-5xl mb-3">📷</div><p class="text-gray-400 font-semibold">No photos yet</p></div>'; return; }
-  g.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">${currentLightboxImages.map((img,i)=>`
-    <div class="relative aspect-square rounded-2xl overflow-hidden cursor-pointer img-group" onclick="openLightbox(${i})">
-      <img src="${img}" alt="Photo ${i+1}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300" loading="lazy">
-      <div class="img-overlay absolute inset-0 bg-black/30 flex items-center justify-center"><span class="text-white text-2xl">🔍</span></div>
-      <button onclick="event.stopPropagation();deleteGalleryImage(${i})" class="admin-photo-actions absolute top-2 right-2 w-7 h-7 bg-black/60 text-white rounded-full text-xs flex items-center justify-center hover:bg-heart-500 transition-colors">✕</button>
-    </div>
-  `).join('')}</div>`;
-}
-
+async function deleteCampaign(id) { if (!confirm('Delete this campaign and all its gallery photos?')) return; try { await supabase.from('campaign_gallery').delete().eq('campaign_id', id); const { error } = await supabase.from('campaigns').delete().eq('id', id); if (error) throw error; showToast('Campaign deleted', 'info'); loadCampaigns(getCurrentFilter()); } catch (err) { showToast('Failed to delete: ' + err.message, 'error'); } }
+async function openGalleryModal(cid) { currentGalleryCampaignId = cid; const camp = currentCampaigns.find(c => c.id === cid); document.getElementById('galleryTitle').textContent = camp?.name || 'Gallery'; const vg = document.getElementById('galleryViewGrid'); vg.innerHTML = '<div class="flex justify-center py-16"><span class="spinner" style="border-color:rgba(22,163,74,0.2);border-top-color:#16a34a;width:32px;height:32px"></span></div>'; document.getElementById('galleryModal').classList.add('open'); try { const { data, error } = await supabase.from('campaign_gallery').select('*').eq('campaign_id', cid).order('created_at', { ascending: true }); if (error) throw error; currentLightboxImages = (data || []).map(i => i.image_url); document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`; renderGalleryView(); } catch (err) { vg.innerHTML = '<p class="text-center text-gray-400 py-16">Failed to load gallery</p>'; } }
+function renderGalleryView() { const g = document.getElementById('galleryViewGrid'); if (!currentLightboxImages.length) { g.innerHTML = '<div class="text-center py-16"><div class="text-5xl mb-3">📷</div><p class="text-gray-400 font-semibold">No photos yet</p></div>'; return; } g.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">${currentLightboxImages.map((img,i)=>`<div class="relative aspect-square rounded-2xl overflow-hidden cursor-pointer img-group" onclick="openLightbox(${i})"><img src="${img}" alt="Photo ${i+1}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300" loading="lazy"><div class="img-overlay absolute inset-0 bg-black/30 flex items-center justify-center"><span class="text-white text-2xl">🔍</span></div><button onclick="event.stopPropagation();deleteGalleryImage(${i})" class="admin-photo-actions absolute top-2 right-2 w-7 h-7 bg-black/60 text-white rounded-full text-xs flex items-center justify-center hover:bg-heart-500 transition-colors">✕</button></div>`).join('')}</div>`; }
 function closeGalleryModal() { document.getElementById('galleryModal').classList.remove('open'); }
-
-async function deleteGalleryImage(index) {
-  if (!confirm('Delete this photo?')) return;
-  try {
-    const { data: items } = await supabase.from('campaign_gallery').select('id').eq('campaign_id', currentGalleryCampaignId).order('created_at', { ascending: true });
-    if (items && items[index]) {
-      await supabase.from('campaign_gallery').delete().eq('id', items[index].id);
-      currentLightboxImages.splice(index, 1);
-      renderGalleryView();
-      document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`;
-      showToast('Photo deleted', 'info');
-    }
-  } catch (err) { showToast('Failed to delete photo', 'error'); }
-}
-
+async function deleteGalleryImage(index) { if (!confirm('Delete this photo?')) return; try { const { data: items } = await supabase.from('campaign_gallery').select('id').eq('campaign_id', currentGalleryCampaignId).order('created_at', { ascending: true }); if (items && items[index]) { await supabase.from('campaign_gallery').delete().eq('id', items[index].id); currentLightboxImages.splice(index, 1); renderGalleryView(); document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`; showToast('Photo deleted', 'info'); } } catch (err) { showToast('Failed to delete photo', 'error'); } }
 function openAddGalleryToCampaign() { document.getElementById('addMoreGalleryInput').click(); }
-async function handleAddMoreGallery(e) {
-  const files = Array.from(e.target.files); e.target.value = ''; if (!files.length) return;
-  showToast(`Uploading ${files.length} photo${files.length > 1 ? 's' : ''}...`, 'info');
-  try {
-    for (const f of files) {
-      if (f.size > 5 * 1024 * 1024) continue;
-      const u = await uploadImage(f, `gallery/${currentGalleryCampaignId}`);
-      await supabase.from('campaign_gallery').insert({ campaign_id: currentGalleryCampaignId, image_url: u });
-      currentLightboxImages.push(u);
-    }
-    renderGalleryView();
-    document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`;
-    showToast(`Photos added! 📸`, 'success');
-  } catch (err) { showToast('Failed to add photos', 'error'); }
-}
-
+async function handleAddMoreGallery(e) { const files = Array.from(e.target.files); e.target.value = ''; if (!files.length) return; showToast(`Uploading ${files.length} photo${files.length > 1 ? 's' : ''}...`, 'info'); try { for (const f of files) { if (f.size > 5 * 1024 * 1024) continue; const u = await uploadImage(f, `gallery/${currentGalleryCampaignId}`); await supabase.from('campaign_gallery').insert({ campaign_id: currentGalleryCampaignId, image_url: u }); currentLightboxImages.push(u); } renderGalleryView(); document.getElementById('galleryCount').textContent = `${currentLightboxImages.length} photo${currentLightboxImages.length !== 1 ? 's' : ''}`; showToast(`Photos added! 📸`, 'success'); } catch (err) { showToast('Failed to add photos', 'error'); } }
 function openLightbox(i) { currentLightboxIndex = i; updateLightbox(); document.getElementById('lightbox').classList.add('open'); }
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 function lightboxPrev() { currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length; updateLightbox(); }
 function lightboxNext() { currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length; updateLightbox(); }
 function updateLightbox() { document.getElementById('lightboxImg').src = currentLightboxImages[currentLightboxIndex]; document.getElementById('lightboxCounter').textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`; }
+async function handleSuggestion() { const name = document.getElementById('sugName').value.trim(); const message = document.getElementById('sugMessage').value.trim(); if (!name) { showToast('Please enter your name', 'error'); return; } if (!message) { showToast('Please enter your suggestion', 'error'); return; } const btn = document.getElementById('suggestionBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Submitting...'; try { const { error } = await supabase.from('suggestions').insert({ name, type: selectedSuggestionType, message }); if (error) throw error; document.getElementById('sugName').value = ''; document.getElementById('sugMessage').value = ''; showToast('Thank you for your suggestion! 💡', 'success'); triggerConfetti(); } catch (err) { showToast('Failed to submit. Please try again.', 'error'); } finally { btn.disabled = false; btn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i> Submit Suggestion'; lucide.createIcons(); } }
 
-// =============================================
-// SUGGESTIONS
-// =============================================
-async function handleSuggestion() {
-  const name = document.getElementById('sugName').value.trim();
-  const message = document.getElementById('sugMessage').value.trim();
-  if (!name) { showToast('Please enter your name', 'error'); return; }
-  if (!message) { showToast('Please enter your suggestion', 'error'); return; }
-  const btn = document.getElementById('suggestionBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Submitting...';
-  try {
-    const { error } = await supabase.from('suggestions').insert({ name, type: selectedSuggestionType, message });
-    if (error) throw error;
-    document.getElementById('sugName').value = ''; document.getElementById('sugMessage').value = '';
-    showToast('Thank you for your suggestion! 💡', 'success');
-    triggerConfetti();
-  } catch (err) { showToast('Failed to submit. Please try again.', 'error'); }
-  finally { btn.disabled = false; btn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i> Submit Suggestion'; lucide.createIcons(); }
-}
-
-// =============================================
-// EVENT LISTENERS
-// =============================================
 document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
 document.getElementById('closeMobileMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
 document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
-
-document.querySelectorAll('.campaign-tab').forEach(t => t.addEventListener('click', function() {
-  document.querySelectorAll('.campaign-tab').forEach(x => { x.classList.remove('active', 'bg-leaf-600', 'text-white'); x.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200'); });
-  this.classList.add('active', 'bg-leaf-600', 'text-white'); this.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
-  loadCampaigns(this.dataset.filter);
-}));
-
-document.querySelectorAll('.suggestion-type-btn').forEach(b => b.addEventListener('click', function() {
-  document.querySelectorAll('.suggestion-type-btn').forEach(x => { x.classList.remove('active', 'bg-sky-500', 'text-white'); x.classList.add('bg-gray-100', 'text-gray-600'); });
-  this.classList.add('active', 'bg-sky-500', 'text-white'); this.classList.remove('bg-gray-100', 'text-gray-600');
-  selectedSuggestionType = this.dataset.type;
-}));
-
+document.querySelectorAll('.campaign-tab').forEach(t => t.addEventListener('click', function() { document.querySelectorAll('.campaign-tab').forEach(x => { x.classList.remove('active', 'bg-leaf-600', 'text-white'); x.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }); this.classList.add('active', 'bg-leaf-600', 'text-white'); this.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200'); loadCampaigns(this.dataset.filter); }));
+document.querySelectorAll('.suggestion-type-btn').forEach(b => b.addEventListener('click', function() { document.querySelectorAll('.suggestion-type-btn').forEach(x => { x.classList.remove('active', 'bg-sky-500', 'text-white'); x.classList.add('bg-gray-100', 'text-gray-600'); }); this.classList.add('active', 'bg-sky-500', 'text-white'); this.classList.remove('bg-gray-100', 'text-gray-600'); selectedSuggestionType = this.dataset.type; }));
 document.querySelectorAll('.color-opt').forEach(b => b.addEventListener('click', function() { selectedColor = this.dataset.color; updateColorSelection(); }));
-
-['mainImageZone', 'galleryZone'].forEach(zid => {
-  const z = document.getElementById(zid); if (!z) return;
-  z.addEventListener('dragover', (e) => { e.preventDefault(); z.classList.add('dragover'); });
-  z.addEventListener('dragleave', () => z.classList.remove('dragover'));
-  z.addEventListener('drop', (e) => {
-    e.preventDefault(); z.classList.remove('dragover');
-    const fs = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
-    if (zid === 'mainImageZone' && fs[0]) {
-      const dt = new DataTransfer(); dt.items.add(fs[0]);
-      document.getElementById('mainImageInput').files = dt.files;
-      handleMainImage({ target: { files: [fs[0]] } });
-    } else if (zid === 'galleryZone') {
-      fs.forEach(f => { if (f.size <= 5*1024*1024) galleryFiles.push(f); });
-      renderGalleryPreviews();
-    }
-  });
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') { closeCampaignModal(); closeGalleryModal(); closeLightbox(); closeAdminLogin(); closeSettingsModal(); }
-  if (document.getElementById('lightbox').classList.contains('open')) {
-    if (e.key === 'ArrowLeft') lightboxPrev();
-    if (e.key === 'ArrowRight') lightboxNext();
-  }
-});
-
+['mainImageZone', 'galleryZone'].forEach(zid => { const z = document.getElementById(zid); if (!z) return; z.addEventListener('dragover', (e) => { e.preventDefault(); z.classList.add('dragover'); }); z.addEventListener('dragleave', () => z.classList.remove('dragover')); z.addEventListener('drop', (e) => { e.preventDefault(); z.classList.remove('dragover'); const fs = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/')); if (zid === 'mainImageZone' && fs[0]) { const dt = new DataTransfer(); dt.items.add(fs[0]); document.getElementById('mainImageInput').files = dt.files; handleMainImage({ target: { files: [fs[0]] } }); } else if (zid === 'galleryZone') { fs.forEach(f => { if (f.size <= 5*1024*1024) galleryFiles.push(f); }); renderGalleryPreviews(); } }); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeCampaignModal(); closeGalleryModal(); closeLightbox(); closeAdminLogin(); closeSettingsModal(); closeSuggestionsModal(); } if (document.getElementById('lightbox').classList.contains('open')) { if (e.key === 'ArrowLeft') lightboxPrev(); if (e.key === 'ArrowRight') lightboxNext(); } });
 function handleReveal() { document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); }); }
 window.addEventListener('scroll', handleReveal, { passive: true });
 
-// =============================================
-// INITIALIZATION
-// =============================================
 document.addEventListener('DOMContentLoaded', async () => {
   lucide.createIcons();
   updateColorSelection();
